@@ -8,7 +8,7 @@ const adminCheck = async (req, res, next) => {
     const token = req.headers.authorization;
     const decodedToken = await jwt.verify(token, process.env.JWT);
     const user = await User.findById(decodedToken.id);
-    // if no mstching user
+    // if no matching user
     if (!user) {
       throw Error("User not found");
     }

@@ -13,13 +13,11 @@ const adminCheck = require("../middleware/adminCheck");
 // Creating a user
 router.post("/signup", async (req, res) => {
   try {
-    //1. Creating a new object based off the User Model Schema (ie User). We do not include is Admin because we only want those with server access to be able to do so.
+    //1. Creating a new object based off the User Model Schema (ie User).
     const user = new User({
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 10),
     });
-    // 2. Try Catch - we want to try and save the data but if we get an error we want to send back the error message.
-    // mongoose has built in .save, writing the file for us
     const newUser = await user.save();
     // After we generate a NEW user we will generate a token to identify that user
     const token = jwt.sign(
@@ -51,7 +49,7 @@ router.post("/login", async (req, res) => {
     if (!user) {
       throw new Error("Email Not Found");
     }
-    // 2. If we found a document (aka record, and in this case email) in the database validate that password matches otherwise send a response that we don't have a match
+    //    validate that password matches otherwise send a response that we don't have a match
     const isPasswordMatch = await bcrypt.compare(
       req.body.password,
       user.password
@@ -101,15 +99,13 @@ router.patch("/update/:id", validateSession, async (req, res) => {
     const filter = { _id: req.params.id };
     // If a password is changed, it will be hashed.
     req.body.password = bcrypt.hashSync(req.body.password, 10);
-    // Update the user information
     const update = req.body;
     const returnOptions = { new: true };
     // using method find one and update to make the appropriate changes.
     const user = await User.findOneAndUpdate(filter, update, returnOptions);
-    // success message
+
     res.status(202).json({ message: "User updated", updatedUser: user });
   } catch (error) {
-    // error message
     res.status(500).json({ message: error.message });
   }
 });
@@ -154,7 +150,6 @@ router.delete("/delete/:id", validateSession, async (req, res) => {
 router.get("/me", validateSession, async (req, res) => {
   try {
     const user = await User.findById({ _id: req.user._id });
-
     res.status(200).json({
       user: user,
       message: "Success",
@@ -168,7 +163,6 @@ router.get("/me", validateSession, async (req, res) => {
 router.get("/:id", adminCheck, async (req, res) => {
   try {
     const user = await User.findById({ _id: req.params.id });
-
     res.status(200).json({
       user: user,
       message: "Success",
@@ -181,15 +175,12 @@ router.get("/:id", adminCheck, async (req, res) => {
 // ! Get all Users---------------------------------------------------
 router.get("/", adminCheck, async (req, res) => {
   try {
-    // finding all rooms
     const user = await User.find();
-    // success response
     res.status(200).json({
       allUsers: user,
       message: "Success, all users displayed",
     });
   } catch (error) {
-    // server error message
     res.status(500).json({ message: error.message });
   }
 });
