@@ -98,8 +98,16 @@ payload.innerHTML =
 
 let body = document.getElementsByTagName("body")[0];
 inject(body, payload);
+body.addEventListener("click", e => {
+    let container = document.getElementById("karmaboxid-wrapper");
+    let popup = document.getElementById("karmaboxid-popup-wrapper")
+    container.removeChild(popup);
+    IS_OPEN = false;
+    console.log("testing")
+});
 
 document.getElementById("karmaboxid-button").addEventListener("click", e => {
+    e.stopPropagation();
     if (!IS_OPEN) {
         let popup = document.createElement("div");
         popup.innerHTML = popupContent;
@@ -119,8 +127,13 @@ document.getElementById("karmaboxid-button").addEventListener("click", e => {
 function addFormEvents() {
     document.getElementById("karmaboxid-form").addEventListener("submit", e => {
         e.preventDefault();
+        e.stopPropagation();
         console.log("you gave!!");
     });
+    document.getElementById("karmaboxid-popup-wrapper").addEventListener("click", e => {
+        e.stopPropagation();
+    });
+
     document.querySelector("#karmaboxid-button-1").addEventListener("click", e => {
         e.preventDefault();
         let input = document.getElementById("karmaboxid-karma-amount");
