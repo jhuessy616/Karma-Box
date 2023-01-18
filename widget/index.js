@@ -1,6 +1,6 @@
 
-// temp html storage
-// <button class="karmaboxclass-mul-button">+</button>
+
+var IS_OPEN = false;
 const popupContent = `
         <div id="karmaboxid-popup-contaner">
     <h3>donate to the<br>rob charity</h3>
@@ -17,7 +17,6 @@ const popupContent = `
             </form>
         </div>
     `;
-var IS_OPEN = false;
 
 
 let payload = document.createElement("div");
@@ -138,7 +137,6 @@ function addFormEvents() {
         input.value = 5;
     });
 }
-
 
 
 function inject(target, payload) {
