@@ -4,6 +4,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const userController = require("./controllers/user.controller.js");
+const stripeController = require('./controllers/stripe.controller.js')
 const cors = require("cors");
 
 // import and connect to mongo database boilerplate
@@ -25,6 +26,7 @@ app.use(express.json());
 // ! -------------------------------------Routes---------------------------------------------
 // Defining our routes
 app.use("/user", userController);
+app.use("/api", stripeController)
 
 // !-------------------------------Server Listening-------------------------------------------
 // having server listening
