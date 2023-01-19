@@ -6,7 +6,7 @@ import FullWidthButton from "../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
 
 //! Declaration of Vairables
-const CharitySignup = (props) => {
+const CharitySignUp = (props) => {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
@@ -96,4 +96,4 @@ const CharitySignup = (props) => {
 };
 
 
-export default CharitySignup;
+export default CharitySignUp;

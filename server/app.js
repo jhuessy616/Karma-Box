@@ -8,9 +8,11 @@ const cors = require("cors");
 
 // import and connect to mongo database boilerplate
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGOOSE_URL);
-const db = mongoose.connection;
 mongoose.set("strictQuery", false);
+const db = mongoose.connection;
+mongoose.connect(process.env.MONGOOSE_URL);
+
+
 
 // ! ---------------------------------Additional Boiler Plate---------------------------
 // check to see the paths are working and seeing which database we are connected to
