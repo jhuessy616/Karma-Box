@@ -4,13 +4,16 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const userController = require("./controllers/user.controller.js");
+const stripeController = require('./controllers/stripe.controller.js')
 const cors = require("cors");
 
 // import and connect to mongo database boilerplate
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGOOSE_URL);
-const db = mongoose.connection;
 mongoose.set("strictQuery", false);
+const db = mongoose.connection;
+mongoose.connect(process.env.MONGOOSE_URL);
+
+
 
 // ! ---------------------------------Additional Boiler Plate---------------------------
 // check to see the paths are working and seeing which database we are connected to
@@ -23,6 +26,7 @@ app.use(express.json());
 // ! -------------------------------------Routes---------------------------------------------
 // Defining our routes
 app.use("/user", userController);
+app.use("/api", stripeController)
 
 // !-------------------------------Server Listening-------------------------------------------
 // having server listening

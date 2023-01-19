@@ -1,14 +1,46 @@
+import React, { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+// !below are the routes I am importing to the sign in and log in pages
+import LoginPage from "./components/Authorization/user/LoginPage";
+import SignUpPage from "./components/Authorization/user/SignUpPage";
+import ProfileIndex from "./components/ProfilePage/ProfileIndex"
+import ProfileEdit from "./components/ProfilePage/charityProfilePage"
+
 
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import './app.css';
 
+
 function App() {
+  const [sessionToken, setSessionToken] = useState("");
+
+  const updateToken = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setSessionToken(localStorage.getItem("token"));
+    }
+  }, []);
+
+  //! Declaration of Routes
   return (
-    <div className="App">
+
+    <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        </Routes>
+        <Route path="/login" element={<LoginPage updateToken={updateToken} />} />
+        <Route path="/signup" element={<SignUpPage updateToken={updateToken} />} />
+        <Route path="/donorProfile" element={<ProfileIndex token={sessionToken} />} />
+        <Route
+          path="/charityProfile"
+          element={<ProfileEdit token={sessionToken} />}
+        />
+      </Routes>
+
     </div>
   );
 }
