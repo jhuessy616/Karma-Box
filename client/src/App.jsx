@@ -7,6 +7,11 @@ import ProfileIndex from "./components/ProfilePage/ProfileIndex"
 import ProfileEdit from "./components/ProfilePage/charityProfilePage"
 
 
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/home/Home";
+import './app.css';
+
+
 function App() {
   const [sessionToken, setSessionToken] = useState("");
 
@@ -23,9 +28,10 @@ function App() {
 
   //! Declaration of Routes
   return (
+
     <div>
       <Routes>
-        {/* Route for the homepage from Julia */}
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage updateToken={updateToken} />} />
         <Route path="/signup" element={<SignUpPage updateToken={updateToken} />} />
         <Route path="/donorProfile" element={<ProfileIndex token={sessionToken} />} />
@@ -34,6 +40,7 @@ function App() {
           element={<ProfileEdit token={sessionToken} />}
         />
       </Routes>
+
     </div>
   );
 }
