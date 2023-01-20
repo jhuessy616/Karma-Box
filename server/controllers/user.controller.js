@@ -21,7 +21,7 @@ router.post("/signup", async (req, res) => {
     const newUser = await user.save();
     // After we generate a NEW user we will generate a token to identify that user
     const token = jwt.sign(
-      { id: newUser._id, isAdmin: newUser.isAdmin },
+      { id: newUser._id, isAdmin: newUser.isAdmin, isCharity:newUser.isCharity },
       process.env.JWT,
       {
         expiresIn: 60 * 60 * 24,
@@ -30,7 +30,7 @@ router.post("/signup", async (req, res) => {
     // Success response, status 201 user created
     res.status(201).json({
       user: newUser,
-      message: "Successs",
+      message: "Success",
       token: token,
     });
     // Error response, status 400 because client gave bad or incomplete data.

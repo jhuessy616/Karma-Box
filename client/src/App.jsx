@@ -5,6 +5,8 @@ import Login from "./components/Authorization/user/login/Login";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex"
 import ProfileEdit from "./components/ProfilePage/charityProfilePage"
+import Home from "./components/home/Home";
+import './app.css';
 
 
 function App() {
@@ -23,10 +25,11 @@ function App() {
 
   //! Declaration of Routes
   return (
+
     <div>
       <Routes>
-        {/* Route for the homepage from Julia */}
-        <Route path="/login" element={<Login updateToken={updateToken} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage updateToken={updateToken} />} />
         <Route path="/signup" element={<SignUpPage updateToken={updateToken} />} />
         <Route path="/donorProfile" element={<ProfileIndex token={sessionToken} />} />
         <Route
@@ -34,6 +37,7 @@ function App() {
           element={<ProfileEdit token={sessionToken} />}
         />
       </Routes>
+
     </div>
   );
 }

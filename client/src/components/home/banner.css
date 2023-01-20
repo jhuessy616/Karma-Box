@@ -1,0 +1,112 @@
+.banner {
+ 
+  padding: 3vh 0 0 0;
+  /* background-image: url('../../assets/img/sky.jpeg'); */
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 20px 5vw;
+  
+  ;
+}
+/* .banner::before{
+   
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.1);
+
+} */
+
+.banner .KbDescription{
+  color: orangered;
+  font-size: 5vw;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 10px;
+  display: block;
+}
+.banner .earning{
+   color: orangered 
+}
+/* .banner .tagline {
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 8px 10px;
+  background: linear-gradient(90.21deg, rgba(170, 54, 124, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 50px;
+  margin-bottom: 16px;
+  line-height:7vh;
+  display: inline-block;
+  text-align: center;
+} */
+/* .banner h1 {
+   color: rgb(159,38,133);
+  font-size: 5vw;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 10px;
+  display: block;
+} */
+.banner h2 {
+  color: white;
+  letter-spacing: 0.8px;
+  /* line-height: 1.5em; */
+  font-size: 2vw;
+  width: 96%;
+}
+
+.banner .connectButton{
+  color: #fff;
+background: linear-gradient(90.21deg, rgba(0, 59, 255, 0.5) -5.91%, rgba(255, 69, 0, 0.75) 111.58%);
+  font-weight: 700;
+  font-size: 1.2vw;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.banner button svg {
+  font-size: 25px;
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
+  line-height: 1;
+}
+.banner button:hover svg {
+  margin-left: 25px;
+}
+.banner .logo{
+    filter: invert(12%) sepia(98%) saturate(3959%) hue-rotate(302deg) brightness(94%) contrast(77%);
+}
+/* .banner img {
+  animation: updown 3s linear infinite; */
+   /* height: 70%;
+  width:70% 
+}  */
+/* .headshot{
+height:90%;
+width:90%;
+} */
+/* @keyframes updown {
+    0% {
+        transform: translateY(-20px);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+} */
+.txt-rotate > .wrap {
+  border-right: 0.08em solid #666;
+}
