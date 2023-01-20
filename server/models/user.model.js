@@ -14,7 +14,12 @@ const UserSchema = new mongoose.Schema({
     }, 
    isAdmin: {
     type: Boolean,
-  default: false,}
+       default: false,
+    },
+    isCharity: {
+        type: Boolean,
+        default:false,
+   }
 });
 // !Exporting UserSchema
 module.exports = mongoose.model("User", UserSchema);

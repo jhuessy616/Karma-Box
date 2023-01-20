@@ -1,12 +1,12 @@
 // ! Dependencies imported
 // ! Styling imported from reactstrap
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { useRef} from "react";
+import { useRef } from "react";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
 
 //! Declaration of Vairables
-const DonorSignup = (props) => {
+const CharitySignupOriginal = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
@@ -14,12 +14,12 @@ const DonorSignup = (props) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-const email = emailRef.current.value;
+    const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    
+
     //!Url our page is hosed on
     let url = `http://localhost:4000/user/signup`;
-    let bodyObject = JSON.stringify({  email, password });
+    let bodyObject = JSON.stringify({ email, password });
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -49,8 +49,8 @@ const email = emailRef.current.value;
   //! Input field where user enters information
   return (
     <>
-      <h1>Begin earning your good karma today!</h1>
-      <h2>Sign up to be a donor!</h2>
+      <h1>Contact us to become an approved Non-Profit</h1>
+      <h2>Sign up your charity!</h2>
       <div style={{ backgroundColor: "lightcyan" }}>
         <Form onSubmit={handleSubmit}>
           <FormGroup>
@@ -64,7 +64,8 @@ const email = emailRef.current.value;
           <FormGroup>
             <Label>Confirm Password:</Label>
             <Input type="password" innerRef={confirmPasswordRef} />
-          </FormGroup><br></br>
+          </FormGroup>
+          <br></br>
           <FullWidthButton>
             <Button type="submit" color="primary">
               Sign Up
@@ -76,4 +77,4 @@ const email = emailRef.current.value;
   );
 };
 
-export default DonorSignup;
+export default CharitySignupOriginal;

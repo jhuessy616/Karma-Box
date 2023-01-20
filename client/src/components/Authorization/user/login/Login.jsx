@@ -1,7 +1,7 @@
 // ! Dependencies imported
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
+import {useState} from "react"
 // ! Styling imported from reactstrap
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import FullWidthButton from "../../Buttons/FullWidthButton";
@@ -11,13 +11,20 @@ const Login = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
-
+ const [loginError, setLoginError] = useState("");
+  const [loginErrorClass, setLoginErrorClass] = useState("none");
+  
   async function handleSubmit(e) {
     e.preventDefault();
 
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
+     if (email === "" || password === "") {
+       setLoginError("missing input");
+       setLoginErrorClass("some");
+       return;
+     }
     //!Url our page is hosed on
     let url = `http://localhost:4000/user/login`;
 
@@ -39,7 +46,9 @@ const Login = (props) => {
       if (data.message === "Success") {
         //We are free to navigate to another page
         props.updateToken(data.token);
-        navigate("/room");
+        // if (props.user.isCharity === false) 
+          navigate("/profile")
+        
       } else {
         alert(data.message);
       }
