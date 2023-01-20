@@ -1,15 +1,14 @@
 // ! Dependencies imported
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "reactstrap";
-import ProfileCreate from "./donorProfilePage";
-import ProfileTable from "./signUpProfilePage";
+
 
 //! Declaration of Variables
-const ChatroomIndex = (props) => {
+const ProfileIndex = (props) => {
 	const [chatrooms, setChatrooms] = useState([]);
 	const fetchChatrooms = async () => {
 		//! Url our page is hosted on
-		const url = `http://localhost:4000/room/`;
+		const url = `http://localhost:4000/profile`;
 		let myHeaders = new Headers();
 		myHeaders.append("Authorization", props.token);
 		const requestOptions = {
@@ -38,17 +37,7 @@ const ChatroomIndex = (props) => {
 				<Container>
 					<Row>
 						<Col md="4">
-							<ProfileCreate
-								token={props.token}
-								fetchChatrooms={fetchChatrooms}
-							/>
-						</Col>
-						<Col md="8">
-							<ProfileTable
-								chatrooms={chatrooms}
-								token={props.token}
-								fetchChatrooms={fetchChatrooms}
-							/>
+							
 						</Col>
 					</Row>
 				</Container>
@@ -57,4 +46,4 @@ const ChatroomIndex = (props) => {
 	);
 };
 
-export default ChatroomIndex;
+export default ProfileIndex;

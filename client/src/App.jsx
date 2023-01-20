@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./components/Authorization/user/login/Login";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex"
-import ProfileEdit from "./components/ProfilePage/charityProfilePage"
 import Home from "./components/home/Home";
 import './app.css';
 
@@ -29,13 +28,9 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginPage updateToken={updateToken} />} />
+        <Route path="/login" element={<Login updateToken={updateToken} />} />
         <Route path="/signup" element={<SignUpPage updateToken={updateToken} />} />
         <Route path="/donorProfile" element={<ProfileIndex token={sessionToken} />} />
-        <Route
-          path="/charityProfile"
-          element={<ProfileEdit token={sessionToken} />}
-        />
       </Routes>
 
     </div>
