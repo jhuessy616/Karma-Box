@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 // !below are the routes I am importing to the sign in and log in pages
-import LoginPage from "./components/Authorization/user/LoginPage";
+import Login from "./components/Authorization/user/login/Login";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex"
 import ProfileEdit from "./components/ProfilePage/charityProfilePage"

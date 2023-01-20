@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {useState} from "react"
 // ! Styling imported from reactstrap
-import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 
 //! Declaration of Variables
@@ -17,8 +17,9 @@ const Login = (props) => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+		const email = emailRef.current.value;
+		const password = passwordRef.current.value;
+
 
      if (email === "" || password === "") {
        setLoginError("missing input");
@@ -28,11 +29,11 @@ const Login = (props) => {
     //!Url our page is hosed on
     let url = `http://localhost:4000/user/login`;
 
-    let bodyObject = JSON.stringify({ email, password });
 
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+		let bodyObject = JSON.stringify({ email, password });
 
+		let myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
       headers: myHeaders,
       body: bodyObject,
@@ -57,41 +58,48 @@ const Login = (props) => {
     }
   }
 
-  //! Input field where user enters information
-  return (
-    <>
-      <h2>Log in to your profile!</h2>
-      <div style={{ backgroundColor: "lightgoldenrodyellow" }}>
-        <Form onSubmit={handleSubmit}>
-          <FormGroup floating>
-            <Input
-              id="exampleEmail"
-              name="email"
-              placeholder="Email"
-              type="email"
-              innerRef={emailRef}
-            />
-            <Label for="exampleEmail">Email</Label>
-          </FormGroup>{" "}
-          <FormGroup floating>
-            <Input
-              id="examplePassword"
-              name="password"
-              placeholder="Password"
-              type="password"
-              innerRef={passwordRef}
-            />
-            <Label for="examplePassword">Password</Label>
-          </FormGroup>{" "}
-          <FullWidthButton>
-            <Button type="submit" color="warning">
-              Log In
-            </Button>
-          </FullWidthButton>
-        </Form>
-      </div>
-    </>
-  );
+	//! Input field where user enters information
+  
+	return (
+		<>
+			<Container>
+				<Row>
+					<Col md="6">
+						<h2>Log in to your profile!</h2>
+						<div style={{ backgroundColor: "lightgoldenrodyellow" }}>
+							<Form onSubmit={handleSubmit}>
+								<FormGroup floating>
+									<Input
+										id="exampleEmail"
+										name="email"
+										placeholder="Email"
+										type="email"
+										innerRef={emailRef}
+									/>
+									<Label for="exampleEmail">Email</Label>
+								</FormGroup>{" "}
+								<FormGroup floating>
+									<Input
+										id="examplePassword"
+										name="password"
+										placeholder="Password"
+										type="password"
+										innerRef={passwordRef}
+									/>
+									<Label for="examplePassword">Password</Label>
+								</FormGroup>{" "}
+								<FullWidthButton>
+									<Button type="submit" color="warning">
+										Log In
+									</Button>
+								</FullWidthButton>
+							</Form>
+						</div>
+					</Col>
+				</Row>
+			</Container>
+		</>
+	);
 };
 
 export default Login;
