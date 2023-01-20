@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 // !below are the routes I am importing to the sign in and log in pages
-import LoginPage from "./components/Authorization/user/LoginPage";
+import Login from "./components/Authorization/user/login/Login";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex"
 import ProfileEdit from "./components/ProfilePage/charityProfilePage"
@@ -26,7 +26,7 @@ function App() {
     <div>
       <Routes>
         {/* Route for the homepage from Julia */}
-        <Route path="/login" element={<LoginPage updateToken={updateToken} />} />
+        <Route path="/login" element={<Login updateToken={updateToken} />} />
         <Route path="/signup" element={<SignUpPage updateToken={updateToken} />} />
         <Route path="/donorProfile" element={<ProfileIndex token={sessionToken} />} />
         <Route
