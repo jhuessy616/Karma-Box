@@ -5,9 +5,6 @@ import LoginPage from "./components/Authorization/user/LoginPage";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex"
 import ProfileEdit from "./components/ProfilePage/charityProfilePage"
-
-
-import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import './app.css';
 

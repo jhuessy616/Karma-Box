@@ -41,7 +41,7 @@ const NavBar = () => {
               className={
                 activeLink === "home" ? "active navbar-link" : "navbar-link"
               }
-            //   onClick={() => onUpdateActiveLink("home")}
+              //   onClick={() => onUpdateActiveLink("home")}
             >
               Home
             </Nav.Link>
@@ -50,25 +50,25 @@ const NavBar = () => {
               className={
                 activeLink === "about" ? "active navbar-link" : "navbar-link"
               }
-            //   onClick={() => onUpdateActiveLink("about")}
+              //   onClick={() => onUpdateActiveLink("about")}
             >
               About
             </Nav.Link>
             <Nav.Link
-              href="#login"
+              href="http://localhost:3000/login"
               className={
                 activeLink === "login" ? "active-navbar-link" : "navbar-link"
               }
-            //   onClick={() => onUpdateActiveLink("login")}
+              //   onClick={() => onUpdateActiveLink("login")}
             >
               Login
             </Nav.Link>
             <Nav.Link
-              href="#signup"
+              href="http://localhost:3000/signup"
               className={
                 activeLink === "signup" ? "active-navbar-link" : "navbar-link"
               }
-            //   onClick={() => onUpdateActiveLink("signup")}
+              //   onClick={() => onUpdateActiveLink("signup")}
             >
               Sign Up
             </Nav.Link>
