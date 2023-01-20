@@ -98,7 +98,7 @@ karmabox_payload.innerHTML =
         position: absolute;
         bottom: 0;
         right: 0;
-        background-color: purple;
+        background-color: ${document.currentScript.getAttribute("button-color")};
         background-image: url(./assets/logo3.png)
         background-size: cover;
         border: none;
