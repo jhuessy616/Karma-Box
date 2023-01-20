@@ -2,6 +2,7 @@
 import { Col, Container, Row } from 'reactstrap'
 import "./about.css"
 function About() {
+
   return (
     <div>
       <Container className="AboutContainer">

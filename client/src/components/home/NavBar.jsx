@@ -46,7 +46,7 @@ const NavBar = () => {
               Home
             </Nav.Link>
             <Nav.Link
-              href="#about"
+              href="http://localhost:3000/about"
               className={
                 activeLink === "about" ? "active navbar-link" : "navbar-link"
               }

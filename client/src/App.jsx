@@ -5,6 +5,7 @@ import Login from "./components/Authorization/user/login/Login";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex"
 import Home from "./components/home/Home";
+import About from "./components/home/About";
 import './app.css';
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/login" element={<Login updateToken={updateToken} />} />
         <Route path="/signup" element={<SignUpPage updateToken={updateToken} />} />
         <Route path="/donorProfile" element={<ProfileIndex token={sessionToken} />} />
+        <Route path="/about" element={<About />} />
       </Routes>
 
     </div>
