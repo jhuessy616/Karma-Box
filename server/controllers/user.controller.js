@@ -21,7 +21,7 @@ router.post("/signup", async (req, res) => {
     const newUser = await user.save();
     // After we generate a NEW user we will generate a token to identify that user
     const token = jwt.sign(
-      { id: newUser._id, isAdmin: newUser.isAdmin },
+      { id: newUser._id, isAdmin: newUser.isAdmin, isCharity:newUser.isCharity },
       process.env.JWT,
       {
         expiresIn: 60 * 60 * 24,
