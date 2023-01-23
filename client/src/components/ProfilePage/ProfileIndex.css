@@ -23,6 +23,9 @@ FullWidthButton {
 }
 
 .Background {
+	display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
 	background-color: var(--tertiary);
 	min-height: 100vh;
 	/* margin-top: 0px !important; */
@@ -35,3 +38,4 @@ FullWidthButton {
     justify-content: 'center';
 	width: 400px;
 }
+

@@ -30,7 +30,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login updateToken={updateToken} />} />
         <Route path="/signup" element={<SignUpPage updateToken={updateToken} />} />
-        <Route path="/donorProfile" element={<ProfileIndex token={sessionToken} />} />
+        <Route path="/profile" element={<ProfileIndex token={sessionToken} />} />
       </Routes>
 
     </div>
