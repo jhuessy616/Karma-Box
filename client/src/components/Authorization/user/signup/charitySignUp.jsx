@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { useRef } from "react";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
+import "./charitySignUp.css"
 
 //! Declaration of Vairables
 const CharitySignup = (props) => {
@@ -51,7 +52,7 @@ const CharitySignup = (props) => {
     <>
       <h1>Contact us to become an approved Non-Profit</h1>
       <h2>Sign up your charity!</h2>
-      <div style={{ backgroundColor: "lightcyan" }}>
+      <div>
         <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label>Email: </Label>
@@ -67,7 +68,7 @@ const CharitySignup = (props) => {
           </FormGroup>
           <br></br>
           <FullWidthButton>
-            <Button type="submit" color="primary">
+            <Button type="submit" color="warning">
               Sign Up
             </Button>
           </FullWidthButton>

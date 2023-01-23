@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { useRef} from "react";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
+import "./donorSignUp.css"
 
 //! Declaration of Vairables
 const DonorSignup = (props) => {
@@ -51,7 +52,7 @@ const email = emailRef.current.value;
     <>
       <h1>Begin earning your good karma today!</h1>
       <h2>Sign up to be a donor!</h2>
-      <div style={{ backgroundColor: "lightcyan" }}>
+      <div>
         <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label>Email: </Label>
@@ -66,7 +67,7 @@ const email = emailRef.current.value;
             <Input type="password" innerRef={confirmPasswordRef} />
           </FormGroup><br></br>
           <FullWidthButton>
-            <Button type="submit" color="primary">
+            <Button type="submit" color="warning">
               Sign Up
             </Button>
           </FullWidthButton>

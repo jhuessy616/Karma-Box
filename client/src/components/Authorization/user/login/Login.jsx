@@ -5,7 +5,9 @@ import {useState} from "react"
 // ! Styling imported from reactstrap
 import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import FullWidthButton from "../../Buttons/FullWidthButton";
+import Navbar from "../../../home/NavBar"
 import "./login.css"
+
 
 //! Declaration of Variables
 const Login = (props) => {
@@ -62,11 +64,11 @@ const Login = (props) => {
 	//! Input field where user enters information
   
 	return (
-		<div className="background">
-			<Container>
-				<Row>
-					<Col md="6">
-						<h2>Log in to your profile!</h2>
+		<div className="Background">
+			<Navbar></Navbar>
+			<Container className="logInForm">
+				
+						<h1>Log in to your profile!</h1>
 						<div>
 							<Form onSubmit={handleSubmit}>
 								<FormGroup floating>
@@ -96,8 +98,6 @@ const Login = (props) => {
 								</FullWidthButton>
 							</Form>
 						</div>
-					</Col>
-				</Row>
 			</Container>
 		</div>
 	);
