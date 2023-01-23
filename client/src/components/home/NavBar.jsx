@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import logo from "../../assets/img/logo3.png";
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 // import { HashLink } from 'react-router-hash-link'
 // import { BrowserRouter as Router } from "react-router-dom";
 
@@ -63,15 +69,51 @@ const NavBar = () => {
             >
               Login
             </Nav.Link>
-            <Nav.Link
-              href="http://localhost:3000/signup"
-              className={
-                activeLink === "signup" ? "active-navbar-link" : "navbar-link"
-              }
-              //   onClick={() => onUpdateActiveLink("signup")}
-            >
-              Sign Up
-            </Nav.Link>
+
+            <UncontrolledDropdown nav inNavbar>
+              <Nav.Link
+                className={
+                  activeLink === "signup" ? "active-navbar-link" : "navbar-link"
+                }
+                //   onClick={() => onUpdateActiveLink("signup")}
+              >
+                <DropdownToggle tag="span" className="crazy">
+                  Sign Up
+                </DropdownToggle>
+              </Nav.Link>
+              <DropdownMenu dark>
+                <DropdownItem>
+                  {" "}
+                  <Nav.Link
+                    href="http://localhost:3000/signup"
+                    className={
+                      activeLink === "donorsignup"
+                        ? "active-navbar-link"
+                        : "navbar-link"
+                    }
+                    //   onClick={() => onUpdateActiveLink("donorsignup")}
+                  >
+                    {" "}
+                    Donor Signup
+                  </Nav.Link>
+                </DropdownItem>
+
+                <DropdownItem>
+                  <Nav.Link
+                    href="http://localhost:3000/signup"
+                    className={
+                      activeLink === "nonprofitsignup"
+                        ? "active-navbar-link"
+                        : "navbar-link"
+                    }
+                    //   onClick={() => onUpdateActiveLink("charitysignup")}
+                  >
+                    {" "}
+                    Non Profit Signup
+                  </Nav.Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

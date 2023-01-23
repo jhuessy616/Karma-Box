@@ -1,81 +1,75 @@
-// ! Dependencies imported
-// ! Styling imported from reactstrap
+import React, { useRef } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
 import "./charitySignUp.css"
 
-//! Declaration of Vairables
-const CharitySignup = (props) => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
-  const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+
+const CharitySignUp = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
     e.preventDefault();
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
 
-    //!Url our page is hosed on
-    let url = `http://localhost:4000/user/signup`;
-    let bodyObject = JSON.stringify({ email, password });
-
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const requestOptions = {
-      headers: myHeaders,
-      body: bodyObject,
-      method: "POST",
-    };
-    //! function that runs when the user hits the signup button, that then allows them to log in
-    try {
-      const response = await fetch(url, requestOptions);
-      const data = await response.json();
-      console.log(data);
-      if (data.message === "Success") {
-        //We are free to navigate to another page
-        props.updateToken(data.token);
-        navigate("/profile");
-      } else {
-        alert(data.message);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  //! Input field where user enters information
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        form.current,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
   return (
     <>
-      <h1>Contact us to become an approved Non-Profit</h1>
-      <h2>Sign up your charity!</h2>
-      <div>
-        <Form onSubmit={handleSubmit}>
+      <h1>Make it easier for individuals to donate!</h1>
+      <h2>Contact us to get approved as a non-profit.</h2>
+      <div className="StyledContactForm">
+        <Form ref={form} onSubmit={sendEmail}>
           <FormGroup>
-            <Label>Email: </Label>
-            <Input type="email" innerRef={emailRef} />
+            <Label>Name: </Label>
+            <Input type="text" name="user_name" />
           </FormGroup>
+
           <FormGroup>
-            <Label>Password: </Label>
-            <Input type="password" innerRef={passwordRef} />
+            <Label>Charity Name:</Label>
+            <Input type="text" name="charity_name" />
           </FormGroup>
+
           <FormGroup>
-            <Label>Confirm Password:</Label>
-            <Input type="password" innerRef={confirmPasswordRef} />
+            <Label>Email</Label>
+            <Input type="email" name="user_email" />
           </FormGroup>
-          <br></br>
-          <FullWidthButton>
-            <Button type="submit" color="warning">
-              Sign Up
-            </Button>
-          </FullWidthButton>
+
+          <FormGroup>
+            <Label>Charity URL</Label>
+            <Input type="text" name="charity_url" />
+          </FormGroup>
+
+          <FormGroup>
+            <Label>Message</Label>
+            <Input type="textarea" name="message" />
+            <br></br>
+            {/* <Input type="submit" value="Send" /> */}
+            <FullWidthButton>
+              <Button type="submit" color="primary">
+                Sign Up
+              </Button>
+            </FullWidthButton>
+          </FormGroup>
         </Form>
       </div>
     </>
   );
 };
 
-export default CharitySignup;
+export default CharitySignUp;

@@ -26,7 +26,7 @@ nav.navbar a.navbar-brand{
    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 /* styling for links */
-nav.navbar .navbar-nav .nav-link.navbar-link{
+nav.navbar .navbar-nav .nav-link.navbar-link {
     font-weight: 400;
     color: #fff !important;
     letter-spacing: 0.8px;
@@ -34,6 +34,7 @@ nav.navbar .navbar-nav .nav-link.navbar-link{
     font-size: 18px;
     opacity: 0.75;
 }
+
 
 /* styling for links if hovered or active */
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
