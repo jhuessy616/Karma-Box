@@ -9,6 +9,40 @@ router.get("/config", validateSession, (req, res) => {
   });
 });
 
+router.post('/create-customer', validateSession, async(req, res) => {
+  try {
+    const user = req.user._id
+    const customer = await stripe.customers.create({
+      description: 'test customer',
+      metadata: {'user': `${user}`}
+    })
+    res.send({
+      //customerId: customer.id, 
+      customer: customer,
+      //user:user
+    })
+  } catch (error) {
+    return res.status(400).send({
+      error: {
+        message: error.message
+      }
+    })
+  }
+})
+
+router.post('/create-setup-intent', async(req, res) => {
+  try {
+    
+  } catch (error) {
+    return res.status(400).send({
+      error: {
+        message: error.message
+      }
+    })
+  }
+})
+
+
 router.post("/create-payment-intent", validateSession, async (req, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -29,5 +63,7 @@ router.post("/create-payment-intent", validateSession, async (req, res) => {
     });
   }
 });
+
+
 
 module.exports = router;
