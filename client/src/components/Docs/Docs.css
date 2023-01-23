@@ -1,0 +1,30 @@
+
+.doc-img {
+    margin: 10px 0px 10px 0px;
+}
+
+.doc-container {
+    min-height: 100vh;
+    max-width: 800px;
+    margin: 30px;
+}
+.doc-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3D0F3A ;
+    background-size: cover;
+    color: gray;
+}
+
+.inline {
+    display: inline;
+}
+
+/* class for react-code-blocks CopyBlock*/
+.sc-gswNZR {
+    width: 600px;
+}
+.copy {
+    cursor:pointer;
+}
