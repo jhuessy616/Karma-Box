@@ -1,6 +1,5 @@
 import { CodeBlock, CopyBlock, dracula } from "react-code-blocks";
 import "./Docs.css"
-import whereWidgetCode from "../../assets/img/where-to-past-widget-code.png"
 import { UncontrolledTooltip } from "reactstrap";
 
 export default function Docs(props) {
