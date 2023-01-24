@@ -1,0 +1,17 @@
+#karmaboxid-button {
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: ${document.currentScript.getAttribute("button-color")};
+    background-image: url(./assets/logo3.png)
+    background-size: cover;
+    border: none;
+
+    #karmaboxid-logo {
+        background-color: red;
+        width: 1000px;
+        height: 1000px;
+    }

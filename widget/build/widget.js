@@ -3,6 +3,24 @@ const widget = `<div id="karmaboxid-wrapper">
     </button>
 </div>
 `;
+const buttonStyle = `#karmaboxid-button {
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: ${document.currentScript.getAttribute("button-color")};
+    background-image: url(./assets/logo3.png)
+    background-size: cover;
+    border: none;
+
+    #karmaboxid-logo {
+        background-color: red;
+        width: 1000px;
+        height: 1000px;
+    }
+`;
 const widgetStyle = `#karmaboxid-mul-container {
     margin: 10px;
     align-items: center;
@@ -28,7 +46,7 @@ const widgetStyle = `#karmaboxid-mul-container {
     border: solid purple 2px;
     background-color:  #ff00ff19;
     border-radius: 20px;
-    padding: 5px;
+    padding: 5px_body;
     width: 30px;
     height: 30px;
 }
@@ -40,16 +58,16 @@ const widgetStyle = `#karmaboxid-mul-container {
     margin-right: 50px;
     margin-bottom: 50px;
 }
-#karmaboxid-popup-contaner {
+#karmaboxbuttonid-popup-contaner {
     width: 300px;
     padding: 10px;
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     bottom: 0;
     right: 0;
-    margin-bottom: 75px;
-    margin-right: 75px;
+    margin-bottom: calc(50vh - 100px);
+    margin-right: calc(50vw - 150px);
     background-color: gray;
     align-items: center;
 }
@@ -71,27 +89,8 @@ const widgetStyle = `#karmaboxid-mul-container {
     margin: 10px
 
 }
-#karmaboxid-button {
-    width: 75px;
-    height: 75px;
-    border-radius: 50px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: ${document.currentScript.getAttribute("button-color")};
-    background-image: url(./assets/logo3.png)
-    background-size: cover;
-    border: none;
-
-    #karmaboxid-logo {
-        background-color: red;
-        width: 1000px;
-        height: 1000px;
-    }
 `;
-const popupContent = `
-
-<div id="karmaboxid-popup-contaner">
+const popupContent = `<div id="karmaboxbuttonid-popup-contaner">
     <h3>donate to the<br>rob charity</h3>
     <div id="karmaboxid-mul-container">
         <p class="karmaboxclass-karmapoint" style="display: inline">♥️ $3 each</p>
@@ -106,10 +105,22 @@ const popupContent = `
     </form>
 </div>
 `;
+let customStyle = `
+#karmaboxbuttonid-popup-contaner {
+    bottom: 0!;
+    right: 0;
+    margin-bottom: 75px;
+    margin-right: 75px;
+    background-color: gray;
+    align-items: center;
+}
+`;
 var KARMABOX_IS_OPEN = false;
 let karmabox_payload = document.createElement("div");
-karmabox_payload.innerHTML = "<style>" + widgetStyle + "</style>" + widget
+karmabox_payload.innerHTML = "<style>" + widgetStyle + buttonStyle + customStyle + "</style>" + widget
 
+
+console.log(karmabox_payload.innerHTML)
 
 let karmabox_body = document.getElementsByTagName("body")[0];
 inject(karmabox_body, karmabox_payload);
