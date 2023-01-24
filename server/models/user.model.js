@@ -12,6 +12,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     }, 
+  customerId: {
+    type: String,
+    default: "" 
+  },
+  setupId: {
+    type: String,
+    default: ""
+  },
    isAdmin: {
     type: Boolean,
        default: false,
