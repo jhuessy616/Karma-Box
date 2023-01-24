@@ -26,6 +26,16 @@ FullWidthButton {
 	font-size: 20px;
 	line-height: 35px;
 	color: var(--primary);
+	margin-top: 32px;
+}
+.aboutParagraph::first-letter{
+	font-size: 300%;
+	letter-spacing: 5px;
+	font-weight: 600;
+}
+.aboutimage{
+	 background-size: cover;
+	 width:100%
 }
 
 .About .navbar .navbar-nav .nav-link.navbar-link{
@@ -47,8 +57,11 @@ color:#0081c9 !important;
 .aboutpagenavbarlogo{
 	max-width: 60%; 
 	max-height: 50%;
-	filter: invert(38%) sepia(58%) saturate(7088%) hue-rotate(184deg) brightness(98%) contrast(102%);
-	
-	
+	filter: invert(38%) sepia(58%) saturate(7088%) hue-rotate(184deg) brightness(98%) contrast(102%);	
+}
+
+.stripelogo{
+max-width:15%;
+margin-left:-10px
 }
  
