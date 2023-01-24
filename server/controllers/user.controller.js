@@ -61,10 +61,10 @@ router.post("/login", async (req, res) => {
     // If all our checks are passed we will provide a token to the user upon successful login
     const token = jwt.sign(
       {
-        id: newUser._id,
-        isAdmin: newUser.isAdmin,
-        isCharity: newUser.isCharity,
-        customerId: newUser.customerId,
+        id: user._id,
+        isAdmin: user.isAdmin,
+        isCharity: user.isCharity,
+        customerId: user.customerId,
       },
       process.env.JWT,
       {
