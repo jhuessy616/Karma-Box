@@ -8,9 +8,17 @@ import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
 import About from "./components/home/About";
+
 import "./app.css";
 import SetupIntent from "./components/Stripe/SetupIntent";
 import Payment from "./components/Stripe/Payment";
+
+import Docs from "./components/Docs/Docs"
+
+import AboutPage from "./components/Authorization/user/aboutPage/aboutPage"
+
+
+
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
@@ -28,6 +36,7 @@ function App() {
   
     const stripePromise = loadStripe('pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl');
 
+
     //! Declaration of Routes
     return (
       <div>
@@ -43,11 +52,8 @@ function App() {
                 path="/signup"
                 element={<SignUpPage updateToken={updateToken} />}
               />
-              <Route
-                path="/donorProfile"
-                element={<ProfileIndex token={sessionToken} />}
-              />
-              <Route path="/about" element={<About />} />
+              <Route path="/profile" element={<ProfileIndex token={sessionToken} />} />
+              <Route path="/about" element={<AboutPage/>} />
               <Route
                 path="/setupIntent"
                 element={<SetupIntent updateToken={updateToken} token={sessionToken} />}
@@ -56,6 +62,7 @@ function App() {
                 path="/payment"
                 element={<Payment token={sessionToken} />}
               />
+              <Route path="docs" element={<Docs />} />
             </Routes>
           </BrowserRouter>
         </Elements>

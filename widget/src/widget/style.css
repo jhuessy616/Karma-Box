@@ -1,0 +1,85 @@
+#karmaboxid-mul-container {
+    margin: 10px;
+    align-items: center;
+    width: 100%;
+}
+.karmaboxclass-karmapoint {
+    padding-right: 20px;
+    margin-left: 10px;
+}
+#karmaboxid-karma-amount {
+    width: 50px;
+    height: 30px;
+}
+#karmaboxid-mul-button-solected {
+    border: solid yelow 2px;
+    background-color: red;
+    border-radius: 20px;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+}
+.karmaboxclass-mul-button {
+    border: solid purple 2px;
+    background-color:  #ff00ff19;
+    border-radius: 20px;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+}
+#karmaboxid-wrapper {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+#karmaboxid-popup-contaner {
+    width: 300px;
+    padding: 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 75px;
+    margin-right: 75px;
+    background-color: gray;
+    align-items: center;
+}
+
+/* h3 inside container */
+#karmaboxid-popup-contaner > h3 {
+    color: black;
+    padding: 10px;
+}
+
+#karmaboxid-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.karmaboxid-form-item {
+    display: block;
+    padding: 5px;
+    margin: 10px
+
+}
+#karmaboxid-button {
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: ${document.currentScript.getAttribute("button-color")};
+    background-image: url(./assets/logo3.png)
+    background-size: cover;
+    border: none;
+
+    #karmaboxid-logo {
+        background-color: red;
+        width: 1000px;
+        height: 1000px;
+    }
