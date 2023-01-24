@@ -63,8 +63,7 @@ function Banner() {
             {" "}
             
               Karma Box is {""}
-              {/* {"Karma Box is..."} */}
-              {/* <br></br> */}
+             
               {text == "" ? <br></br> : null}
               <span className="wrap">{text}</span>
         
@@ -73,12 +72,12 @@ function Banner() {
             Our goal is to connect non-profits and donors and to make giving
             easier.
                   </h2>
-                  {/* <h1 className="earning">Start Earning Your Good Karma Today</h1> */}
+                  
           <button className="connectButton" onClick={() => console.log("connect")}>
             Let's Connect <ArrowRightCircle size={25} />
           </button>
 
-          {/* <img className="header" src={headerImg} alt="Header Image" /> */}
+         
        
         
           <About></About>

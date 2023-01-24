@@ -29,21 +29,21 @@ function Charities() {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 3,
+      items: 2,
     },
   };
 
   return (
-    <section className="skill" id="skills">
+    <section className="charity" id="charities">
       <Container className="Container">
         <Row className="row">
           <Col md="12" className="col-12">
             <h2 className="spotlight">This Month's Spotlight Charities</h2>
-            <div className="skill-bx wow zoomIn">
+            <div className="charity-bx wow zoomIn">
               <Carousel
                 responsive={responsive}
                 infinite={true}
-                className="owl-carousel owl-theme skill-slider"
+                className="owl-carousel owl-theme charity-slider"
               >
                 <div className="item">
                   <a href="https://migrantjustice.net/">
@@ -52,26 +52,34 @@ function Charities() {
                   <h5>Migrant Justice</h5>
                 </div>
                 <div className="item">
-                  <img src={charity2} alt="Charity 2" />
-                  <h5>Legal Defense Fund</h5>
+                  <a href="https://www.naacpldf.org/">
+                    <img src={charity2} alt="Charity 2" />
+                    <h5>Legal Defense Fund</h5>
+                  </a>
                 </div>
                 <div className="item">
-                  <img src={charity3} alt="Charity 3" />
-                  <h5>Asylum Access</h5>
+                  <a href="https://asylumaccess.org/">
+                    <img src={charity3} alt="Charity 3" />
+                    <h5>Asylum Access</h5>
+                  </a>
                 </div>
                 <div className="item">
-                  <img src={charity4} alt="Charity 4" />
-                  <h5>Rotary International</h5>
+                  <a href="https://www.rotary.org/en">
+                    <img src={charity4} alt="Charity 4" />
+                    <h5>Rotary International</h5>
+                  </a>
                 </div>
                 <div className="item">
-                  <img src={charity5} alt="Charity 5" />
-                  <h5>World Wildlife Foundation</h5>
+                  <a href="https://www.worldwildlife.org/">
+                    <img src={charity5} alt="Charity 5" />
+                    <h5>World Wildlife Foundation</h5>
+                  </a>
                 </div>
+
                 {/* <div className="item">
                   <img src={charity6} alt="Charity 6" />
                   <h5>Dad Joke Intervention</h5>
                 </div> */}
-                              
               </Carousel>
             </div>
           </Col>
