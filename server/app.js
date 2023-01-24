@@ -21,7 +21,9 @@ db.once("open", () => console.log("Connected to the database " + db.name));
 
 // enable the express server to respond to preflight requests, need this for react to run properly.
 app.use(cors());
+app.use(express.static('public'))
 app.use(express.json());
+app.use(express.static(process.env.STATIC_DIR));
 
 // ! -------------------------------------Routes---------------------------------------------
 // Defining our routes
