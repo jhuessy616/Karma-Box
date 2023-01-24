@@ -11,7 +11,7 @@
 }
 
 /* logo size */
-nav.navbar  .navbarlogo{
+nav.navbar  .logodiv img{
     max-width:20%;
    
 
@@ -19,6 +19,14 @@ nav.navbar  .navbarlogo{
     
      filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
+
+.logodiv{
+    margin-right:-200px;
+}
+/* .navbarlogolink >img{
+  width:100%;
+   background-color: red 
+} */
  /* a .navbarlink{
     display: inline-block;
     z-index: 2; 
