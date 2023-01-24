@@ -19,12 +19,16 @@ module.exports = {
             main_path: "./src/widget/widget.js",
             inputs: [
                 {
-                    source: "./src/widget/popup.html",
+                    source: "./src/popup/popup.html",
                     var_name: "popupContent"
                 },
                 {
-                    source: "./src/widget/style.css",
+                    source: "./src/popup/style.css",
                     var_name: "widgetStyle"
+                },
+                {
+                    source: "./src/widget/button.css",
+                    var_name: "buttonStyle"
                 },
                 {
                     source: "./src/widget/widget.html",
