@@ -1,7 +1,6 @@
 // this page is the login/ sign up page currently 
 
 // ! Dependencies imported
-import CharitySignUp from "./signup/charitySignUp";
 import DonorSignUp from "./signup/donorSignUp"
 import { Col, Container, Row } from "reactstrap";
 import "./SignUpPage.css"
@@ -13,13 +12,12 @@ const SignUpPage = (props) => {
     <div className="Background">
       <Navbar></Navbar>
       <Container>
-        <Row>
-          <Col md="6">
+      <Row>
+					<Col lg="4.5" md="4" xs="2"></Col>
+          <Col lg="3" md="4" xs="8">
             <DonorSignUp updateToken={props.updateToken} />
           </Col>
-          <Col md="6">
-            <CharitySignUp updateToken={props.updateToken} />
-          </Col>
+          <Col lg="4.5" md="4" xs="2"></Col>
         </Row>
       </Container>
     </div>

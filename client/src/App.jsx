@@ -8,6 +8,7 @@ import Home from "./components/home/Home";
 import About from "./components/home/About";
 import Docs from "./components/Docs/Docs"
 import './app.css';
+import AboutPage from "./components/Authorization/user/aboutPage/aboutPage"
 
 
 
@@ -37,7 +38,7 @@ function App() {
         <Route path="/profile" element={<ProfileIndex token={sessionToken} />} />
 
         
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<AboutPage/>} />
         <Route path="docs" element={<Docs />} />
 
       </Routes>

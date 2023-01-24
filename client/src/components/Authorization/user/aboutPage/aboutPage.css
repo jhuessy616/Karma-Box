@@ -1,0 +1,54 @@
+:root {
+	--primary: #0081c9;
+	--secondary: #5bc0f8;
+	--tertiary: #86e5ff;
+	--yellow: #ffc93c;
+}
+
+/* isnt talkin to my h1 tag */
+h1 {
+	color: var(--primary);
+}
+
+h2 {
+    color: var(--primary);
+}
+
+h3 {
+	color: var(--primary);
+}
+
+FullWidthButton {
+	background-color: var(--yellow)
+}
+
+.aboutParagraph {
+	font-size: 20px;
+	line-height: 35px;
+	color: var(--primary);
+}
+
+.About .navbar .navbar-nav .nav-link.navbar-link{
+color:#0081c9 !important;
+
+}
+
+.About .navbar  .navbarlogo{
+    filter: invert(38%) sepia(58%) saturate(7088%) hue-rotate(184deg) brightness(98%) contrast(102%);
+}
+
+/* trying to center the form */
+/* .logInForm {
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+	width: 400px;
+*/
+.aboutpagenavbarlogo{
+	max-width: 60%; 
+	max-height: 50%;
+	filter: invert(38%) sepia(58%) saturate(7088%) hue-rotate(184deg) brightness(98%) contrast(102%);
+	
+	
+}
+ 
