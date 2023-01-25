@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom"
 import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import FullWidthButton from "../../../src/components/Authorization/Buttons/FullWidthButton";
-import UserSettingsNavbar from "../Authorization/user/UserSettings/UserSettingsNavBar"
+import UserSettingsNavbar from "./UserSettingsNavBar"
 import "./ProfileIndex.css"
 
 //! Declaration of Vairables
@@ -19,7 +19,7 @@ const ProfileIndex = (props) => {
 	  const password = passwordRef.current.value;
 	  
 	  //!Url our page is hosed on
-	  let url = `http://localhost:4000/user/profile`;
+	  let url = `http://localhost:4000/settings`;
 	  let bodyObject = JSON.stringify({  email, password });
   
 	  let myHeaders = new Headers();
@@ -56,7 +56,7 @@ const ProfileIndex = (props) => {
 				<div class="col-2 col-md-4 col-lg-4.5"></div>
 					
 					<div class="col-8 col-md-4 col-lg-3">
-						<h1>Update Your Profile Information</h1>
+						<h1>Update Your Email</h1>
 							<Form onSubmit={handleSubmit}>
 								<FormGroup floating>
 									<Input
@@ -66,7 +66,7 @@ const ProfileIndex = (props) => {
 										type="email"
 										innerRef={emailRef}
 									/>
-									<Label for="exampleEmail">Email</Label>
+									<Label for="exampleEmail">Current Password</Label>
 								</FormGroup>{" "}
 								<FormGroup floating>
 									<Input
@@ -76,11 +76,11 @@ const ProfileIndex = (props) => {
 										type="password"
 										innerRef={passwordRef}
 									/>
-									<Label for="examplePassword">Password</Label>
+									<Label for="examplePassword">New Email</Label>
 								</FormGroup>{" "}
 								<FullWidthButton>
 									<Button type="submit" color="warning">
-										Update Information
+										Update Email
 									</Button>
 								</FullWidthButton>
 							</Form>
