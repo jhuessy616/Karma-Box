@@ -87,9 +87,7 @@ router.patch("/update/:id", validateSession, async (req, res) => {
       res.status(404).json({ message: "User not found" });
       return;
     }
-    console.log(req.user._id);
-    console.log(userToUpdate._id);
-    console.log(req.user._id.toString() == userToUpdate._id.toString());
+   
     // checking to see if the user is the creator or an admin. If they aren't, they get an error.
     if (
       !req.user.isAdmin &&
@@ -100,10 +98,21 @@ router.patch("/update/:id", validateSession, async (req, res) => {
         .json({ message: "You do not have permission to update that user." });
       return;
     }
+    // checking that passwords match
+    const isPasswordMatch = await bcrypt.compare(
+      req.body.currentPassword,
+      userToUpdate.password
+    );
+    //If passwords do not match we throw an ERROR
+    if (!isPasswordMatch) {
+      throw new Error("Passwords Do Not Match");
+    }
     // Creating a filter to retrieve user
     const filter = { _id: req.params.id };
     // If a password is changed, it will be hashed.
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
+    if (req.body.newPassword) {
+      req.body.password = bcrypt.hashSync(req.body.newPassword, 10);
+    }
     const update = req.body;
     const returnOptions = { new: true };
     // using method find one and update to make the appropriate changes.
@@ -114,6 +123,7 @@ router.patch("/update/:id", validateSession, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 // ! Delete a user endpoint --------------------------------------
 router.delete("/delete/:id", validateSession, async (req, res) => {

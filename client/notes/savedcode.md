@@ -349,3 +349,46 @@ donor sign up original ---------------------------------------------------------
 
 // export default DonorSignup;
 ```
+
+Backend update user old version 
+```js
+// Backup in case I mess it up
+router.patch("/update/:id", validateSession, async (req, res) => {
+  try {
+    // finding the user by id
+    const userToUpdate = await User.findById({ _id: req.params.id });
+    // if user not found
+    if (!userToUpdate) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    console.log(req.user._id);
+    console.log(userToUpdate._id);
+    console.log(req.user._id.toString() == userToUpdate._id.toString());
+    // checking to see if the user is the creator or an admin. If they aren't, they get an error.
+    if (
+      !req.user.isAdmin &&
+      req.user._id.toString() != userToUpdate._id.toString()
+    ) {
+      res
+        .status(403)
+        .json({ message: "You do not have permission to update that user." });
+      return;
+    }
+    // Creating a filter to retrieve user
+    const filter = { _id: req.params.id };
+    // If a password is changed, it will be hashed.
+    if (req.body.password) {
+      req.body.password = bcrypt.hashSync(req.body.password, 10);
+    }
+    const update = req.body;
+    const returnOptions = { new: true };
+  
+    // using method find one and update to make the appropriate changes.
+    const user = await User.findOneAndUpdate(filter, update, returnOptions);
+
+    res.status(202).json({ message: "User updated", updatedUser: user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});

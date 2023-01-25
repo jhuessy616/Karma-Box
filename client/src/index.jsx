@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
@@ -15,14 +15,18 @@ import { Elements } from "@stripe/react-stripe-js";
 //     );
 //     console.log(publishableKey)
 //   const stripePromise = loadStripe(publishableKey);
+
+//  const stripePromise = loadStripe(
+//    "pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl"
+//  );
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>
-      {/* <Elements stripe={stripePromise}> */}
-        {/* <BrowserRouter> */}
+      {/* <Elements stripe={stripePromise}>
+        <BrowserRouter> */}
           <App />
-        {/* </BrowserRouter> */}
-      {/* </Elements> */}
+        {/* </BrowserRouter>  */}
+       {/* </Elements> */}
     </React.StrictMode>
   );
 
