@@ -1,9 +1,9 @@
 let customStyle = `
 #karmaboxbuttonid-popup-contaner {
-    bottom: 0!;
+    bottom: 0;
     right: 0;
-    margin-bottom: 75px;
-    margin-right: 75px;
+    margin-bottom: 125px;
+    margin-right: 125px;
     background-color: gray;
     align-items: center;
 }
