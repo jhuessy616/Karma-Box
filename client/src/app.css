@@ -29,3 +29,7 @@ FullWidthButton {
 .background{
   color: var(--tertiary)
 }
+
+.txtcenter{
+  text-align: center;
+}

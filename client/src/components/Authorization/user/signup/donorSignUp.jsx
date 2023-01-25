@@ -54,7 +54,8 @@ function DonorSignUp(props) {
       if (data.message === "Success") {
         //We are free to navigate to another page
         props.updateToken(data.token);
-        navigate("/profile");
+        console.log("hi")
+        navigate("/setupIntent");
       } else {
         alert(data.message);
       }
@@ -65,6 +66,7 @@ function DonorSignUp(props) {
 
 
   return (
+        <>
     <Form onSubmit={(e) => e.preventDefault()}>
       <FormGroup>
         <Label>Email</Label>
@@ -108,7 +110,8 @@ function DonorSignUp(props) {
       </FormGroup>
 
       <Input type="submit" onClick={handleSubmit(onSubmit)} />
-    </Form>
+      </Form>
+      </>
   );
 }
 export default DonorSignUp;
