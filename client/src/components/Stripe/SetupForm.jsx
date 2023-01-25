@@ -33,7 +33,7 @@ function SetupForm() {
   }
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <div id="payment-body"><form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
       <button disabled={isProcessing || !stripe || !elements} id="submit">
         <span id="button-text">
@@ -42,6 +42,7 @@ function SetupForm() {
       </button>
       {message && <div id="payment-message">{message}</div>}
     </form>
+    </div>
   )
 }
 
