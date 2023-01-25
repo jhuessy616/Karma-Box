@@ -10,16 +10,15 @@ const buttonStyle = `#karmaboxid-button {
     position: absolute;
     bottom: 0;
     right: 0;
-    background-color: ${document.currentScript.getAttribute("button-color")};
-    background-image: url(./assets/logo3.png)
-    background-size: cover;
+    background-color: red;
     border: none;
 
-    #karmaboxid-logo {
-        background-color: red;
-        width: 1000px;
-        height: 1000px;
-    }
+}
+#karmaboxid-logo {
+    background-color: red;
+    width: 1000px;
+    height: 1000px;
+}
 `;
 const widgetStyle = `#karmaboxid-mul-container {
     margin: 10px;
@@ -107,10 +106,10 @@ const popupContent = `<div id="karmaboxbuttonid-popup-contaner">
 `;
 let customStyle = `
 #karmaboxbuttonid-popup-contaner {
-    bottom: 0!;
+    bottom: 0;
     right: 0;
-    margin-bottom: 75px;
-    margin-right: 75px;
+    margin-bottom: 125px;
+    margin-right: 125px;
     background-color: gray;
     align-items: center;
 }
