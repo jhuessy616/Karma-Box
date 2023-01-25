@@ -10,10 +10,12 @@ const NavBar = () => {
   return (
     <Navbar expand="sm">
       <Container>
-        
-          <a className="logolink" href="/">
+      <div className="logodiv">
+          <a className="navbarlogolink" href="/">
             <img className="navbarlogo" src={logo} alt="Logo" />
-          </a>
+              </a>
+              </div>
+            
       
 
         <Navbar.Toggle aria-controls="basic-navbar-nav">

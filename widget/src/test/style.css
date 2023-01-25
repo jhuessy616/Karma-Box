@@ -1,0 +1,23 @@
+.karmabox-button-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 75px;
+    margin-bottom: 75px;
+}
+.karmabox-button-button {
+    border: none;
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    background-color: red;
+}
+
+.karmabox-popup-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 150px;
+    margin-bottom: 150px;
+    background-color: gray;
+}

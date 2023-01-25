@@ -25,6 +25,7 @@ FullWidthButton {
 .Background {
 	background-color: var(--tertiary);
 	min-height: 100vh;
+	
 	/* margin-top: 0px !important; */
 }
 

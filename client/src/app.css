@@ -21,3 +21,11 @@ h3 {
 FullWidthButton {
 	background-color: var(--yellow)
 }
+
+.background{
+  color: var(--tertiary)
+}
+
+.txtcenter{
+  text-align: center;
+}

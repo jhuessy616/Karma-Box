@@ -1,3 +1,4 @@
+/*
 #karmaboxid-mul-container {
     margin: 10px;
     align-items: center;
@@ -49,37 +50,5 @@
     align-items: center;
 }
 
-/* h3 inside container */
-#karmaboxid-popup-contaner > h3 {
-    color: black;
-    padding: 10px;
-}
 
-#karmaboxid-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-}
-.karmaboxid-form-item {
-    display: block;
-    padding: 5px;
-    margin: 10px
-
-}
-#karmaboxid-button {
-    width: 75px;
-    height: 75px;
-    border-radius: 50px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: ${document.currentScript.getAttribute("button-color")};
-    background-image: url(./assets/logo3.png)
-    background-size: cover;
-    border: none;
-
-    #karmaboxid-logo {
-        background-color: red;
-        width: 1000px;
-        height: 1000px;
-    }
+*/
