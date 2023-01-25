@@ -14,9 +14,9 @@ const SignUpPage = (props) => {
       <Container>
       <Row>
 					<Col lg="4.5" md="4" xs="2"></Col>
-          <Col lg="3" md="4" xs="8">
+          <div>
             <DonorSignUp updateToken={props.updateToken} />
-          </Col>
+          </div>
           <Col lg="4.5" md="4" xs="2"></Col>
         </Row>
       </Container>

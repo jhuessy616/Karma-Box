@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom"
 import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import FullWidthButton from "../../../src/components/Authorization/Buttons/FullWidthButton";
-import UserSettingsNavbar from "../Authorization/user/UserSettings/UserSettingsNavBar"
+import Navbar from "./ProfileNavBar"
 import "./ProfileIndex.css"
 
 //! Declaration of Vairables
@@ -19,7 +19,7 @@ const ProfileIndex = (props) => {
 	  const password = passwordRef.current.value;
 	  
 	  //!Url our page is hosed on
-	  let url = `http://localhost:4000/user/profile`;
+	  let url = `http://localhost:4000/user/password`;
 	  let bodyObject = JSON.stringify({  email, password });
   
 	  let myHeaders = new Headers();
@@ -50,7 +50,7 @@ const ProfileIndex = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
-			<UserSettingsNavbar></UserSettingsNavbar>
+			<Navbar></Navbar>
 			<Container className="logInForm">
 				<Row>
 				<div class="col-2 col-md-4 col-lg-4.5"></div>
