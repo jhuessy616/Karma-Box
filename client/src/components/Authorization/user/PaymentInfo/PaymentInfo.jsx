@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom"
 import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import FullWidthButton from "../../../src/components/Authorization/Buttons/FullWidthButton";
-import UserSettingsNavbar from "../Authorization/user/UserSettings/UserSettingsNavBar"
+import PaymentInfoNavbar from "../PaymentInfo/PaymentInfoNavBar"
 import "./ProfileIndex.css"
 
 //! Declaration of Vairables
@@ -50,15 +50,15 @@ const ProfileIndex = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
-			<UserSettingsNavbar></UserSettingsNavbar>
+			<PaymentInfoNavbar></PaymentInfoNavbar>
 			<Container className="logInForm">
 				<Row>
 				<div class="col-2 col-md-4 col-lg-4.5"></div>
 					
 					<div class="col-8 col-md-4 col-lg-3">
-						<h1>Welcome Back to Karma Box, you're ready to begin donating</h1>	
+						<h1>Update your payment information below</h1>	
 						</div>
-						<div>You're ready to begin giving, below are your karmabox donations</div>
+						
 					
 					<Col lg="4.5" md="4" xs="2"></Col>
 				</Row>

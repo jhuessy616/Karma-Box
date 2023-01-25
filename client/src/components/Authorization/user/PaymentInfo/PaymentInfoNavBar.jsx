@@ -1,11 +1,13 @@
 
 import { Nav, Navbar, Container } from "react-bootstrap";
-import logo from "../../../../assets/img/logo3.png";
-import "../../../home/navbar.css";
+import logo from "../../assets/img/logo3.png";
+import { useHistory } from 'react-router-dom'
+import "./ProfileNavBar.css"
+import "../home/navbar.css";
 
 
 
-const UserSettingsNavBar = () => {
+const PaymentInfoNavBar = () => {
 
 
 function logOut() {
@@ -31,13 +33,13 @@ function logOut() {
               Home
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:3000/password"
+              href="http://localhost:3000/about"
               className="navbar-link"
             >
-              Password Update
+              User Settings
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:3000/"
+              href="http://localhost:3000/settings"
               className="navbar-link"
               onClick={logOut}
 
@@ -46,13 +48,13 @@ function logOut() {
               Logout
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:3000/payment"
+              href="http://localhost:3000/Profile"
               className="navbar-link"
              
 
             >
               {" "}
-              Payment Info
+              Profile
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -60,4 +62,4 @@ function logOut() {
     </Navbar>
   );
 };
-export default UserSettingsNavBar;
+export default PaymentInfoNavBar;
