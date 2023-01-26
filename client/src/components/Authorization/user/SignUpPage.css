@@ -29,8 +29,6 @@ FullWidthButton {
 }
 
 /* trying to center the form */
-.logInForm {
-    display: 'flex';
-    align-items: 'center';
-    justify-content: 'center';
+.signUp {
+   margin-top:80px
 }

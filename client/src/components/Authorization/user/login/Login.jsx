@@ -69,49 +69,48 @@ const Login = (props) => {
 	//! Input field where user enters information
 
 	return (
-		<div className="Background">
-			<Navbar></Navbar>
-			<Container className="logInForm">
-				<Row>
-					<Col lg="4.5" md="4" xs="2"></Col>
-					<Col lg="3" md="4" xs="8">
-					<div>
-						<h1>Log in to your profile!</h1>
-
-						<Form onSubmit={handleSubmit}>
-							<FormGroup floating>
-								<Input
-									id="exampleEmail"
-									name="email"
-									placeholder="Email"
-									type="email"
-									innerRef={emailRef}
-								/>
-								<Label for="exampleEmail">Email</Label>
-							</FormGroup>{" "}
-							<FormGroup floating>
-								<Input
-									id="examplePassword"
-									name="password"
-									placeholder="Password"
-									type="password"
-									innerRef={passwordRef}
-								/>
-								<Label for="examplePassword">Password</Label>
-							</FormGroup>{" "}
-							<FullWidthButton>
-								<Button type="submit" color="warning">
-									Log In
-								</Button>
-							</FullWidthButton>
-						</Form>
-					</div>
-					</Col>
-					<Col lg="4.5" md="4" xs="2"></Col>
-				</Row>
-			</Container>
-		</div>
-	);
+    <div className="Background">
+      <Navbar></Navbar>
+      <Container className="logInFormContainer">
+        <h1 className="txtcenter">Welcome Back!</h1>
+        <Row>
+          <Col lg="4" md="4" xs="2"></Col>
+          <Col lg="4" md="4" xs="8">
+            <div>
+              <Form onSubmit={handleSubmit} className="loginForm">
+                <FormGroup floating>
+                  <Input
+                    id="exampleEmail"
+                    name="email"
+                    placeholder="Email"
+                    type="email"
+                    innerRef={emailRef}
+                  />
+                  <Label for="exampleEmail">Email</Label>
+                </FormGroup>{" "}
+                <FormGroup floating>
+                  <Input
+                    id="examplePassword"
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    innerRef={passwordRef}
+                  />
+                  <Label for="examplePassword">Password</Label>
+                </FormGroup>{" "}
+                <FullWidthButton>
+                  <Button type="submit" color="warning">
+                    Log In
+                  </Button>
+                </FullWidthButton>
+              </Form>
+            </div>
+          </Col>
+          <Col lg="4" md="4" xs="2"></Col>
+        </Row>
+      </Container>
+    </div>
+  );
 };
 
 export default Login;

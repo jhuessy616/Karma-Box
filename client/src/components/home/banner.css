@@ -1,6 +1,6 @@
 .banner {
  
-  padding: 3vh 0 0 0;
+  padding: 7vh 0 0 0;
   /* background-image: url('../../assets/img/sky.jpeg'); */
   background-position: top center;
   background-size: cover;
@@ -22,7 +22,7 @@
 } */
 
 .banner .KbDescription{
-  color: orangered;
+  color: #0081c9;
   font-size: calc(1.2rem + 3vw);
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -30,9 +30,9 @@
   margin-bottom: 10px;
   display: block;
 }
-.banner .earning{
+/* .banner .earning{
    color: orangered 
-}
+} */
 /* .banner .tagline {
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -55,7 +55,7 @@
   display: block;
 } */
 .banner h2 {
-  color: white;
+  color: #68c8ff;
   letter-spacing: 0.8px;
   /* line-height: 1.5em; */
   font-size: calc(1rem + .9vw);

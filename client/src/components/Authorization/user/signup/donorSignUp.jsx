@@ -66,52 +66,69 @@ function DonorSignUp(props) {
 
 
   return (
-        <>
-    <Form onSubmit={(e) => e.preventDefault()}>
-      <FormGroup>
-        <Label>Email</Label>
-        <input
-          class="form-control"
-          type="email"
-          {...register("email", {
-            required: "You must enter an email",
-            validate: (value) =>
-              value.includes("@") || "Please provide a valid email",
-          })}
-        />
-        {errors.email && <p>{errors.email.message}</p>}
-      </FormGroup>
-      <FormGroup>
-        <Label>Password</Label>
-        <input
-          class="form-control"
-          type="password"
-          {...register("password", {
-            required: "You must specify a password",
-            minLength: {
-              value: 6,
-              message: "Password must have at least 6 characters",
-            },
-          })}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
-      </FormGroup>
-      <FormGroup>
-        <Label>Confirm password</Label>
-        <input
-          class="form-control"
-          type="password"
-          {...register("password_repeat", {
-            validate: (value) =>
-              value === password.current || "The passwords do not match",
-          })}
-        />
-        {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
-      </FormGroup>
-
-      <Input type="submit" onClick={handleSubmit(onSubmit)} />
+    <>
+      <Form onSubmit={(e) => e.preventDefault()} className="donorSignUp">
+        <FormGroup floating>
+          <input
+            id="exampleEmail"
+            class="form-control"
+            name="email"
+            placeholder="Email"
+            type="email"
+            {...register("email", {
+              required: "You must enter an email",
+              validate: (value) =>
+                value.includes("@") || "Please provide a valid email",
+            })}
+          />
+          <Label for="exampleEmail">Email</Label>
+          {errors.email && <p>{errors.email.message}</p>}
+        </FormGroup>
+        <FormGroup floating>
+          <input
+            class="form-control"
+            id="examplePassword"
+            name="password"
+            placeholder="Password"
+            type="password"
+            {...register("password", {
+              required: "You must specify a password",
+              minLength: {
+                value: 6,
+                message: "Password must have at least 6 characters",
+              },
+            })}
+          />
+          <Label for="examplePassword">Password</Label>
+          {errors.password && <p>{errors.password.message}</p>}
+        </FormGroup>
+        <FormGroup floating>
+          <input
+            class="form-control"
+            id="examplConfirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            type="password"
+            {...register("password_repeat", {
+              validate: (value) =>
+                value === password.current || "The passwords do not match",
+            })}
+          />
+          <Label for="exampleConfirmPassword">Confirm Password</Label>
+          {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
+        </FormGroup>
+        <FullWidthButton>
+          <Button
+            type="submit"
+            color="warning"
+            onClick={handleSubmit(onSubmit)}
+          >
+            Sign Up
+          </Button>
+        </FullWidthButton>
+        {/* <Input type="submit" onClick={handleSubmit(onSubmit)} /> */}
       </Form>
-      </>
+    </>
   );
 }
 export default DonorSignUp;

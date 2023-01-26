@@ -17,7 +17,7 @@ nav.navbar  .logodiv img{
 
     align-items: left;
     
-     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+     filter: invert(38%) sepia(58%) saturate(7088%) hue-rotate(184deg) brightness(98%) contrast(102%);
 }
 
 .logodiv{
@@ -37,7 +37,7 @@ nav.navbar  .logodiv img{
 /* styling for links */
 nav.navbar .navbar-nav .nav-link.navbar-link {
     font-weight: 400;
-    color: #fff !important;
+    color: #0081c9 !important;
     letter-spacing: 0.8px;
     padding: 0 25px;
     font-size: 18px;
@@ -61,8 +61,8 @@ nav.navbar .navbar-nav a.nav-link.navbar-link:hover {
 
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
-	outline: none;
-    box-shadow: none;
+	outline: none ;
+    box-shadow: none ;
 }
 /* togler icon */
 nav.navbar .navbar-toggler-icon {
@@ -70,20 +70,20 @@ nav.navbar .navbar-toggler-icon {
   height: 17px;
   background-image: none;
   position: relative;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #0081c9;
   /* transition: all 300ms linear; */
   top: 0px;
   /* was-2px */
 }
 nav.navbar .navbar-toggler-icon:focus {
-	border-bottom: 2px solid #fff;
+	border-bottom: 2px solid#0081c9;
 }
 nav.navbar .navbar-toggler-icon:after,
 nav.navbar .navbar-toggler-icon:before {
 	width: 24px;
 	position: absolute;
 	height: 2px;
-	background-color: #fff;
+	background-color: #0081c9;
 	top: 0;
 	left: 0;
 	content: '';
