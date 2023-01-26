@@ -35,7 +35,7 @@ function Charities() {
 
   return (
     <section className="charity" id="charities">
-      <Container className="Container">
+      <Container className="charityContainer">
         <Row className="row">
           <Col md="12" className="col-12">
             <h2 className="spotlight">This Month's Spotlight Charities</h2>
@@ -54,26 +54,26 @@ function Charities() {
                 <div className="item">
                   <a href="https://www.naacpldf.org/">
                     <img src={charity2} alt="Charity 2" />
-                    <h5>Legal Defense Fund</h5>
                   </a>
+                    <h5>Legal Defense Fund</h5>
                 </div>
                 <div className="item">
                   <a href="https://asylumaccess.org/">
                     <img src={charity3} alt="Charity 3" />
-                    <h5>Asylum Access</h5>
                   </a>
+                    <h5>Asylum Access</h5>
                 </div>
                 <div className="item">
                   <a href="https://www.rotary.org/en">
                     <img src={charity4} alt="Charity 4" />
-                    <h5>Rotary International</h5>
                   </a>
+                  <h5>Rotary International</h5>
                 </div>
                 <div className="item">
                   <a href="https://www.worldwildlife.org/">
-                    <img src={charity5} alt="Charity 5" />
-                    <h5>World Wildlife Foundation</h5>
+                    <img src={charity5} alt="Charity 5" />{" "}
                   </a>
+                  <h5>World Wildlife Foundation</h5>
                 </div>
 
                 {/* <div className="item">

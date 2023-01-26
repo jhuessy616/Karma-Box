@@ -23,15 +23,15 @@ FullWidthButton {
 }
 
 .Background {
-	background-color: var(--tertiary);
+	background-color: #e7faff !important;
 	min-height: 100vh;
 	/* margin-top: 0px !important; */
 }
 
 /* trying to center the form */
-.logInForm {
-    display: 'flex';
-    align-items: 'center';
-    justify-content: 'center';
-	width: 400px;
+.logInFormContainer {
+	margin-top:80px;
+}
+.loginForm{
+	margin-top:20px;
 }

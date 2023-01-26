@@ -3,7 +3,7 @@
   position: relative;
 } */
 .charity-bx {
-  background: midnightblue;
+  background: #68c8ff;
   border-radius: 10px;
   text-align: center;
   padding: 20px 0px;
@@ -11,15 +11,18 @@
 
   /* margin-top: -60px; */
 }
+.charityContainer{
+    margin-top: 10vh;
+}
 
   .charity h2 {
 	font-size: calc(1rem + 2vw);
 	font-weight: 700;
     text-align: center;
-    color:orange
+    color:#0081c9
 }
 .charity h5 {
-    color: #B8B8B8;
+    color: black;
     font-size: 18px;
     letter-spacing: 0.8px;
     line-height: 1.5em;
