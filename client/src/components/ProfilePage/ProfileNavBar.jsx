@@ -1,19 +1,19 @@
-
 import { Nav, Navbar, Container } from "react-bootstrap";
 import logo from "../../assets/img/logo3.png";
-import { useHistory } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
 import "../home/navbar.css";
 
-
-
 const ProfileNavBar = () => {
-
-
-function logOut() {
-  localStorage.clear()
-
-}
+  function logOut() {
+    localStorage.clear();
+  }
 
   return (
     <Navbar expand="sm">
@@ -32,12 +32,34 @@ function logOut() {
             <Nav.Link href="/profile" className="navbar-link">
               Profile
             </Nav.Link>
-            <Nav.Link
-              href="http://localhost:3000/settings"
-              className="navbar-link"
+
+            <UncontrolledDropdown
+              // className="me-2"
+              direction="down"
             >
-              User Settings
-            </Nav.Link>
+              <DropdownToggle tag="span" caret className="nav-link navbar-link">
+                User Settings
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>
+                  <Nav.Link
+                    href="http://localhost:3000/settings"
+                    className="navbar-link"
+                  >
+                    Email Update
+                  </Nav.Link>
+                </DropdownItem>
+                <DropdownItem>
+                  <Nav.Link
+                    href="http://localhost:3000/settings"
+                    className="navbar-link"
+                  >
+                    Password Update
+                  </Nav.Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+
             <Nav.Link
               href="http://localhost:3000/paymentinfo"
               className="navbar-link"
