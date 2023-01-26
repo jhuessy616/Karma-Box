@@ -56,7 +56,7 @@ router.post('/create-setup-intent', validateSession, async(req, res) => {
 })
 
 
-router.post("/create-payment-intent", async (req, res) => {
+router.post("/create-payment-intent", validateSession, async (req, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       currency: "USD",

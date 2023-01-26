@@ -21,3 +21,9 @@
     margin-bottom: 150px;
     background-color: gray;
 }
+
+.karmabox-popup-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+

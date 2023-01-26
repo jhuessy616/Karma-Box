@@ -32,7 +32,7 @@ function Payment(token) {
     let myHeaders = new Headers()
     myHeaders.append("Authorization", token)
     fetch(url, {
-      
+      headers: myHeaders,
       method: "POST",
       body: JSON.stringify({}),
     }).then(async (result) => {
