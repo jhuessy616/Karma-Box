@@ -14,7 +14,7 @@ import {
 	Row,
 } from "reactstrap";
 import FullWidthButton from "../../Buttons/FullWidthButton";
-import UserSettingsNavbar from "../UserSettings/UserSettingsNavBar";
+import Navbar from "../../../home/NavBar";
 import "./login.css";
 
 //! Declaration of Variables
@@ -70,7 +70,7 @@ const Login = (props) => {
 
 	return (
 		<div className="Background">
-			<UserSettingsNavbar></UserSettingsNavbar>
+			<Navbar></Navbar>
 			<Container className="logInForm">
 				<Row>
 					<Col lg="4.5" md="4" xs="2"></Col>

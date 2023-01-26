@@ -14,7 +14,11 @@ const adminCheck = require("../middleware/adminCheck");
 router.post("/signup", async (req, res) => {
   try {
     //1. Creating a new object based off the User Model Schema (ie User).
-    const user = new User({
+    let user = await User.findOne({ email: req.body.email });
+    if (user) {
+    throw new Error("Email already exists")
+    }
+    user = new User({
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 10),
     });
@@ -77,7 +81,7 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
-// ! Update a user endpoint --------------------------------------
+// ! Update a user endpoint . for updating email and password --------------------------------------
 router.patch("/update/:id", validateSession, async (req, res) => {
   try {
     // finding the user by id
@@ -124,6 +128,7 @@ router.patch("/update/:id", validateSession, async (req, res) => {
   }
 });
 
+// ! Forgot password -----------------------------------------
 
 // ! Delete a user endpoint --------------------------------------
 router.delete("/delete/:id", validateSession, async (req, res) => {
