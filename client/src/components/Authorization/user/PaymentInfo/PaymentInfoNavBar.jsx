@@ -33,13 +33,13 @@ function logOut() {
               Home
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:3000/about"
+              href="http://localhost:3000/settings"
               className="navbar-link"
             >
               User Settings
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:3000/settings"
+              href="http://localhost:3000/"
               className="navbar-link"
               onClick={logOut}
 

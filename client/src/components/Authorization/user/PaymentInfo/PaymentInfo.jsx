@@ -7,7 +7,7 @@ import PaymentInfoNavbar from "../PaymentInfo/PaymentInfoNavBar"
 import "./ProfileIndex.css"
 
 //! Declaration of Vairables
-const ProfileIndex = (props) => {
+const PaymentInfo = (props) => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const confirmPasswordRef = useRef();
@@ -19,7 +19,7 @@ const ProfileIndex = (props) => {
 	  const password = passwordRef.current.value;
 	  
 	  //!Url our page is hosed on
-	  let url = `http://localhost:4000/user/profile`;
+	  let url = `http://localhost:4000/user/paymentinfo`;
 	  let bodyObject = JSON.stringify({  email, password });
   
 	  let myHeaders = new Headers();
@@ -50,21 +50,21 @@ const ProfileIndex = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
-			<PaymentInfoNavbar></PaymentInfoNavbar>
-			<Container className="logInForm">
-				<Row>
-				<div class="col-2 col-md-4 col-lg-4.5"></div>
-					
-					<div class="col-8 col-md-4 col-lg-3">
-						<h1>Update your payment information below</h1>	
-						</div>
-						
-					
-					<Col lg="4.5" md="4" xs="2"></Col>
-				</Row>
-			</Container>
+		  <PaymentInfoNavbar></PaymentInfoNavbar>
+		  <Container>
+		  <h1 className="txtcenter">Welcome back to Karma Box!</h1>
+			<h2 className="txtcenter" >Below are your Karma Box donations</h2>
+		  <Row>
+						<Col lg="4.5" md="4" xs="2"></Col>
+		  
+			  <Col lg="3" md="4" xs="8">
+				</Col>
+			  
+			  <Col lg="4.5" md="4" xs="2"></Col>
+			</Row>
+		  </Container>
 		</div>
-	);
-};
+	  );
+	};
 
-export default ProfileIndex;
+export default PaymentInfo;
