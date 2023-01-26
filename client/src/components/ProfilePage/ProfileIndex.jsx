@@ -50,21 +50,21 @@ const ProfileIndex = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
-			<UserSettingsNavbar></UserSettingsNavbar>
-			<Container className="logInForm">
-				<Row>
-				<div class="col-2 col-md-4 col-lg-4.5"></div>
-					
-					<div class="col-8 col-md-4 col-lg-3">
-						<h1>Welcome Back to Karma Box, you're ready to begin donating</h1>	
-						</div>
-						<div>You're ready to begin giving, below are your karmabox donations</div>
-					
-					<Col lg="4.5" md="4" xs="2"></Col>
-				</Row>
-			</Container>
+		  <UserSettingsNavbar></UserSettingsNavbar>
+		  <Container>
+		  <h1 className="txtcenter">Welcome back to Karma Box!</h1>
+			<h2 className="txtcenter" >Below are your Karma Box donations</h2>
+		  <Row>
+						<Col lg="4.5" md="4" xs="2"></Col>
+		  
+			  <Col lg="3" md="4" xs="8">
+				</Col>
+			  
+			  <Col lg="4.5" md="4" xs="2"></Col>
+			</Row>
+		  </Container>
 		</div>
-	);
-};
+	  );
+	};
 
 export default ProfileIndex;
