@@ -1,10 +1,13 @@
 // ! Dependencies imported
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import FullWidthButton from "../../../src/components/Authorization/Buttons/FullWidthButton";
 import ProfileNavbar from "../ProfilePage/ProfileNavBar"
 import "./ProfileIndex.css"
+import Iframe from "./iframe"
+
+
 
 //! Declaration of Vairables
 const ProfileIndex = (props) => {
@@ -54,6 +57,7 @@ const ProfileIndex = (props) => {
 		  <Container>
 		  <h1 className="txtcenter">Welcome back to Karma Box!</h1>
 			<h2 className="txtcenter" >Below are your Karma Box donations</h2>
+			<Iframe source={"https://dashboard.stripe.com/login"}></Iframe>
 		  <Row>
 						<Col lg="4.5" md="4" xs="2"></Col>
 		  
