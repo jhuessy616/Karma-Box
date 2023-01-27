@@ -1,19 +1,45 @@
 const popup = `<div class="karmabox-popup-container">
-    <h1>hello world</h1>
-    <form class="karmabox-popup-card-container">
-        <div>
-            <label>Name</label>
-            <input class="karmabox-popup-input">
-        </div>
-        <div>
-            <label>Card</label>
-            <div class="karmabox-popup-input card-element"></div>
-        </div>
-    </form>
-
+    <div class="kb-tabs">
+        <button id="kb-tab-kba" class="kb-tab-button kb-tab-button-select">Karma Box account</button>
+        <button id="kb-tab-card" class="kb-tab-button">Card</button>
+    </div>
+    <!-- karma box acount tab -->
+    <div class="kb-body-container-kba">
+        <form class="karmabox-popup-card-container">
+            <label>Enter a custom amount</label>
+            <div class="kb-amount-container">
+                <div>
+                    <input class="karmabox-popup-input">
+                </div>
+                <button class="kb-amount-button">up</button>
+                <button class="kb-amount-button">down</button>
+            </div>
+            <button id="karmabox-popup-submit" type="submit">Donate Now</button>
+        </form>
+    </div>
+    <!-- card tab -->
+    <div class="kb-body-container-card kb-display-none">
+        <form class="karmabox-popup-card-container">
+            <label>Enter a custom amount</label>
+            <div class="kb-amount-container">
+                <div>
+                    <input class="karmabox-popup-input">
+                </div>
+                <button class="kb-amount-button">up</button>
+                <button class="kb-amount-button">down</button>
+            </div>
+            <div>
+                <div class="karmabox-popup-input payment-element"></div>
+            </div>
+            <button id="karmabox-popup-submit" type="submit">Donate Now</button>
+        </form>
+    </div>
 </div>
 `;
-const style = `.karmabox-button-container {
+const style = `
+
+
+.karmabox-button-container {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -27,19 +53,120 @@ const style = `.karmabox-button-container {
     border-radius: 50px;
     background-color: red;
 }
-
 .karmabox-popup-container {
+    --kb-tab-height: 35px;
+    --kb-body-height: calc(500px var(--kb-tab-height));
+    --kb-height: 500px;
+    --primary: #0081c9;
+    --secondary: #5bc0f8;
+    --tertiary: #86e5ff;
+    --yellow: #ffc93c;
+    --yellow-plus: #fdbc02;
+    height: var(--kb-body-height);
+    width: 315px;
     position: fixed;
     bottom: 0;
     right: 0;
     margin-right: 150px;
     margin-bottom: 150px;
-    background-color: gray;
+    padding: 0px 20px 20px 20px;
+    background-color: var(--primary);
+    border-radius: 10px;
+
+    color: white;
 }
+
+/* form */
+.karmabox-popup-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* primary #0081c9
+ * secondary #5bc0f8
+ * tertiary #86e5ff
+ * yellow #ffc93c
+*/
 
 .karmabox-popup-input {
     padding: 10px;
     border: 1px solid #ccc;
+    background-color: #e7faff;
+    border-radius: 10px;
+}
+
+
+.kb-tabs {
+    display: flex;
+    justify-content: space-between;
+    height: var(--kb-tab-height);
+}
+
+.kb-tab-button {
+    width: 50%;
+    height: 100%;
+    border: none;
+    background-color: var(--secondary);
+    color: black;
+}
+
+.kb-tab-button:hover {
+    background-color: var(--tertiary);
+}
+
+.kb-tab-button-select {
+    background-color: var(--primary);
+    color: white;
+}
+
+.kb-tab-button-select:hover {
+    background-color: var(--primary);
+}
+
+/* card tab container */
+.kb-body-container-card{
+    height: var(--kb-body-height);
+    overflow-y: scroll;
+}
+/* karma box acount tab container */
+.kb-body-container-kba{
+    height: var(--kb-body-height);
+    overflow-y: scroll;
+}
+.kb-display-none {
+    display: none;
+}
+
+
+#karmabox-popup-submit {
+    background-color: var(--yellow);
+    border: none;
+    margin: 10px;
+    height: 40px; 
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+#karmabox-popup-submit:hover {
+    background-color: var(--yellow-plus);
+    border: none;
+    margin: 10px;
+    height: 40px; 
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.kb-amount-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px;
+    width: 100%;
+}
+
+.kb-amount-button {
+    justify-self: flex-end;
+    width: 50px;
 }
 
 `;
@@ -52,14 +179,9 @@ KARMABOX_IS_OPEN = false;
 // setting up popup, widget, etc..
 inject(html, style)
 
-//var stripe = Stripe('pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T');
 
 let baseURL = "http://127.0.0.1:4000";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDE3YjMyMjc0MWEyZjQ2ZTU1ZTUwYiIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiIiwiaWF0IjoxNjc0NjcyOTQ2LCJleHAiOjI1Mzg2NzI5NDZ9.Xt5QAOkgZhA9rxWEp_bm81fZ9CCzyN5lnyrPNhO0SBs"
-
-// console.log("clientSecret", getClientSecret());
-// console.log("PublishableKey", getPublishableKey());
-
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDJmYzRmZjc1ZTgwOTNmMWJlZDk2NiIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiIiwiaWF0IjoxNjc0NzcxNzQyLCJleHAiOjI1Mzg3NzE3NDJ9.fjNSK-zZabg6QGwZkrsWaB8r0r_2gQFj_o7HNCDhedY"
 
 
 async function testing() {
@@ -76,16 +198,47 @@ async function testing() {
     let publishableKey = await result.json();
     console.log(publishableKey.publishableKey)
 
-    var stripe = Stripe(publishableKey.publishableKey);
-    let clientSecret = await getClientSecret();
+
+
+    // getting clientSecret
+    url = `${baseURL}/api/create-payment-intent`;
+    headers = new Headers();
+    headers.append("Authorization", token);
+    const res = await fetch(url, {
+        headers: headers,
+        method: "POST",
+        body: JSON.stringify({}),
+    });
+    const {clientSecret} = await res.json();
+
+    let stripe = Stripe(publishableKey.publishableKey);
     let elements = stripe.elements({
         clientSecret: clientSecret,
     });
 
-    let cardElement = elements.create('card');
-    let cardContainer = document.getElementsByClassName("card-element")[0];
+    let cardElement = elements.create("payment");
+    let cardContainer = document.getElementsByClassName("payment-element")[0];
     console.log(cardContainer)
     cardElement.mount(cardContainer);
+
+    
+    document.getElementById("karmabox-popup-submit").addEventListener("click", e => {
+        e.preventDefault();
+        stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                return_url: "http://127.0.0.1:5500/capstone/Karma-Box/widget/test/index.html?",
+            },
+            redirect: "if_required",
+        }).then(result => {
+            if (result.error) {
+                console.log("payment error");
+            }
+        });
+    });
+
+
+
 }
 
 
@@ -119,7 +272,7 @@ async function getClientSecret() {
         body: JSON.stringify({}),
     }).then(async (result) => {
         const { clientSecret } = await result.json();
-        // console.log(clientSecret)
+        console.log(clientSecret)
         return clientSecret;
     });
 
@@ -145,12 +298,13 @@ function inject(html, css, stripe) {
             document.getElementsByTagName("body")[0].appendChild(new_element);
             new_element.addEventListener("click", e => e.stopPropagation());
             KARMABOX_IS_OPEN = true;
+            addEvents();
+            testing();
         } else {
             let child = document.getElementById("karmabox-body-child");
             document.getElementsByTagName("body")[0].removeChild(child)[0];
             KARMABOX_IS_OPEN = false;
         }
-        testing();
     });
 
     document.getElementsByTagName("body")[0].addEventListener("click", e => {
@@ -161,9 +315,28 @@ function inject(html, css, stripe) {
         }
     });
 
+
     let script = document.createElement("script");
     script.src = "https://js.stripe.com/v3/";
     document.getElementsByTagName("body")[0].appendChild(script);
 
 }
 
+function addEvents() {
+    document.getElementById("kb-tab-kba").addEventListener("click", e => {
+        e.target.className = "kb-tab-button kb-tab-button-select"
+        e.target.nextElementSibling.className = "kb-tab-button"
+        document.getElementsByClassName("kb-body-container-card")[0]
+            .className = "kb-body-container-card kb-display-none";
+        document.getElementsByClassName("kb-body-container-kba")[0]
+            .className = "kb-body-container-kba";
+    });
+    document.getElementById("kb-tab-card").addEventListener("click", e => {
+        e.target.className = "kb-tab-button kb-tab-button-select"
+        e.target.previousElementSibling.className = "kb-tab-button"
+        document.getElementsByClassName("kb-body-container-kba")[0]
+            .className = "kb-body-container-kba kb-display-none";
+        document.getElementsByClassName("kb-body-container-card")[0]
+            .className = "kb-body-container-card";
+    });
+}

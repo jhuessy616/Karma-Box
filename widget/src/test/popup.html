@@ -1,14 +1,37 @@
 <div class="karmabox-popup-container">
-    <h1>hello world</h1>
-    <form class="karmabox-popup-card-container">
-        <div>
-            <label>Name</label>
-            <input class="karmabox-popup-input">
-        </div>
-        <div>
-            <label>Card</label>
-            <div class="karmabox-popup-input card-element"></div>
-        </div>
-    </form>
-
+    <div class="kb-tabs">
+        <button id="kb-tab-kba" class="kb-tab-button kb-tab-button-select">Karma Box account</button>
+        <button id="kb-tab-card" class="kb-tab-button">Card</button>
+    </div>
+    <!-- karma box acount tab -->
+    <div class="kb-body-container-kba">
+        <form class="karmabox-popup-card-container">
+            <label>Enter a custom amount</label>
+            <div class="kb-amount-container">
+                <div>
+                    <input class="karmabox-popup-input">
+                </div>
+                <button class="kb-amount-button">up</button>
+                <button class="kb-amount-button">down</button>
+            </div>
+            <button id="karmabox-popup-submit" type="submit">Donate Now</button>
+        </form>
+    </div>
+    <!-- card tab -->
+    <div class="kb-body-container-card kb-display-none">
+        <form class="karmabox-popup-card-container">
+            <label>Enter a custom amount</label>
+            <div class="kb-amount-container">
+                <div>
+                    <input class="karmabox-popup-input">
+                </div>
+                <button class="kb-amount-button">up</button>
+                <button class="kb-amount-button">down</button>
+            </div>
+            <div>
+                <div class="karmabox-popup-input payment-element"></div>
+            </div>
+            <button id="karmabox-popup-submit" type="submit">Donate Now</button>
+        </form>
+    </div>
 </div>
