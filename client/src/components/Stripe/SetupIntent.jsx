@@ -17,28 +17,30 @@ function SetupIntent({ token, updateToken }) {
   
   //const decoded = token ? jwt_decode(token) : "";
 // Fetch Stripe PublishableKey and store it as stripe promise. The publishable key is a promise so it must be handled asynchronously. Token is sent in headers to validate that a user is logged in. 
-
+const decoded = token ? jwt_decode(token) : "";
   useEffect(() => {
-    let url = "http://localhost:4000/api/config";
-    let myHeaders = new Headers();
-    myHeaders.append("Authorization", token)
-    const requestOptions = {
-      headers: myHeaders,
-      method: "GET",
-    }
-    fetch(url, requestOptions).then(async (result) => {
-      const { publishableKey } = await result.json();
-      console.log(publishableKey)
-      setStripePromise(loadStripe(`${publishableKey}`));
-    });
+    // if (decoded.customerId === "") {
+      let url = "http://localhost:4000/api/config";
+      let myHeaders = new Headers();
+      myHeaders.append("Authorization", token)
+      const requestOptions = {
+        headers: myHeaders,
+        method: "GET",
+      }
+      fetch(url, requestOptions).then(async (result) => {
+        const { publishableKey } = await result.json();
+        console.log(publishableKey)
+        setStripePromise(loadStripe(`${publishableKey}`));
+      });
+    // } else {
+    //   alert('sorry there is already an account associated with this user')
+    // }
   }, [token]);
   
 // If we have a token we make a fetch request to our create-setup-endpoint again sending our token in the headers. Our response is the setupIntent Object which has a client_secret that we need to complete the transaction. 
 
+
   useEffect(() => {
-    const decoded = token ? jwt_decode(token) : "";
-    console.log(decoded)
-    // if (token) {
       const myHeaders = new Headers();
       myHeaders.append("Authorization", token); 
       const bodyObject = {
@@ -57,8 +59,7 @@ function SetupIntent({ token, updateToken }) {
           // updateToken(result.token)
         })
         .catch((err) => console.log(err.message));
-    
-    //console.log(setupIntent);
+    console.log(decoded);
   
   }, [token]);
 

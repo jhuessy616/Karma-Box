@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
 
-:root {
+ :root {
   --light-grey: #f6f9fc;
   --dark-terminal-color: #0a2540;
   --accent-color: #635bff;
   --radius: 3px;
-}
+} 
 
-body {
+#payment-body {
   padding: 20px;
   font-family: "Raleway";
   display: flex;
@@ -18,11 +18,11 @@ body {
 
 main {
   width: 480px;
-}
+} 
 
 form > * {
   margin: 10px 0;
-}
+} 
 
 button {
   background-color: var(--accent-color);

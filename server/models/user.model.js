@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: ""
   },
+  paymentMethodId: {
+    type: String,
+    default: ""
+  },
    isAdmin: {
     type: Boolean,
        default: false,
