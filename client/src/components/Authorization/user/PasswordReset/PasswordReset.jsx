@@ -7,7 +7,7 @@ import Navbar from "./ProfileNavBar"
 import "./ProfileIndex.css"
 
 //! Declaration of Vairables
-const ProfileIndex = (props) => {
+const PasswordReset = (props) => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const confirmPasswordRef = useRef();
@@ -93,4 +93,4 @@ const ProfileIndex = (props) => {
 	);
 };
 
-export default ProfileIndex;
+export default PasswordReset;

@@ -21,7 +21,7 @@ function SetupForm() {
     const { error } = await stripe.confirmSetup({
       elements, 
       confirmParams: {
-        return_url: `${window.location.origin}/`,
+        return_url: `${window.location.origin}/paymentStatus`,
       },
     });
     if(error.type === 'card_error' || error.type === 'validation_error') {
