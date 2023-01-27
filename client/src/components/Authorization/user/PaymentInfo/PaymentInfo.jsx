@@ -3,11 +3,11 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom"
 import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import FullWidthButton from "../../../src/components/Authorization/Buttons/FullWidthButton";
-import ProfileNavbar from "../ProfilePage/ProfileNavBar"
+import PaymentInfoNavbar from "../PaymentInfo/PaymentInfoNavBar"
 import "./ProfileIndex.css"
 
 //! Declaration of Vairables
-const ProfileIndex = (props) => {
+const PaymentInfo = (props) => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const confirmPasswordRef = useRef();
@@ -19,7 +19,7 @@ const ProfileIndex = (props) => {
 	  const password = passwordRef.current.value;
 	  
 	  //!Url our page is hosed on
-	  let url = `http://localhost:4000/user/profile`;
+	  let url = `http://localhost:4000/user/paymentinfo`;
 	  let bodyObject = JSON.stringify({  email, password });
   
 	  let myHeaders = new Headers();
@@ -50,7 +50,7 @@ const ProfileIndex = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
-		  <ProfileNavbar></ProfileNavbar>
+		  <PaymentInfoNavbar></PaymentInfoNavbar>
 		  <Container>
 		  <h1 className="txtcenter">Welcome back to Karma Box!</h1>
 			<h2 className="txtcenter" >Below are your Karma Box donations</h2>
@@ -67,4 +67,4 @@ const ProfileIndex = (props) => {
 	  );
 	};
 
-export default ProfileIndex;
+export default PaymentInfo;

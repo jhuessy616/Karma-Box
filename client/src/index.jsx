@@ -15,6 +15,10 @@ import { Elements } from "@stripe/react-stripe-js";
 //     );
 //     console.log(publishableKey)
 //   const stripePromise = loadStripe(publishableKey);
+
+//  const stripePromise = loadStripe(
+//    "pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl"
+//  );
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>

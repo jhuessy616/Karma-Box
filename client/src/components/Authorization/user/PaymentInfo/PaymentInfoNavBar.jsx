@@ -1,20 +1,28 @@
 
 import { Nav, Navbar, Container } from "react-bootstrap";
 import logo from "../../assets/img/logo3.png";
+import { useHistory } from 'react-router-dom'
+import "./ProfileNavBar.css"
+import "../home/navbar.css";
 
 
-import "./navbar.css";
 
-const NavBar = () => {
+const PaymentInfoNavBar = () => {
+
+
+function logOut() {
+  localStorage.clear()
+
+}
 
   return (
     <Navbar expand="sm">
       <Container>
-        <div className="logodiv">
-          <a className="navbarlogolink" href="/">
+        
+          <a className="logolink" href="/">
             <img className="navbarlogo" src={logo} alt="Logo" />
           </a>
-        </div>
+      
 
         <Navbar.Toggle aria-controls="basic-navbar-nav">
           <span className="navbar-toggler-icon"></span>
@@ -25,23 +33,28 @@ const NavBar = () => {
               Home
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:3000/about"
+              href="http://localhost:3000/settings"
               className="navbar-link"
             >
-              About
+              User Settings
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:3000/login"
+              href="http://localhost:3000/"
               className="navbar-link"
+              onClick={logOut}
+
+
             >
-              Login
+              Logout
             </Nav.Link>
             <Nav.Link
-              href="http://localhost:3000/signup"
+              href="http://localhost:3000/Profile"
               className="navbar-link"
+             
+
             >
               {" "}
-              Signup
+              Profile
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -49,4 +62,4 @@ const NavBar = () => {
     </Navbar>
   );
 };
-export default NavBar;
+export default PaymentInfoNavBar;

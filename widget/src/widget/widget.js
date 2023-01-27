@@ -1,7 +1,19 @@
+let customStyle = `
+#karmaboxbuttonid-popup-contaner {
+    bottom: 0;
+    right: 0;
+    margin-bottom: 125px;
+    margin-right: 125px;
+    background-color: gray;
+    align-items: center;
+}
+`;
 var KARMABOX_IS_OPEN = false;
 let karmabox_payload = document.createElement("div");
-karmabox_payload.innerHTML = "<style>" + widgetStyle + "</style>" + widget
+karmabox_payload.innerHTML = "<style>" + widgetStyle + buttonStyle + customStyle + "</style>" + widget
 
+
+console.log(karmabox_payload.innerHTML)
 
 let karmabox_body = document.getElementsByTagName("body")[0];
 inject(karmabox_body, karmabox_payload);

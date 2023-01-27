@@ -5,22 +5,38 @@ import { useRef} from "react";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
 import "./donorSignUp.css"
+import { useForm } from "react-hook-form";
 
-//! Declaration of Vairables
-const DonorSignup = (props) => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
+
+function DonorSignUp(props) {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    watch,
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+      password_repeat: "",
+    },
+  });
+  console.log(errors);
+  const email = useRef({});
+  const password = useRef({});
+  password.current = watch("password", "");
+  email.current = watch("email", "");
+  
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    
+  const onSubmit = async (data) => {
+  
+    console.log(data);
+   
+  
     //!Url our page is hosed on
     let url = `http://localhost:4000/user/signup`;
-    let bodyObject = JSON.stringify({  email, password });
+    let bodyObject = JSON.stringify({ email:data.email, password:data.password });
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -38,7 +54,8 @@ const email = emailRef.current.value;
       if (data.message === "Success") {
         //We are free to navigate to another page
         props.updateToken(data.token);
-        navigate("/profile");
+        console.log("hi")
+        navigate("/setupIntent");
       } else {
         alert(data.message);
       }
@@ -47,34 +64,75 @@ const email = emailRef.current.value;
     }
   }
 
-  //! Input field where user enters information
+
   return (
     <>
-      <h1>Begin earning your good karma today!</h1>
-      <h2>Sign up to be a donor!</h2>
-      <div>
-        <Form onSubmit={handleSubmit}>
-          <FormGroup>
-            <Label>Email: </Label>
-            <Input type="email" innerRef={emailRef} />
-          </FormGroup>
-          <FormGroup>
-            <Label>Password: </Label>
-            <Input type="password" innerRef={passwordRef} />
-          </FormGroup>
-          <FormGroup>
-            <Label>Confirm Password:</Label>
-            <Input type="password" innerRef={confirmPasswordRef} />
-          </FormGroup><br></br>
-          <FullWidthButton>
-            <Button type="submit" color="warning">
-              Sign Up
-            </Button>
-          </FullWidthButton>
-        </Form>
-      </div>
+      <Form onSubmit={(e) => e.preventDefault()} className="donorSignUp">
+        <FormGroup floating>
+          <input
+            id="exampleEmail"
+            class="form-control"
+            name="email"
+            placeholder="Email"
+            type="email"
+            {...register("email", {
+              required: "You must enter an email",
+              validate: (value) =>
+                value.includes("@") || "Please provide a valid email",
+            })}
+          />
+          <Label for="exampleEmail">Email</Label>
+          {errors.email && <p>{errors.email.message}</p>}
+        </FormGroup>
+        <FormGroup floating>
+          <input
+            class="form-control"
+            id="examplePassword"
+            name="password"
+            placeholder="Password"
+            type="password"
+            {...register("password", {
+              required: "You must specify a password",
+              minLength: {
+                value: 6,
+                message: "Password must have at least 6 characters",
+              },
+            })}
+          />
+          <Label for="examplePassword">Password</Label>
+          {errors.password && <p>{errors.password.message}</p>}
+        </FormGroup>
+        <FormGroup floating>
+          <input
+            class="form-control"
+            id="examplConfirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            type="password"
+            {...register("password_repeat", {
+              validate: (value) =>
+                value === password.current || "The passwords do not match",
+            })}
+          />
+          <Label for="exampleConfirmPassword">Confirm Password</Label>
+          {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
+        </FormGroup>
+        <FullWidthButton>
+          <Button
+            type="submit"
+            color="warning"
+            onClick={handleSubmit(onSubmit)}
+          >
+            Sign Up
+          </Button>
+        </FullWidthButton>
+        {/* <Input type="submit" onClick={handleSubmit(onSubmit)} /> */}
+      </Form>
     </>
   );
-};
+}
+export default DonorSignUp;
 
-export default DonorSignup;
+
+
+

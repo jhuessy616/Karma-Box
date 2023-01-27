@@ -11,7 +11,7 @@ function Home() {
         <NavBar />
         <Banner />
       
-      
+     
       <Charities />
     </div>
   );

@@ -274,3 +274,121 @@ nav.navbar .navbar-toggler-icon:after {
 
 } */
 ```
+donor sign up original -------------------------------------------------------------------------
+```js 
+// //! Declaration of Vairables
+// const DonorSignup = (props) => {
+//   const emailRef = useRef();
+//   const passwordRef = useRef();
+//   const confirmPasswordRef = useRef();
+//   const navigate = useNavigate();
+
+//   async function handleSubmit(e) {
+//     e.preventDefault();
+// const email = emailRef.current.value;
+//     const password = passwordRef.current.value;
+    
+//     //!Url our page is hosed on
+//     let url = `http://localhost:4000/user/signup`;
+//     let bodyObject = JSON.stringify({  email, password });
+
+//     let myHeaders = new Headers();
+//     myHeaders.append("Content-Type", "application/json");
+
+//     const requestOptions = {
+//       headers: myHeaders,
+//       body: bodyObject,
+//       method: "POST",
+//     };
+//     //! function that runs when the user hits the signup button, that then allows them to log in
+//     try {
+//       const response = await fetch(url, requestOptions);
+//       const data = await response.json();
+//       console.log(data);
+//       if (data.message === "Success") {
+//         //We are free to navigate to another page
+//         props.updateToken(data.token);
+//         navigate("/profile");
+//       } else {
+//         alert(data.message);
+//       }
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   }
+
+//   //! Input field where user enters information
+//   return (
+//     <>
+//       <h1>Begin earning your good karma today!</h1>
+//       <h2>Sign up to be a donor!</h2>
+//       <div>
+//         <Form onSubmit={handleSubmit}>
+//           <FormGroup>
+//             <Label>Email: </Label>
+//             <Input type="email" innerRef={emailRef} />
+//           </FormGroup>
+//           <FormGroup>
+//             <Label>Password: </Label>
+//             <Input type="password" innerRef={passwordRef} />
+//           </FormGroup>
+//           <FormGroup>
+//             <Label>Confirm Password:</Label>
+//             <Input type="password" innerRef={confirmPasswordRef} />
+//           </FormGroup><br></br>
+//           <FullWidthButton>
+//             <Button type="submit" color="warning">
+//               Sign Up
+//             </Button>
+//           </FullWidthButton>
+//         </Form>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default DonorSignup;
+```
+
+Backend update user old version 
+```js
+// Backup in case I mess it up
+router.patch("/update/:id", validateSession, async (req, res) => {
+  try {
+    // finding the user by id
+    const userToUpdate = await User.findById({ _id: req.params.id });
+    // if user not found
+    if (!userToUpdate) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    console.log(req.user._id);
+    console.log(userToUpdate._id);
+    console.log(req.user._id.toString() == userToUpdate._id.toString());
+    // checking to see if the user is the creator or an admin. If they aren't, they get an error.
+    if (
+      !req.user.isAdmin &&
+      req.user._id.toString() != userToUpdate._id.toString()
+    ) {
+      res
+        .status(403)
+        .json({ message: "You do not have permission to update that user." });
+      return;
+    }
+    // Creating a filter to retrieve user
+    const filter = { _id: req.params.id };
+    // If a password is changed, it will be hashed.
+    if (req.body.password) {
+      req.body.password = bcrypt.hashSync(req.body.password, 10);
+    }
+    const update = req.body;
+    const returnOptions = { new: true };
+  
+    // using method find one and update to make the appropriate changes.
+    const user = await User.findOneAndUpdate(filter, update, returnOptions);
+
+    res.status(202).json({ message: "User updated", updatedUser: user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});

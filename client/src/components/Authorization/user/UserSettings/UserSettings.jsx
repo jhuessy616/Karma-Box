@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom"
 import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import FullWidthButton from "../../../src/components/Authorization/Buttons/FullWidthButton";
-import ProfileNavbar from "../ProfilePage/ProfileNavBar"
+import UserSettingsNavbar from "./UserSettingsNavBar"
 import "./ProfileIndex.css"
 
 //! Declaration of Vairables
@@ -19,7 +19,7 @@ const ProfileIndex = (props) => {
 	  const password = passwordRef.current.value;
 	  
 	  //!Url our page is hosed on
-	  let url = `http://localhost:4000/user/profile`;
+	  let url = `http://localhost:4000/settings`;
 	  let bodyObject = JSON.stringify({  email, password });
   
 	  let myHeaders = new Headers();
@@ -50,21 +50,47 @@ const ProfileIndex = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
-		  <ProfileNavbar></ProfileNavbar>
-		  <Container>
-		  <h1 className="txtcenter">Welcome back to Karma Box!</h1>
-			<h2 className="txtcenter" >Below are your Karma Box donations</h2>
-		  <Row>
-						<Col lg="4.5" md="4" xs="2"></Col>
-		  
-			  <Col lg="3" md="4" xs="8">
-				</Col>
-			  
-			  <Col lg="4.5" md="4" xs="2"></Col>
-			</Row>
-		  </Container>
+			<UserSettingsNavbar></UserSettingsNavbar>
+			<Container className="logInForm">
+				<Row>
+				<div class="col-2 col-md-4 col-lg-4.5"></div>
+					
+					<div class="col-8 col-md-4 col-lg-3">
+						<h1>Update Your Email</h1>
+							<Form onSubmit={handleSubmit}>
+								<FormGroup floating>
+									<Input
+										id="exampleEmail"
+										name="email"
+										placeholder="Email"
+										type="email"
+										innerRef={emailRef}
+									/>
+									<Label for="exampleEmail">Current Password</Label>
+								</FormGroup>{" "}
+								<FormGroup floating>
+									<Input
+										id="examplePassword"
+										name="password"
+										placeholder="Password"
+										type="password"
+										innerRef={passwordRef}
+									/>
+									<Label for="examplePassword">New Email</Label>
+								</FormGroup>{" "}
+								<FullWidthButton>
+									<Button type="submit" color="warning">
+										Update Email
+									</Button>
+								</FullWidthButton>
+							</Form>
+						</div>
+					
+					<Col lg="4.5" md="4" xs="2"></Col>
+				</Row>
+			</Container>
 		</div>
-	  );
-	};
+	);
+};
 
 export default ProfileIndex;

@@ -1,37 +1,31 @@
 
 
-.CharityWelcome{
-    border-radius: .5em;
-    background-color: rgba(	255, 90, 0, .75);
-     margin-bottom: 20px;
-     
 
-}
 .DonorWelcome{
-   border-radius: .5em;
-    background-color: rgba(	255, 90, 0, .75);
     margin-bottom: 20px;
+    padding: 0px !important;
 }
 .AboutContainer h3{
-    margin-top: 5px;
-    font-size: 1.5vw;
-    color: white;
+    font-size: calc(1rem + .6vw);
+    color:#0081c9
+    
     
 
 }
 .AboutContainer h4{
     font-size: 1.5vw;
-    color:white;
+    color:#0081c9;
     line-height: 1em;
     font-weight: 700 !important;
     
 }
 .KBSignUpButton{
     color: #fff;
- background: rgba(0, 59, 255, 0.7);
+ background: #68c8ff;
+
   font-weight: 700;
   font-size: 1.2vw;
-  margin-top: 5px;
+  margin-top: 20px;
   margin-bottom: 5px;
   letter-spacing: 0.8px;
   display: flex;
