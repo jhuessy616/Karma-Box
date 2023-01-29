@@ -13,7 +13,8 @@
     width: 75px;
     height: 75px;
     border-radius: 50px;
-    background-color: red;
+    /* background-color: red; */
+    background-image: url("http://localhost:3000/assets/logo3.png");
 }
 .karmabox-popup-container {
     --kb-tab-height: 35px;
@@ -34,7 +35,6 @@
     padding: 0px 20px 20px 20px;
     background-color: var(--primary);
     border-radius: 10px;
-
     color: white;
 }
 
@@ -112,11 +112,6 @@
 }
 #karmabox-popup-submit:hover {
     background-color: var(--yellow-plus);
-    border: none;
-    margin: 10px;
-    height: 40px; 
-    padding: 10px;
-    font-size: 1.2em;
 }
 
 .kb-amount-container {
@@ -129,5 +124,61 @@
 .kb-amount-button {
     justify-self: flex-end;
     width: 50px;
+}
+
+/* karma box acount tab */
+
+.kba-amount-select-container {
+    display: flex;
+    justify-content: center;
+}
+.kba-amount-select {
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    background-color: var(--secondary);
+    border: none;
+    margin: 10px;
+}
+.kba-amount-select:hover {
+    background-color: var(--tertiary);
+}
+.kba-amount-selected {
+    background-color: var(--yellow);
+}
+.kba-amount-selected:hover {
+    background-color: var(--yellow-plus);
+}
+
+.kb-body-wrapper-kba {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.kb-body-wrapper-kba > div > input {
+    height: 25px;
+    width: 78px;
+    margin-right: 14px;
+}
+.kb-body-wrapper-kba > label {
+    margin: 10px;
+}
+
+#karmabox-popup-kba-submit {
+    background-color: var(--yellow);
+    border: none;
+    margin: 10px;
+    height: 40px; 
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+#karmabox-popup-kba-submit:hover {
+    background-color: var(--yellow-plus);
+}
+.kba-or {
+    margin: 0;
 }
 
