@@ -5,17 +5,21 @@
     </div>
     <!-- karma box acount tab -->
     <div class="kb-body-container-kba">
-        <form class="karmabox-popup-card-container">
-            <label>Enter a custom amount</label>
-            <div class="kb-amount-container">
-                <div>
-                    <input class="karmabox-popup-input">
-                </div>
-                <button class="kb-amount-button">up</button>
-                <button class="kb-amount-button">down</button>
+        <div class="kb-body-wrapper-kba">
+            <h3 id="kb-charity">Donate to the Rob Charity today</h3>
+            <div class="kba-amount-select-container">
+                <button id="kba-amount-1" class="kba-amount-select kba-amount-selected">$5</button>
+                <button id="kba-amount-2" class="kba-amount-select">$10</button>
+                <button id="kba-amount-3" class="kba-amount-select">$20</button>
             </div>
-            <button id="karmabox-popup-submit" type="submit">Donate Now</button>
-        </form>
+            <h3 class="kba-or">or</h3>
+            <label>Enter a custom amount</label>
+            <div>
+                <label>$</label>
+                <input value="5" id="kba-custom-amount">
+            </div>
+            <button id="karmabox-popup-kba-submit" type="submit">Donate Now</button>
+        </div>
     </div>
     <!-- card tab -->
     <div class="kb-body-container-card kb-display-none">

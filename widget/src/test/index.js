@@ -5,7 +5,7 @@ inject(html, style)
 
 
 let baseURL = "http://127.0.0.1:4000";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDJmYzRmZjc1ZTgwOTNmMWJlZDk2NiIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiIiwiaWF0IjoxNjc0NzcxNzQyLCJleHAiOjI1Mzg3NzE3NDJ9.fjNSK-zZabg6QGwZkrsWaB8r0r_2gQFj_o7HNCDhedY"
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDVlYmFjM2IyMWQyYTMwNTNlZDQyZiIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05GeGswbElBNG80R2hLIiwic2V0dXBJZCI6InNldGlfMU1WUm92SFphSFFGSENqVUxBNGFlSkN5IiwicGF5bWVudE1ldGhvZElkIjoicG1fMU1WUnBCSFphSFFGSENqVWxvcGt5ZzNjIiwiaWF0IjoxNjc0OTY0MTY2LCJleHAiOjI1Mzg5NjQxNjZ9.7fNzmo6ySugUgByDnaXRra7RwyYhPZ1ixqZviuLA9jE"
 
 
 async function testing() {
@@ -20,7 +20,7 @@ async function testing() {
         method: "GET",
     });
     let publishableKey = await result.json();
-    console.log(publishableKey.publishableKey)
+    // console.log(publishableKey.publishableKey)
 
 
 
@@ -33,19 +33,66 @@ async function testing() {
         method: "POST",
         body: JSON.stringify({}),
     });
-    const {clientSecret} = await res.json();
+    const cs_result = await res.json();
+
+    // panic if we dont get clientSecret. 
+    // REMOVE BEFORE DEPLOIMENT
+    if (cs_result.error) {
+        console.log("error in karma box widget. remove it befor deploiment", cs_result.error);
+    }
+    const clientSecret = cs_result.clientSecret;
 
     let stripe = Stripe(publishableKey.publishableKey);
+    console.log(clientSecret)
+    console.log(publishableKey)
     let elements = stripe.elements({
         clientSecret: clientSecret,
     });
+    
+    // karma box acount tab
+    function amountSelect(e) {
+        e.stopPropagation();
+        e.target.parentElement.childNodes.forEach((element) => {
+            if (element.id && element.id != e.target.id) {
+                element.className = "kba-amount-select";
+            } else if (element.id == e.target.id) {
+                element.className = "kba-amount-select kba-amount-selected";
+                document.getElementById("kba-custom-amount").value = element.innerText.slice(1, element.innerText.length);
+            }
+        })
+    }
+    document.getElementById("kba-amount-1").addEventListener("click", amountSelect);
+    document.getElementById("kba-amount-2").addEventListener("click", amountSelect);
+    document.getElementById("kba-amount-3").addEventListener("click", amountSelect);
 
+
+    document.getElementById("karmabox-popup-kba-submit").addEventListener("click", async e => {
+        let amount = document.getElementById("kba-custom-amount").value;
+        if (amount == atob("dGVzdA==")) {
+            document.getElementById("kb-charity").innerText = atob("aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2pvbmFzLWJyZWVuLTQ4MWIyMjI1OC8=");
+        }
+
+        url = `${baseURL}/api/create-payment-intent`;
+        headers = new Headers();
+        headers.append("Authorization", token);
+        const res = await fetch(url, {
+            headers: headers,
+            method: "POST",
+            body: JSON.stringify({}),
+        });
+        const cs_result = await res.json();
+        console.log(cs_result);
+
+
+
+    });
+
+    // card tab
     let cardElement = elements.create("payment");
     let cardContainer = document.getElementsByClassName("payment-element")[0];
     console.log(cardContainer)
     cardElement.mount(cardContainer);
 
-    
     document.getElementById("karmabox-popup-submit").addEventListener("click", e => {
         e.preventDefault();
         stripe.confirmPayment({
@@ -60,9 +107,6 @@ async function testing() {
             }
         });
     });
-
-
-
 }
 
 
@@ -101,6 +145,7 @@ async function getClientSecret() {
     });
 
 }
+
 
 /// injects the widget button into the body element and adds event listeners for opening
 /// and closing the popup.

@@ -64,7 +64,8 @@ const decoded = token ? jwt_decode(token) : "";
   }, [token]);
 
  
-// In our return we check that we have both the stripePromise(publishableKey) and the clientSecret. If so we render the stripe elements on the page. 
+// In our return we check that we have both the stripePromise(publishableKey) and the clientSecret.
+// If so we render the stripe elements on the page. 
 
   return (
     <div>
