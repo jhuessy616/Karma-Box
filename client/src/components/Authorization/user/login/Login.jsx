@@ -26,9 +26,10 @@ import "./login.css";
 const Login = (props) => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const navigate = useNavigate();
-	const [loginError, setLoginError] = useState("");
-	const [loginErrorClass, setLoginErrorClass] = useState("none");
+  const navigate = useNavigate();
+    const [message, setMessage] = useState();
+	// const [loginError, setLoginError] = useState("");
+	// const [loginErrorClass, setLoginErrorClass] = useState("none");
 
 	const [state, setState] = useState(false);
 	const toggleBtn = (e) => {
@@ -42,11 +43,11 @@ const Login = (props) => {
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 
-		if (email === "" || password === "") {
-			setLoginError("missing input");
-			setLoginErrorClass("some");
-			return;
-		}
+		// if (email === "" || password === "") {
+		// 	setLoginError("missing input");
+		// 	setLoginErrorClass("some");
+		// 	return;
+		// }
 		//!Url our page is hosed on
 		let url = `http://localhost:4000/user/login`;
 
@@ -70,7 +71,7 @@ const Login = (props) => {
 				// if (props.user.isCharity === false)
 				navigate("/profile");
 			} else {
-				alert(data.message);
+				setMessage(data.message);
 			}
 		} catch (error) {
 			console.log(error.message);
@@ -89,6 +90,7 @@ const Login = (props) => {
         <Row>
           <Col lg="4" md="4" xs="2"></Col>
           <Col lg="4" md="4" xs="8">
+            <p className="txtcenter">{message}</p>
             <div>
               <Form onSubmit={handleSubmit} className="loginForm">
                 <FormGroup floating>
@@ -136,6 +138,9 @@ const Login = (props) => {
                 </FullWidthButton>
               </Form>
             </div>
+            <Button onClick={() => navigate(`/forgotpassword`)}>
+              Forgot Password
+            </Button>
           </Col>
           <Col lg="4" md="4" xs="2"></Col>
         </Row>
