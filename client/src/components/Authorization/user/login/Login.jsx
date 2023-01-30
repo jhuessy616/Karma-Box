@@ -79,7 +79,7 @@ const Login = (props) => {
 
 	
 
-	//! Input field where user enters information
+
 
 	return (
     <div className="Background">
