@@ -61,7 +61,7 @@ const ProfileNavBar = () => {
             </UncontrolledDropdown>
 
             <Nav.Link
-              href="http://localhost:3000/paymentinfo"
+              href="http://localhost:3000/setupIntent"
               className="navbar-link"
             >
               {" "}

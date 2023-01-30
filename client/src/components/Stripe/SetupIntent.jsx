@@ -16,7 +16,7 @@ function SetupIntent({ token, updateToken }) {
   const [clientSecret, setClientSecret] = useState(null)
   const [stripePromise, setStripePromise] = useState(null)
   //let baseURL = "http://localhost/4000/";
-  
+  // let url = `http://localhost:4000/payment`;
   //const decoded = token ? jwt_decode(token) : "";
 // Fetch Stripe PublishableKey and store it as stripe promise. The publishable key is a promise so it must be handled asynchronously. Token is sent in headers to validate that a user is logged in. 
 const decoded = token ? jwt_decode(token) : "";
@@ -66,7 +66,8 @@ const decoded = token ? jwt_decode(token) : "";
   }, [token]);
 
  
-// In our return we check that we have both the stripePromise(publishableKey) and the clientSecret. If so we render the stripe elements on the page. 
+// In our return we check that we have both the stripePromise(publishableKey) and the clientSecret.
+// If so we render the stripe elements on the page. 
 
   return (
     <div className="Background">

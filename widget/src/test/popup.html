@@ -1,14 +1,41 @@
 <div class="karmabox-popup-container">
-    <h1>hello world</h1>
-    <form class="karmabox-popup-card-container">
-        <div>
-            <label>Name</label>
-            <input class="karmabox-popup-input">
+    <div class="kb-tabs">
+        <button id="kb-tab-kba" class="kb-tab-button kb-tab-button-select">Karma Box account</button>
+        <button id="kb-tab-card" class="kb-tab-button">Card</button>
+    </div>
+    <!-- karma box acount tab -->
+    <div class="kb-body-container-kba">
+        <div class="kb-body-wrapper-kba">
+            <h3 id="kb-charity">Donate to the Rob Charity today</h3>
+            <div class="kba-amount-select-container">
+                <button id="kba-amount-1" class="kba-amount-select kba-amount-selected">$5</button>
+                <button id="kba-amount-2" class="kba-amount-select">$10</button>
+                <button id="kba-amount-3" class="kba-amount-select">$20</button>
+            </div>
+            <h3 class="kba-or">or</h3>
+            <label>Enter a custom amount</label>
+            <div>
+                <label>$</label>
+                <input value="5" id="kba-custom-amount">
+            </div>
+            <button id="karmabox-popup-kba-submit" type="submit">Donate Now</button>
         </div>
-        <div>
-            <label>Card</label>
-            <div class="karmabox-popup-input card-element"></div>
-        </div>
-    </form>
-
+    </div>
+    <!-- card tab -->
+    <div class="kb-body-container-card kb-display-none">
+        <form class="karmabox-popup-card-container">
+            <label>Enter a custom amount</label>
+            <div class="kb-amount-container">
+                <div>
+                    <input class="karmabox-popup-input">
+                </div>
+                <button class="kb-amount-button">up</button>
+                <button class="kb-amount-button">down</button>
+            </div>
+            <div>
+                <div class="karmabox-popup-input payment-element"></div>
+            </div>
+            <button id="karmabox-popup-submit" type="submit">Donate Now</button>
+        </form>
+    </div>
 </div>

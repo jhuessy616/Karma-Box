@@ -1,3 +1,6 @@
+
+
+
 .karmabox-button-container {
     position: fixed;
     bottom: 0;
@@ -10,20 +13,172 @@
     width: 75px;
     height: 75px;
     border-radius: 50px;
-    background-color: red;
+    /* background-color: red; */
+    background-image: url("http://localhost:3000/assets/logo3.png");
 }
-
 .karmabox-popup-container {
+    --kb-tab-height: 35px;
+    --kb-body-height: calc(500px var(--kb-tab-height));
+    --kb-height: 500px;
+    --primary: #0081c9;
+    --secondary: #5bc0f8;
+    --tertiary: #86e5ff;
+    --yellow: #ffc93c;
+    --yellow-plus: #fdbc02;
+    height: var(--kb-body-height);
+    width: 315px;
     position: fixed;
     bottom: 0;
     right: 0;
     margin-right: 150px;
     margin-bottom: 150px;
-    background-color: gray;
+    padding: 0px 20px 20px 20px;
+    background-color: var(--primary);
+    border-radius: 10px;
+    color: white;
 }
+
+/* form */
+.karmabox-popup-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* primary #0081c9
+ * secondary #5bc0f8
+ * tertiary #86e5ff
+ * yellow #ffc93c
+*/
 
 .karmabox-popup-input {
     padding: 10px;
     border: 1px solid #ccc;
+    background-color: #e7faff;
+    border-radius: 10px;
+}
+
+
+.kb-tabs {
+    display: flex;
+    justify-content: space-between;
+    height: var(--kb-tab-height);
+}
+
+.kb-tab-button {
+    width: 50%;
+    height: 100%;
+    border: none;
+    background-color: var(--secondary);
+    color: black;
+}
+
+.kb-tab-button:hover {
+    background-color: var(--tertiary);
+}
+
+.kb-tab-button-select {
+    background-color: var(--primary);
+    color: white;
+}
+
+.kb-tab-button-select:hover {
+    background-color: var(--primary);
+}
+
+/* card tab container */
+.kb-body-container-card{
+    height: var(--kb-body-height);
+    overflow-y: scroll;
+}
+/* karma box acount tab container */
+.kb-body-container-kba{
+    height: var(--kb-body-height);
+    overflow-y: scroll;
+}
+.kb-display-none {
+    display: none;
+}
+
+
+#karmabox-popup-submit {
+    background-color: var(--yellow);
+    border: none;
+    margin: 10px;
+    height: 40px; 
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+#karmabox-popup-submit:hover {
+    background-color: var(--yellow-plus);
+}
+
+.kb-amount-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px;
+    width: 100%;
+}
+
+.kb-amount-button {
+    justify-self: flex-end;
+    width: 50px;
+}
+
+/* karma box acount tab */
+
+.kba-amount-select-container {
+    display: flex;
+    justify-content: center;
+}
+.kba-amount-select {
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    background-color: var(--secondary);
+    border: none;
+    margin: 10px;
+}
+.kba-amount-select:hover {
+    background-color: var(--tertiary);
+}
+.kba-amount-selected {
+    background-color: var(--yellow);
+}
+.kba-amount-selected:hover {
+    background-color: var(--yellow-plus);
+}
+
+.kb-body-wrapper-kba {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.kb-body-wrapper-kba > div > input {
+    height: 25px;
+    width: 78px;
+    margin-right: 14px;
+}
+.kb-body-wrapper-kba > label {
+    margin: 10px;
+}
+
+#karmabox-popup-kba-submit {
+    background-color: var(--yellow);
+    border: none;
+    margin: 10px;
+    height: 40px; 
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+#karmabox-popup-kba-submit:hover {
+    background-color: var(--yellow-plus);
+}
+.kba-or {
+    margin: 0;
 }
 
