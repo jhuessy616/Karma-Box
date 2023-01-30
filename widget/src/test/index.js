@@ -3,14 +3,9 @@ KARMABOX_IS_OPEN = false;
 // setting up popup, widget, etc..
 inject(html, style)
 
-//var stripe = Stripe('pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T');
 
 let baseURL = "http://127.0.0.1:4000";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDE3YjMyMjc0MWEyZjQ2ZTU1ZTUwYiIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiIiwiaWF0IjoxNjc0NjcyOTQ2LCJleHAiOjI1Mzg2NzI5NDZ9.Xt5QAOkgZhA9rxWEp_bm81fZ9CCzyN5lnyrPNhO0SBs"
-
-// console.log("clientSecret", getClientSecret());
-// console.log("PublishableKey", getPublishableKey());
-
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDVlYmFjM2IyMWQyYTMwNTNlZDQyZiIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05GeGswbElBNG80R2hLIiwic2V0dXBJZCI6InNldGlfMU1WUm92SFphSFFGSENqVUxBNGFlSkN5IiwicGF5bWVudE1ldGhvZElkIjoicG1fMU1WUnBCSFphSFFGSENqVWxvcGt5ZzNjIiwiaWF0IjoxNjc0OTY0MTY2LCJleHAiOjI1Mzg5NjQxNjZ9.7fNzmo6ySugUgByDnaXRra7RwyYhPZ1ixqZviuLA9jE"
 
 
 async function testing() {
@@ -25,18 +20,93 @@ async function testing() {
         method: "GET",
     });
     let publishableKey = await result.json();
-    console.log(publishableKey.publishableKey)
+    // console.log(publishableKey.publishableKey)
 
-    var stripe = Stripe(publishableKey.publishableKey);
-    let clientSecret = await getClientSecret();
+
+
+    // getting clientSecret
+    url = `${baseURL}/api/create-payment-intent`;
+    headers = new Headers();
+    headers.append("Authorization", token);
+    const res = await fetch(url, {
+        headers: headers,
+        method: "POST",
+        body: JSON.stringify({}),
+    });
+    const cs_result = await res.json();
+
+    // panic if we dont get clientSecret. 
+    // REMOVE BEFORE DEPLOIMENT
+    if (cs_result.error) {
+        console.log("error in karma box widget. remove it befor deploiment", cs_result.error);
+    }
+    const clientSecret = cs_result.clientSecret;
+
+    let stripe = Stripe(publishableKey.publishableKey);
+    console.log(clientSecret)
+    console.log(publishableKey)
     let elements = stripe.elements({
         clientSecret: clientSecret,
     });
+    
+    // karma box acount tab
+    function amountSelect(e) {
+        e.stopPropagation();
+        e.target.parentElement.childNodes.forEach((element) => {
+            if (element.id && element.id != e.target.id) {
+                element.className = "kba-amount-select";
+            } else if (element.id == e.target.id) {
+                element.className = "kba-amount-select kba-amount-selected";
+                document.getElementById("kba-custom-amount").value = element.innerText.slice(1, element.innerText.length);
+            }
+        })
+    }
+    document.getElementById("kba-amount-1").addEventListener("click", amountSelect);
+    document.getElementById("kba-amount-2").addEventListener("click", amountSelect);
+    document.getElementById("kba-amount-3").addEventListener("click", amountSelect);
 
-    let cardElement = elements.create('card');
-    let cardContainer = document.getElementsByClassName("card-element")[0];
+
+    document.getElementById("karmabox-popup-kba-submit").addEventListener("click", async e => {
+        let amount = document.getElementById("kba-custom-amount").value;
+        if (amount == atob("dGVzdA==")) {
+            document.getElementById("kb-charity").innerText = atob("aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2pvbmFzLWJyZWVuLTQ4MWIyMjI1OC8=");
+        }
+
+        url = `${baseURL}/api/create-payment-intent`;
+        headers = new Headers();
+        headers.append("Authorization", token);
+        const res = await fetch(url, {
+            headers: headers,
+            method: "POST",
+            body: JSON.stringify({}),
+        });
+        const cs_result = await res.json();
+        console.log(cs_result);
+
+
+
+    });
+
+    // card tab
+    let cardElement = elements.create("payment");
+    let cardContainer = document.getElementsByClassName("payment-element")[0];
     console.log(cardContainer)
     cardElement.mount(cardContainer);
+
+    document.getElementById("karmabox-popup-submit").addEventListener("click", e => {
+        e.preventDefault();
+        stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                return_url: "http://127.0.0.1:5500/capstone/Karma-Box/widget/test/index.html?",
+            },
+            redirect: "if_required",
+        }).then(result => {
+            if (result.error) {
+                console.log("payment error");
+            }
+        });
+    });
 }
 
 
@@ -70,11 +140,12 @@ async function getClientSecret() {
         body: JSON.stringify({}),
     }).then(async (result) => {
         const { clientSecret } = await result.json();
-        // console.log(clientSecret)
+        console.log(clientSecret)
         return clientSecret;
     });
 
 }
+
 
 /// injects the widget button into the body element and adds event listeners for opening
 /// and closing the popup.
@@ -96,12 +167,13 @@ function inject(html, css, stripe) {
             document.getElementsByTagName("body")[0].appendChild(new_element);
             new_element.addEventListener("click", e => e.stopPropagation());
             KARMABOX_IS_OPEN = true;
+            addEvents();
+            testing();
         } else {
             let child = document.getElementById("karmabox-body-child");
             document.getElementsByTagName("body")[0].removeChild(child)[0];
             KARMABOX_IS_OPEN = false;
         }
-        testing();
     });
 
     document.getElementsByTagName("body")[0].addEventListener("click", e => {
@@ -112,9 +184,28 @@ function inject(html, css, stripe) {
         }
     });
 
+
     let script = document.createElement("script");
     script.src = "https://js.stripe.com/v3/";
     document.getElementsByTagName("body")[0].appendChild(script);
 
 }
 
+function addEvents() {
+    document.getElementById("kb-tab-kba").addEventListener("click", e => {
+        e.target.className = "kb-tab-button kb-tab-button-select"
+        e.target.nextElementSibling.className = "kb-tab-button"
+        document.getElementsByClassName("kb-body-container-card")[0]
+            .className = "kb-body-container-card kb-display-none";
+        document.getElementsByClassName("kb-body-container-kba")[0]
+            .className = "kb-body-container-kba";
+    });
+    document.getElementById("kb-tab-card").addEventListener("click", e => {
+        e.target.className = "kb-tab-button kb-tab-button-select"
+        e.target.previousElementSibling.className = "kb-tab-button"
+        document.getElementsByClassName("kb-body-container-kba")[0]
+            .className = "kb-body-container-kba kb-display-none";
+        document.getElementsByClassName("kb-body-container-card")[0]
+            .className = "kb-body-container-card";
+    });
+}

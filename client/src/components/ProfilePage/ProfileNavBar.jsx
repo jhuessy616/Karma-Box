@@ -43,7 +43,7 @@ const ProfileNavBar = () => {
               <DropdownMenu>
                 <DropdownItem>
                   <Nav.Link
-                    href="http://localhost:3000/settings"
+                    href="http://localhost:3000/password"
                     className="navbar-link"
                   >
                     Email Update
@@ -51,7 +51,7 @@ const ProfileNavBar = () => {
                 </DropdownItem>
                 <DropdownItem>
                   <Nav.Link
-                    href="http://localhost:3000/settings"
+                    href="http://localhost:3000/password"
                     className="navbar-link"
                   >
                     Password Update
@@ -61,7 +61,7 @@ const ProfileNavBar = () => {
             </UncontrolledDropdown>
 
             <Nav.Link
-              href="http://localhost:3000/paymentinfo"
+              href="http://localhost:3000/setupIntent"
               className="navbar-link"
             >
               {" "}
