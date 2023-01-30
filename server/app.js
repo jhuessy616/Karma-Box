@@ -24,6 +24,8 @@ app.use(cors());
 app.use(express.static('public'))
 app.use(express.json());
 app.use(express.static(process.env.STATIC_DIR));
+// !Thing julia added, will automatically parse data. If problems arise look into this
+app.use(express.urlencoded({extended:false}))
 
 // ! -------------------------------------Routes---------------------------------------------
 // Defining our routes

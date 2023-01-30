@@ -8,6 +8,8 @@ import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
 import About from "./components/home/About";
+import ForgotPassword from "./components/Authorization/user/login/ForgotPassword"
+import ResetPassword from "./components/Authorization/user/login/ForgotResetPassword";
 
 import "./app.css";
 import SetupIntent from "./components/Stripe/SetupIntent";
@@ -52,11 +54,24 @@ function App() {
                 path="/signup"
                 element={<SignUpPage updateToken={updateToken} />}
               />
-              <Route path="/profile" element={<ProfileIndex token={sessionToken} />} />
-              <Route path="/about" element={<AboutPage/>} />
+              <Route
+                path="/profile"
+                element={<ProfileIndex token={sessionToken} />}
+              />
+              <Route
+                path="/forgotpassword"
+                element={<ForgotPassword token={sessionToken} />}
+              />
+              <Route
+                path="/resetpassword/:id/:token"
+                element={<ResetPassword token={sessionToken} />}
+              />
+              <Route path="/about" element={<AboutPage />} />
               <Route
                 path="/setupIntent"
-                element={<SetupIntent updateToken={updateToken} token={sessionToken} />}
+                element={
+                  <SetupIntent updateToken={updateToken} token={sessionToken} />
+                }
               />
               <Route
                 path="/payment"
