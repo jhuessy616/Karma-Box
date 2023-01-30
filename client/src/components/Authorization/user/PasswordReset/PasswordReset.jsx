@@ -1,10 +1,11 @@
 // ! Dependencies imported
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom"
-import { Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
-import FullWidthButton from "../../../src/components/Authorization/Buttons/FullWidthButton";
-import Navbar from "./ProfileNavBar"
-import "./ProfileIndex.css"
+import { InputGroup, Button, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
+import FullWidthButton from "../../Buttons/FullWidthButton"
+import Navbar from "../../../ProfilePage/ProfileNavBar"
+
 
 //! Declaration of Vairables
 const ProfileIndex = (props) => {
@@ -58,15 +59,15 @@ const ProfileIndex = (props) => {
 					<div class="col-8 col-md-4 col-lg-3">
 						<h1>Update Your Profile Information</h1>
 							<Form onSubmit={handleSubmit}>
-								<FormGroup floating>
+							<FormGroup floating>
 									<Input
-										id="exampleEmail"
-										name="email"
-										placeholder="Email"
-										type="email"
-										innerRef={emailRef}
+										id="examplePassword"
+										name="password"
+										placeholder="Password"
+										type="password"
+										innerRef={passwordRef}
 									/>
-									<Label for="exampleEmail">Email</Label>
+									<Label for="examplePassword">Current Password</Label>
 								</FormGroup>{" "}
 								<FormGroup floating>
 									<Input
@@ -76,7 +77,17 @@ const ProfileIndex = (props) => {
 										type="password"
 										innerRef={passwordRef}
 									/>
-									<Label for="examplePassword">Password</Label>
+									<Label for="examplePassword">New Password</Label>
+								</FormGroup>{" "}
+								<FormGroup floating>
+									<Input
+										id="examplePassword"
+										name="password"
+										placeholder="Password"
+										type="password"
+										innerRef={passwordRef}
+									/>
+									<Label for="examplePassword">Confirm New Password</Label>
 								</FormGroup>{" "}
 								<FullWidthButton>
 									<Button type="submit" color="warning">

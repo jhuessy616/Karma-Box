@@ -55,7 +55,7 @@ function SetupForm() {
         <PaymentElement id="payment-element" />
         <button disabled={isProcessing || !stripe || !elements} id="submit">
           <span id="button-text">
-            {isProcessing ? "Processing... " : "Pay now"}
+            {isProcessing ? "Processing... " : "Set Up Payment"}
           </span>
         </button>
         {message && <div id="payment-message">{message}</div>}

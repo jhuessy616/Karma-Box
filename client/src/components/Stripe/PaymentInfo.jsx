@@ -10,7 +10,7 @@ import Navbar from "../ProfilePage/ProfileNavBar"
 // Renders the Checkout component
 // Redirects home upon successful submission
 
-function SetupIntent({ token, updateToken }) {
+function PaymentInfo({ token, updateToken }) {
   //const [customerId, setCustomerId] = useState("");
   //const [setupIntent, setSetupIntent] = useState(null);
   const [clientSecret, setClientSecret] = useState(null)
@@ -84,4 +84,5 @@ const decoded = token ? jwt_decode(token) : "";
   );
 }
 
-export default SetupIntent;
+export default PaymentInfo;
+

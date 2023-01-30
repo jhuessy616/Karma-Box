@@ -35,3 +35,15 @@ FullWidthButton {
 .loginForm{
 	margin-top:20px;
 }
+
+.eyebtn{
+	/* display: flex; */
+	font-size: 1.2rem;
+	outline: none;
+	border: none;
+	background-color:#0081c9 ! important;
+	margin-bottom: 15px;
+	
+
+}
+

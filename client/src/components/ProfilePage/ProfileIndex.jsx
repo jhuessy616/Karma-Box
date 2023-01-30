@@ -52,8 +52,9 @@ const ProfileIndex = (props) => {
 		<div className="Background">
 		  <ProfileNavbar></ProfileNavbar>
 		  <Container>
-		  <h1 className="txtcenter">Welcome back to Karma Box!</h1>
+		  <h1 className="txtcenter">Welcome to Karma Box!</h1>
 			<h2 className="txtcenter" >Below are your Karma Box donations</h2>
+			
 		  <Row>
 						<Col lg="4.5" md="4" xs="2"></Col>
 		  
