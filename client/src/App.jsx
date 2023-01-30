@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-// !below are the routes I am importing to the sign in and log in pages
+import PaymentInfo from "./components/Stripe/PaymentInfo"
 import Login from "./components/Authorization/user/login/Login";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
 import About from "./components/home/About";
 import PaymentStatus from "./components/Stripe/PaymentStatus";
+import PasswordReset from "./components/Authorization/user/PasswordReset/PasswordReset"
 
 import "./app.css";
 import SetupIntent from "./components/Stripe/SetupIntent";
@@ -61,6 +62,8 @@ function App() {
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
           <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
+          <Route path="/paymentinfo" element={<PaymentInfo/>} />
+          <Route path="/password" element={<PasswordReset/>} />
         </Routes>
       </Elements>
     </div>

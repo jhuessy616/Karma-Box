@@ -2,8 +2,12 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 // ! Styling imported from reactstrap
 import {
+	InputGroupAddon,
+	InputGroup,
 	Button,
 	Form,
 	FormGroup,
@@ -17,6 +21,7 @@ import FullWidthButton from "../../Buttons/FullWidthButton";
 import Navbar from "../../../home/NavBar";
 import "./login.css";
 
+
 //! Declaration of Variables
 const Login = (props) => {
 	const emailRef = useRef();
@@ -24,6 +29,12 @@ const Login = (props) => {
 	const navigate = useNavigate();
 	const [loginError, setLoginError] = useState("");
 	const [loginErrorClass, setLoginErrorClass] = useState("none");
+
+	const [state, setState] = useState(false);
+	const toggleBtn = (e) => {
+		e.preventDefault()
+		setState(prevState => !prevState);
+	}
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -66,6 +77,8 @@ const Login = (props) => {
 		}
 	}
 
+	
+
 	//! Input field where user enters information
 
 	return (
@@ -88,16 +101,34 @@ const Login = (props) => {
                   />
                   <Label for="exampleEmail">Email</Label>
                 </FormGroup>{" "}
-                <FormGroup floating>
-                  <Input
+				
+                
+				
+                  <InputGroup >
+				  <FormGroup floating>
+				  <Input
                     id="examplePassword"
                     name="password"
                     placeholder="Password"
-                    type="password"
+                    type={state ? "text" : "password"}
                     innerRef={passwordRef}
+					
                   />
                   <Label for="examplePassword">Password</Label>
-                </FormGroup>{" "}
+				  </FormGroup>{" "}
+				  
+				  <Button className="eyebtn input-group-text" onClick={toggleBtn}>
+					{ state? <AiOutlineEyeInvisible /> :
+						<AiOutlineEye />
+					}
+				
+					</Button>
+					
+					</InputGroup>
+				
+                	
+					 
+	
                 <FullWidthButton>
                   <Button type="submit" color="warning">
                     Log In

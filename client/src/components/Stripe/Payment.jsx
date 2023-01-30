@@ -25,7 +25,9 @@ function Payment(token) {
   //   });
   // }, []);
 
+
   const stripePromise = loadStripe('pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T');
+
 
   useEffect(() => {
     let url = `${baseURL}/api/create-payment-intent`;
