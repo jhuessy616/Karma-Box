@@ -32,7 +32,7 @@ function PaymentStatus({ token }) {
 
 
     function attachPayment(setupIntent) {
-        console.log(setupIntent)
+        console.log("setupIntent", setupIntent);
         let url = `http://localhost:4000/api/payment_methods/attach`;
         let headers = new Headers();
         headers.append("Authorization", token);
@@ -40,6 +40,22 @@ function PaymentStatus({ token }) {
         const requestOptions = {
             headers: headers,
             method: "POST"
+        };
+        fetch(url, requestOptions).then(async(result) => {
+            const data = await result.json()
+            console.log(data)
+            console.log('fetched from: ', url)
+        });
+    }
+
+    function confirmSetupIntent(setupIntent) {
+        let url = `http://localhost:4000/api/confirm-setup-intent/${setupIntent.id}`;
+        let headers = new Headers();
+        headers.append("Authorization", token);
+
+        const requestOptions = {
+            headers: headers,
+            method: "POST",
         };
         fetch(url, requestOptions).then(async(result) => {
             const data = await result.json()

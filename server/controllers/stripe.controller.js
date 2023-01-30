@@ -35,15 +35,15 @@ router.post('/create-setup-intent', validateSession, async(req, res) => {
         const returnOptions = { new: true };
         const updatedUser = await User.findOneAndUpdate(filter, update, returnOptions);
 
-        const token = jwt.sign(
-            { id: updatedUser._id, isAdmin: updatedUser.isAdmin, isCharity:updatedUser.isCharity, customerId: updatedUser.customerId, setupId: updatedUser.setupId, paymentMethodId: updatedUser.paymentMethodId },
-            process.env.JWT,
-            {
-                expiresIn: 600000 * 60 * 24,
-            }
-        );
+        // const token = jwt.sign(
+        //     { id: updatedUser._id, isAdmin: updatedUser.isAdmin, isCharity:updatedUser.isCharity, customerId: updatedUser.customerId, setupId: updatedUser.setupId, paymentMethodId: updatedUser.paymentMethodId },
+        //     process.env.JWT,
+        //     {
+        //         expiresIn: 600000 * 60 * 24,
+        //     }
+        // );
         res.send({
-            token: token,
+            // token: token,
             setupIntent: setupIntent,
             customer: setupIntent.customer,
             clientSecret: setupIntent.client_secret
@@ -57,6 +57,22 @@ router.post('/create-setup-intent', validateSession, async(req, res) => {
     }
 });
 
+
+router.post("/confirm-setup-intent/:setupId", validateSession, async (req, res) => {
+    try {
+        const setupId = req.params.setupId;
+        const setupIntent = await stripe.setupIntents.confirm(
+            setupId,
+            {payment_method: 'pm_card_visa'}
+        );
+        console.log("confirm-setup-intent");
+        console.log(setupIntent);
+        console.log(setupId);
+        res.send({msg: "success"});
+    } catch(err) {
+        res.send({msg: err.message});
+    }
+});
 
 router.post("/create-payment-intent", validateSession, async (req, res) => {
     try {
@@ -123,7 +139,7 @@ router.get('/customers/:customer/payment_methods', validateSession, async(req, r
 
 router.post('/payment_methods/attach', validateSession, async(req, res) => {
     try {
-        console.log(req.user);
+        console.log("user", req.user);
         const customerId = req.user.customerId;
         const paymentMethodId = req.user.paymentMethodId;
         console.log(typeof customerId)
@@ -151,21 +167,21 @@ router.get('/setup_intents/:id', validateSession, async(req, res) => {
     const setupIntent = await stripe.setupIntents.retrieve(
         setupId
     )
-    console.log(setupIntent.payment_method);
+    console.log("setupintent.payment_method", setupIntent.payment_method);
     const filter = {_id: user};
     const update = {paymentMethodId: setupIntent.payment_method}
     const returnOptions = { new: true };
     const updatedUser = await User.findOneAndUpdate(filter, update, returnOptions);
 
-    const token = jwt.sign(
-        { id: updatedUser._id, isAdmin: updatedUser.isAdmin, isCharity:updatedUser.isCharity, customerId: updatedUser.customerId, setupId: updatedUser.setupId, paymentMethodId: updatedUser.paymentMethodId },
-        process.env.JWT,
-        {
-            expiresIn: 600000 * 60 * 24,
-        }
-    );
+    // const token = jwt.sign(
+    //     { id: updatedUser._id, isAdmin: updatedUser.isAdmin, isCharity:updatedUser.isCharity, customerId: updatedUser.customerId, setupId: updatedUser.setupId, paymentMethodId: updatedUser.paymentMethodId },
+    //     process.env.JWT,
+    //     {
+    //         expiresIn: 600000 * 60 * 24,
+    //     }
+    // );
     res.send({
-        token: token,
+        // token: token,
         setupIntent: setupIntent,
         paymentMethodId: setupIntent.paymentMethodId
     })

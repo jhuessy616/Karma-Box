@@ -16,9 +16,15 @@ function SetupIntent({ token, updateToken }) {
   //let baseURL = "http://localhost/4000/";
   // let url = `http://localhost:4000/payment`;
   //const decoded = token ? jwt_decode(token) : "";
-// Fetch Stripe PublishableKey and store it as stripe promise. The publishable key is a promise so it must be handled asynchronously. Token is sent in headers to validate that a user is logged in. 
+    
+
+// Fetch Stripe PublishableKey and store it as stripe promise.
+// The publishable key is a promise so it must be handled asynchronously.
+// Token is sent in headers to validate that a user is logged in. 
 const decoded = token ? jwt_decode(token) : "";
   useEffect(() => {
+    if (token) {
+    console.log("token",token)
     // if (decoded.customerId === "") {
       let url = "http://localhost:4000/api/config";
       let myHeaders = new Headers();
@@ -35,32 +41,34 @@ const decoded = token ? jwt_decode(token) : "";
     // } else {
     //   alert('sorry there is already an account associated with this user')
     // }
+    }
   }, [token]);
-  
-// If we have a token we make a fetch request to our create-setup-endpoint again sending our token in the headers. Our response is the setupIntent Object which has a client_secret that we need to complete the transaction. 
 
-
+// If we have a token we make a fetch request to our create-setup-endpoint again sending our token in the headers.
+// Our response is the setupIntent Object which has a client_secret that we need to complete the transaction. 
   useEffect(() => {
+    if (token){
       const myHeaders = new Headers();
       myHeaders.append("Authorization", token); 
-      const bodyObject = {
-        customer: decoded.id
-      }   
+      // console.log("decoded", decoded)
+      // const bodyObject = {
+      //   customer: decoded.id
+      // }
       const requestOptions = {
         method: "POST",
         headers: myHeaders,
-        body: bodyObject
+        // body: bodyObject
       };
       fetch("http://localhost:4000/api/create-setup-intent", requestOptions)
         .then((result) => result.json())
         .then(async (result) => {
           const setupIntent = result.setupIntent
           setClientSecret(setupIntent.client_secret);
+            // console.log("setupIntent", setupIntent)
           // updateToken(result.token)
-        })
-        .catch((err) => console.log(err.message));
-    console.log(decoded);
-  
+        }).catch((err) => console.log(err.message));
+    console.log("decoded", decoded);
+      }
   }, [token]);
 
  

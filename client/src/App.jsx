@@ -11,7 +11,9 @@ import About from "./components/home/About";
 import PaymentStatus from "./components/Stripe/PaymentStatus";
 
 import "./app.css";
+
 import SetupIntent from "./components/Stripe/SetupIntent";
+
 import Payment from "./components/Stripe/Payment";
 
 import Docs from "./components/Docs/Docs";
