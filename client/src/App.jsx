@@ -8,9 +8,14 @@ import SignUpPage from "./components/Authorization/user/SignUpPage";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
 import About from "./components/home/About";
+
+import ForgotPassword from "./components/Authorization/user/login/ForgotPassword"
+import ResetPassword from "./components/Authorization/user/login/ForgotResetPassword";
+
 import PaymentStatus from "./components/Stripe/PaymentStatus";
 import PasswordReset from "./components/Authorization/user/PasswordReset/PasswordReset"
 import EmailUpdate from "./components/Authorization/user/EmailUpdate/EmailUpdate";
+
 
 import "./app.css";
 import SetupIntent from "./components/Stripe/SetupIntent";
@@ -38,6 +43,7 @@ function App() {
     "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
   );
 
+
   //! Declaration of Routes
   return (
     <div>
@@ -54,6 +60,13 @@ function App() {
             element={<ProfileIndex token={sessionToken} />}
           />
           <Route path="/about" element={<AboutPage />} />
+           <Route
+                path="/forgotpassword"
+                element={<ForgotPassword token={sessionToken} />}
+              />
+              <Route
+                path="/resetpassword/:id/:token"
+                element={<ResetPassword token={sessionToken} />}/>
           <Route
             path="/setupIntent"
             element={
@@ -70,6 +83,7 @@ function App() {
       </Elements>
     </div>
   );
+
 }
 
 export default App;

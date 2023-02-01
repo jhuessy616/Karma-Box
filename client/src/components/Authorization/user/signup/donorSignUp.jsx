@@ -1,7 +1,7 @@
 // ! Dependencies imported
 // ! Styling imported from reactstrap
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { useRef} from "react";
+import { useRef, useState} from "react";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
 import "./donorSignUp.css"
@@ -26,6 +26,7 @@ function DonorSignUp(props) {
   const password = useRef({});
   password.current = watch("password", "");
   email.current = watch("email", "");
+  const [message, setMessage] = useState();
   
   const navigate = useNavigate();
 
@@ -57,7 +58,7 @@ function DonorSignUp(props) {
         console.log("hi")
         navigate("/setupIntent");
       } else {
-        alert(data.message);
+        setMessage(data.message);
       }
     } catch (error) {
       console.log(error.message);
@@ -70,18 +71,20 @@ function DonorSignUp(props) {
       <Form onSubmit={(e) => e.preventDefault()} className="donorSignUp">
         <FormGroup floating>
           <input
-            id="exampleEmail"
-            class="form-control"
+            id="email"
             name="email"
             placeholder="Email"
             type="email"
+            class="form-control"
             {...register("email", {
               required: "You must enter an email",
               validate: (value) =>
                 value.includes("@") || "Please provide a valid email",
+              validate: (value) =>
+                value.length >= 5 || "Please provide a valid email.",
             })}
           />
-          <Label for="exampleEmail">Email</Label>
+          <Label for="email">Email</Label>
           {errors.email && <p>{errors.email.message}</p>}
         </FormGroup>
         <FormGroup floating>
@@ -128,6 +131,7 @@ function DonorSignUp(props) {
         </FullWidthButton>
         {/* <Input type="submit" onClick={handleSubmit(onSubmit)} /> */}
       </Form>
+      <p className="txtcenter">{message}</p>
     </>
   );
 }
