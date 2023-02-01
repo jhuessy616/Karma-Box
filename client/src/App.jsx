@@ -30,7 +30,6 @@ const stripePromise = loadStripe(
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
-  const baseURL = 'http://localhost:4000'
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
