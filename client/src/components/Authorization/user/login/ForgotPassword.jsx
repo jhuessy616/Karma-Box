@@ -48,21 +48,7 @@ function ForgotPassword(props) {
       const response = await fetch(url, requestOptions);
         const data = await response.json();
 
-        const link = data.link
-        var templateParams = {
-          link: link
-        };
-
-        emailjs
-          .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
-          .then(
-            function (response) {
-              console.log("SUCCESS!", response.status, response.text);
-            },
-            function (error) {
-              console.log("FAILED...", error);
-            }
-          );
+      
 
       // reset the form
         formRef.current.reset();

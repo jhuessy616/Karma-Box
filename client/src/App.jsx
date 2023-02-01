@@ -5,6 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import PaymentInfo from "./components/Stripe/PaymentInfo"
 import Login from "./components/Authorization/user/login/Login";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
+import NonProfitSignUpPage from "./components/Authorization/user/signup/NonProfitSignUp";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
 import About from "./components/home/About";
@@ -55,17 +56,22 @@ function App() {
             element={<SignUpPage updateToken={updateToken} />}
           />
           <Route
+            path="/nonprofitsignup"
+            element={<NonProfitSignUpPage/>}
+          />
+          <Route
             path="/profile"
             element={<ProfileIndex token={sessionToken} />}
           />
           <Route path="/about" element={<AboutPage />} />
-           <Route
-                path="/forgotpassword"
-                element={<ForgotPassword token={sessionToken} />}
-              />
-              <Route
-                path="/resetpassword/:id/:token"
-                element={<ResetPassword token={sessionToken} />}/>
+          <Route
+            path="/forgotpassword"
+            element={<ForgotPassword token={sessionToken} />}
+          />
+          <Route
+            path="/resetpassword/:id/:token"
+            element={<ResetPassword token={sessionToken} />}
+          />
           <Route
             path="/setupIntent"
             element={
@@ -74,9 +80,12 @@ function App() {
           />
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
-          <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
-          <Route path="/paymentinfo" element={<PaymentInfo/>} />
-          <Route path="/password" element={<PasswordReset/>} />
+          <Route
+            path="/paymentStatus"
+            element={<PaymentStatus token={sessionToken} />}
+          />
+          <Route path="/paymentinfo" element={<PaymentInfo />} />
+          <Route path="/password" element={<PasswordReset />} />
         </Routes>
       </Elements>
     </div>

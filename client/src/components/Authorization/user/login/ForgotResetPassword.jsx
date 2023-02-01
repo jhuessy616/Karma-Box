@@ -20,7 +20,9 @@ import "./login.css";
 
 function ForgotResetPassword(props) {
   const { id, token } = useParams();
-  const [form, setForm] = useState("loading");
+    const [form, setForm] = useState("loading");
+    const [message, setMessage] = useState();
+    const passwordRef = useRef();
 
   const fetchData = async () => {
     const url = `http://localhost:4000/user/resetpassword/${id}/${token}`;
@@ -42,7 +44,39 @@ function ForgotResetPassword(props) {
       console.log(err.message);
     }
   };
-  fetchData();
+    fetchData();
+    
+    async function handleSubmit(e) {
+      e.preventDefault();
+
+      const newPassword = passwordRef.current.value;
+
+      //!Url our page is hosed on
+      let url = `http://localhost:4000/user/resetpassword/${id}/${token}`;
+
+      let bodyObject = JSON.stringify({ newPassword });
+
+      let myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      const requestOptions = {
+        headers: myHeaders,
+        body: bodyObject,
+        method: "POST",
+      };
+      //! function that runs when the user hits the login button to bring to new page
+      try {
+        const response = await fetch(url, requestOptions);
+        const data = await response.json();
+        console.log(data);
+        if (data.message === "Success") {
+         setMessage("Password succesfully updated")
+        } else {
+          setMessage(data.message);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
   //! Input field where user enters information
 
   return (
@@ -50,9 +84,9 @@ function ForgotResetPassword(props) {
       <Navbar></Navbar>
 
       <Container className="forgotResetPasswordFormContainer">
-              {form === "loading" ? (
-        <h1></h1>
-        ) : form?(
+        {form === "loading" ? (
+          <h1></h1>
+        ) : form ? (
           // <h1 className="txtcenter">Reset your password</h1>
           <Row>
             <h1 className="txtcenter">Reset your password</h1>
@@ -60,8 +94,9 @@ function ForgotResetPassword(props) {
             <Col lg="4" md="4" xs="8">
               <div>
                 <Form
-                  action={`http://localhost:4000/user/resetpassword/${id}/${token}`}
-                  method="post"
+                  onSubmit={handleSubmit}
+                  //   action={`http://localhost:4000/user/resetpassword/${id}/${token}`}
+                  //   method="post"
                 >
                   <FormGroup floating>
                     <Input
@@ -69,6 +104,7 @@ function ForgotResetPassword(props) {
                       name="newPassword"
                       placeholder="New Password"
                       type="password"
+                      innerRef={passwordRef}
                     />
                     <Label for="newPassword">New Password</Label>
                   </FormGroup>{" "}
@@ -79,9 +115,9 @@ function ForgotResetPassword(props) {
               </div>
             </Col>
             <Col lg="4" md="4" xs="2"></Col>
+            <p className="txtcenter">{message}</p>
           </Row>
         ) : (
-          //   TimeOut()
           <h1 className="txtcenter" style={{ marginTop: 50 }}>
             This link is no longer valid
           </h1>
