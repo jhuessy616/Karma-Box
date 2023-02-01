@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
+import { Button } from "reactstrap"
+import { useSearchParams } from 'react-router-dom';
 import { useStripe } from "@stripe/react-stripe-js";
+import Navbar from "../ProfilePage/ProfileNavBar"
+import { Link } from "react-router-dom"
 
-function PaymentStatus({ token, baseURL }) {
+
+
+function PaymentStatus({ token }) {
+
   const stripe = useStripe();
   const clientSecret = new URLSearchParams(window.location.search).get(
     "setup_intent_client_secret"
@@ -52,6 +59,7 @@ function PaymentStatus({ token, baseURL }) {
     const clientSecret = new URLSearchParams(window.location.search).get(
       "setup_intent_client_secret"
     );
+
     stripe.retrieveSetupIntent(clientSecret).then(({ setupIntent }) => {
       console.log(setupIntent);
       // eslint-disable-next-line default-case
@@ -74,8 +82,25 @@ function PaymentStatus({ token, baseURL }) {
       console.log(setupIntent);
     });
   }, [stripe]);
-
-  return <h1>Payment Status: {message}</h1>;
-}
-
-export default PaymentStatus;
+ 
+  return(
+    <div className="Background">
+      <Navbar></Navbar>
+    <h1 className="txtcenter" style={{ paddingTop: "25vh",justifySelf: "center"}} >{message}</h1>
+    <div style={{
+      display: "flex", justifyContent:"center"}}>
+      <Link to="/profile">
+     <Button type="submit" color="warning"
+     >
+      Begin Earning Good Karma!
+    </Button>
+    </Link>
+    </div>
+                
+    </div>
+    )
+  }
+  
+  export default PaymentStatus;
+  
+ 

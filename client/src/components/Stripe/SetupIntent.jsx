@@ -3,12 +3,15 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import SetupForm from "./SetupForm";
 import jwt_decode from "jwt-decode";
+import Navbar from "../ProfilePage/ProfileNavBar"
 
 const stripePromise = loadStripe(
   "pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl"
 );
+
 let baseURL = "http://localhost:4000";
 let count = 0;
+
 function SetupIntent({ token }) {
   const [clientSecret, setClientSecret] = useState(null);
   const decoded = token ? jwt_decode(token) : "";
@@ -39,13 +42,17 @@ function SetupIntent({ token }) {
   }, [token]);
 
   return (
-    <div>
-      <h1>Set up Payment</h1>
+    <div className="Background">
+      <Navbar></Navbar>
+      <Container className="signup">
+
+      <h1 className="txtcenter">Set up Payment</h1>
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <SetupForm />
         </Elements>
       )}
+      </Container>
     </div>
   );
 }

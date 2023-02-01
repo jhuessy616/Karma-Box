@@ -13,9 +13,9 @@
 
 }
 .AboutContainer h4{
-    font-size: 1.5vw;
+    font-size: calc(.8rem + .6vw);
     color:#0081c9;
-    line-height: 1em;
+    /* line-height: 1em; */
     font-weight: 700 !important;
     
 }
@@ -24,12 +24,21 @@
  background: #68c8ff;
 
   font-weight: 700;
-  font-size: 1.2vw;
+  font-size: calc(.6rem + .6vw);
+  padding: 10px;
   margin-top: 20px;
   margin-bottom: 5px;
   letter-spacing: 0.8px;
   display: flex;
   align-items: center;
+}
+
+/* .AboutText{
+   
+
+} */
+.buttonlink{
+    text-decoration:none;
 }
  
 /* ! Isaac's styling */

@@ -68,6 +68,7 @@ const ProfileIndex = (props) => {
 									/>
 									<Label for="exampleEmail">Current Password</Label>
 								</FormGroup>{" "}
+								
 								<FormGroup floating>
 									<Input
 										id="examplePassword"

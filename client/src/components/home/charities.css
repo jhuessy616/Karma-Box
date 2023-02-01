@@ -21,6 +21,15 @@
     text-align: center;
     color:#0081c9
 }
+.charity h3{
+    
+  color: #68c8ff !important;
+  letter-spacing: 0.8px !important;
+  /* line-height: 1.5em; */
+  font-size: calc(1rem + .9vw) !important;
+  margin-top: 10px;
+
+}
 .charity h5 {
     color: black;
     font-size: 18px;
@@ -55,3 +64,32 @@ button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left{
   width: 40%;
   z-index: -4;
 } */
+
+.buttoncontainer{
+    display:flex;
+    justify-content: center;
+}
+.charity .connectButton{
+  color: #fff;
+background: linear-gradient(90.21deg, rgba(0, 59, 255, 0.5) -5.91%, rgba(255, 69, 0, 0.75) 111.58%);
+  font-weight: 700;
+ font-size:calc(.6rem + .6vw);
+  position: relative;
+  margin-top: 5px;
+  
+  letter-spacing: 0.8px;
+  /* display: ; */
+  /* align-items: center; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* text-align: center !important; */
+}
+.charity button svg {
+  font-size: 25px;
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
+  /* line-height: 1; */
+}
+.charity button:hover svg {
+  margin-left: 25px;
+}

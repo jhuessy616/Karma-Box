@@ -1,18 +1,19 @@
 
 import { Nav, Navbar, Container } from "react-bootstrap";
 import logo from "../../assets/img/logo3.png";
-
+import { useNavigate } from "react-router-dom";
 
 import "./navbar.css";
 
 const NavBar = () => {
-
+ const navigate = useNavigate();
   return (
     <Navbar expand="sm">
-      <Container>
+      <Container className="navbarcontainer">
         <div className="logodiv">
           <a className="navbarlogolink" href="/">
-            <img className="navbarlogo" src={logo} alt="Logo" />
+                      <img className="navbarlogo" src={logo} alt="Logo"
+                      />
           </a>
         </div>
 

@@ -1,11 +1,13 @@
 // ! Dependencies imported
 // ! Styling imported from reactstrap
-import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { useRef} from "react";
+import { Button, Form, FormGroup, Input, Label, InputGroup } from "reactstrap";
+import { useRef, useState } from "react";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
 import "./donorSignUp.css"
 import { useForm } from "react-hook-form";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+
 
 
 function DonorSignUp(props) {
@@ -26,17 +28,25 @@ function DonorSignUp(props) {
   const password = useRef({});
   password.current = watch("password", "");
   email.current = watch("email", "");
-  
+  const [message, setMessage] = useState();
+
   const navigate = useNavigate();
 
+  const [state, setState] = useState(false);
+  const toggleBtn = (e) => {
+    e.preventDefault();
+    setState((prevState) => !prevState);
+  };
+
+
   const onSubmit = async (data) => {
-  
+
     console.log(data);
-   
-  
+
+
     //!Url our page is hosed on
     let url = `http://localhost:4000/user/signup`;
-    let bodyObject = JSON.stringify({ email:data.email, password:data.password });
+    let bodyObject = JSON.stringify({ email: data.email, password: data.password });
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -57,7 +67,7 @@ function DonorSignUp(props) {
         console.log("hi")
         navigate("/setupIntent");
       } else {
-        alert(data.message);
+        setMessage(data.message);
       }
     } catch (error) {
       console.log(error.message);
@@ -70,53 +80,68 @@ function DonorSignUp(props) {
       <Form onSubmit={(e) => e.preventDefault()} className="donorSignUp">
         <FormGroup floating>
           <input
-            id="exampleEmail"
-            class="form-control"
+            id="email"
             name="email"
             placeholder="Email"
             type="email"
+            class="form-control"
             {...register("email", {
               required: "You must enter an email",
               validate: (value) =>
                 value.includes("@") || "Please provide a valid email",
+              validate: (value) =>
+                value.length >= 5 || "Please provide a valid email.",
             })}
           />
-          <Label for="exampleEmail">Email</Label>
+          <Label for="email">Email</Label>
           {errors.email && <p>{errors.email.message}</p>}
         </FormGroup>
-        <FormGroup floating>
-          <input
-            class="form-control"
-            id="examplePassword"
-            name="password"
-            placeholder="Password"
-            type="password"
-            {...register("password", {
-              required: "You must specify a password",
-              minLength: {
-                value: 6,
-                message: "Password must have at least 6 characters",
-              },
-            })}
-          />
-          <Label for="examplePassword">Password</Label>
-          {errors.password && <p>{errors.password.message}</p>}
-        </FormGroup>
-        <FormGroup floating>
-          <input
-            class="form-control"
-            id="examplConfirmPassword"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            type="password"
-            {...register("password_repeat", {
-              validate: (value) =>
-                value === password.current || "The passwords do not match",
-            })}
-          />
-          <Label for="exampleConfirmPassword">Confirm Password</Label>
-          {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
-        </FormGroup>
+
+        <InputGroup className="signupinputgroup">
+          <FormGroup floating>
+            <input
+              class="form-control"
+              id="examplePassword"
+              name="password"
+              placeholder="Password"
+              type={state ? "text" : "password"}
+              {...register("password", {
+                required: "You must specify a password",
+                minLength: {
+                  value: 6,
+                  message: "Password must have at least 6 characters",
+                },
+              })}
+            />
+            <Label for="examplePassword">Password</Label>
+          </FormGroup>
+          <Button className="eyebtn input-group-text" onClick={toggleBtn}>
+            {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+          </Button>
+        </InputGroup>
+        {errors.password && <p>{errors.password.message}</p>}
+
+        <InputGroup className="signupinputgroup">
+          <FormGroup floating>
+            <input
+              class="form-control"
+              id="examplConfirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              type={state ? "text" : "password"}
+              {...register("password_repeat", {
+                validate: (value) =>
+                  value === password.current || "The passwords do not match",
+              })}
+            />
+            <Label for="exampleConfirmPassword">Confirm Password</Label>
+          </FormGroup>
+          <Button className="eyebtn input-group-text" onClick={toggleBtn}>
+            {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+          </Button>
+        </InputGroup>
+        {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
+
         <FullWidthButton>
           <Button
             type="submit"
@@ -128,6 +153,7 @@ function DonorSignUp(props) {
         </FullWidthButton>
         {/* <Input type="submit" onClick={handleSubmit(onSubmit)} /> */}
       </Form>
+      <p className="txtcenter">{message}</p>
     </>
   );
 }

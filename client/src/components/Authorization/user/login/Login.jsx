@@ -2,8 +2,17 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+// import IconButton from "@mui/material";
+
+// import Visibility from "@mui/material";
+// import { InputAdornment, IconButton, Visibility, VisibiltyOff} from "@mui/material";
+// import VisibilityOff from "@mui/material";
+
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 // ! Styling imported from reactstrap
 import {
+	InputGroupAddon,
+	InputGroup,
 	Button,
 	Form,
 	FormGroup,
@@ -11,19 +20,28 @@ import {
 	Label,
 	Col,
 	Container,
-	Row,
+  Row,
+ 
 } from "reactstrap";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import Navbar from "../../../home/NavBar";
 import "./login.css";
 
+
 //! Declaration of Variables
 const Login = (props) => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const navigate = useNavigate();
-	const [loginError, setLoginError] = useState("");
-	const [loginErrorClass, setLoginErrorClass] = useState("none");
+  const navigate = useNavigate();
+    const [message, setMessage] = useState();
+	// const [loginError, setLoginError] = useState("");
+	// const [loginErrorClass, setLoginErrorClass] = useState("none");
+
+	const [state, setState] = useState(false);
+	const toggleBtn = (e) => {
+		e.preventDefault()
+		setState(prevState => !prevState);
+	}
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -31,11 +49,11 @@ const Login = (props) => {
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 
-		if (email === "" || password === "") {
-			setLoginError("missing input");
-			setLoginErrorClass("some");
-			return;
-		}
+		// if (email === "" || password === "") {
+		// 	setLoginError("missing input");
+		// 	setLoginErrorClass("some");
+		// 	return;
+		// }
 		//!Url our page is hosed on
 		let url = `http://localhost:4000/user/login`;
 
@@ -59,14 +77,16 @@ const Login = (props) => {
 				// if (props.user.isCharity === false)
 				navigate("/profile");
 			} else {
-				alert(data.message);
+				setMessage(data.message);
 			}
 		} catch (error) {
 			console.log(error.message);
 		}
 	}
 
-	//! Input field where user enters information
+	
+
+
 
 	return (
     <div className="Background">
@@ -76,6 +96,7 @@ const Login = (props) => {
         <Row>
           <Col lg="4" md="4" xs="2"></Col>
           <Col lg="4" md="4" xs="8">
+            <p className="txtcenter">{message}</p>
             <div>
               <Form onSubmit={handleSubmit} className="loginForm">
                 <FormGroup floating>
@@ -88,16 +109,23 @@ const Login = (props) => {
                   />
                   <Label for="exampleEmail">Email</Label>
                 </FormGroup>{" "}
-                <FormGroup floating>
-                  <Input
-                    id="examplePassword"
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    innerRef={passwordRef}
-                  />
-                  <Label for="examplePassword">Password</Label>
-                </FormGroup>{" "}
+                <InputGroup>
+                  <FormGroup floating>
+                    <Input
+                      id="examplePassword"
+                      name="password"
+                      placeholder="Password"
+                      type={state ? "text" : "password"}
+                      innerRef={passwordRef}
+                    />
+                  </FormGroup>
+                  <Button
+                    className="eyebtn input-group-text "
+                    onClick={toggleBtn}
+                  >
+                    {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                  </Button>
+                </InputGroup>
                 <FullWidthButton>
                   <Button type="submit" color="warning">
                     Log In
@@ -105,6 +133,9 @@ const Login = (props) => {
                 </FullWidthButton>
               </Form>
             </div>
+            <Button onClick={() => navigate(`/forgotpassword`)}>
+              Forgot Password
+            </Button>
           </Col>
           <Col lg="4" md="4" xs="2"></Col>
         </Row>
@@ -114,3 +145,14 @@ const Login = (props) => {
 };
 
 export default Login;
+// playing with ui end adornments dont seem to work with react 
+// InputProps={{
+//                       endAdornment:
+                    
+//                         <InputAdornment position="end">
+//                           <IconButton onClick={toggleBtn}>
+//                             {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+//                           </IconButton>
+//                         </InputAdornment>
+//                     }}
+//                   />
