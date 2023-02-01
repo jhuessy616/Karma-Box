@@ -10,6 +10,7 @@ import Home from "./components/home/Home";
 import About from "./components/home/About";
 import PaymentStatus from "./components/Stripe/PaymentStatus";
 import PasswordReset from "./components/Authorization/user/PasswordReset/PasswordReset"
+import EmailUpdate from "./components/Authorization/user/EmailUpdate/EmailUpdate";
 
 import "./app.css";
 import SetupIntent from "./components/Stripe/SetupIntent";
@@ -63,7 +64,8 @@ function App() {
           <Route path="docs" element={<Docs />} />
           <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
           <Route path="/paymentinfo" element={<PaymentInfo/>} />
-          <Route path="/password" element={<PasswordReset/>} />
+          <Route path="/updatePassword" element={<PasswordReset token= {sessionToken}/>} />
+          <Route path="email" element={<EmailUpdate token= {sessionToken}/>} />
         </Routes>
       </Elements>
     </div>
