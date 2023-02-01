@@ -1,20 +1,16 @@
 import { useState, useEffect } from "react";
-import { Button } from "reactstrap"
-import { useSearchParams } from 'react-router-dom';
+import { Button } from "reactstrap";
 import { useStripe } from "@stripe/react-stripe-js";
-import Navbar from "../ProfilePage/ProfileNavBar"
-import { Link } from "react-router-dom"
-
-
+import Navbar from "../ProfilePage/ProfileNavBar";
+import { Link } from "react-router-dom";
+import baseURL from "../../utils/baseurl";
 
 function PaymentStatus({ token }) {
-
   const stripe = useStripe();
   const clientSecret = new URLSearchParams(window.location.search).get(
     "setup_intent_client_secret"
   );
   console.log(clientSecret);
-    console.log(baseURL)
   const [message, setMessage] = useState(null);
 
   function savePayment(setupIntent) {
@@ -82,25 +78,30 @@ function PaymentStatus({ token }) {
       console.log(setupIntent);
     });
   }, [stripe]);
- 
-  return(
+
+  return (
     <div className="Background">
       <Navbar></Navbar>
-    <h1 className="txtcenter" style={{ paddingTop: "25vh",justifySelf: "center"}} >{message}</h1>
-    <div style={{
-      display: "flex", justifyContent:"center"}}>
-      <Link to="/profile">
-     <Button type="submit" color="warning"
-     >
-      Begin Earning Good Karma!
-    </Button>
-    </Link>
+      <h1
+        className="txtcenter"
+        style={{ paddingTop: "25vh", justifySelf: "center" }}
+      >
+        {message}
+      </h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Link to="/profile">
+          <Button type="submit" color="warning">
+            Begin Earning Good Karma!
+          </Button>
+        </Link>
+      </div>
     </div>
-                
-    </div>
-    )
-  }
-  
-  export default PaymentStatus;
-  
- 
+  );
+}
+
+export default PaymentStatus;
