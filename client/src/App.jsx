@@ -17,10 +17,13 @@ import Payment from "./components/Stripe/Payment";
 import Docs from "./components/Docs/Docs";
 
 import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
+const stripePromise = loadStripe(
+  'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
+);
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
-
+  const baseURL = 'http://localhost:4000'
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
@@ -31,10 +34,6 @@ function App() {
       setSessionToken(localStorage.getItem("token"));
     }
   }, []);
-
-  const stripePromise = loadStripe(
-    "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
-  );
 
   //! Declaration of Routes
   return (
@@ -60,7 +59,7 @@ function App() {
           />
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
-          <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
+          <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} baseURL={baseURL} />} />
         </Routes>
       </Elements>
     </div>
