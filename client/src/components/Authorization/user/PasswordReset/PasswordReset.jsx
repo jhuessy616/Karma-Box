@@ -19,9 +19,8 @@ import Navbar from "../../../ProfilePage/ProfileNavBar";
 
 //! Declaration of Vairables
 const PasswordReset = (props) => {
-	const emailRef = useRef();
-	const passwordRef = useRef();
-	const confirmPasswordRef = useRef();
+	const currentPasswordRef = useRef();
+	const newPasswordRef = useRef();
 	const navigate = useNavigate();
 
 	const [state, setState] = useState(false);
@@ -98,7 +97,7 @@ const PasswordReset = (props) => {
 										type={state ? "text" : "password"}
 										innerRef={passwordRef}
 									/>
-									<Label for="examplePassword">New Password</Label>
+									<Label for="currentPassword">Current Password</Label>
 								</FormGroup>{" "}
 								<Button className="eyebtn input-group-text" onClick={toggleBtn}>
 									{state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
@@ -113,7 +112,7 @@ const PasswordReset = (props) => {
 										type={state ? "text" : "password"}
 										innerRef={passwordRef}
 									/>
-									<Label for="examplePassword">Confirm New Password</Label>
+									<Label for="newPassword">New Password</Label>
 								</FormGroup>{" "}
 								<Button className="eyebtn input-group-text" onClick={toggleBtn}>
 									{state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
