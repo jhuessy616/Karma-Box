@@ -392,3 +392,6 @@ router.patch("/update/:id", validateSession, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+// material Ui in json
+ "@mui/material": "^5.11.7",

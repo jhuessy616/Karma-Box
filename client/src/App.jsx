@@ -5,6 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import PaymentInfo from "./components/Stripe/PaymentInfo"
 import Login from "./components/Authorization/user/login/Login";
 import SignUpPage from "./components/Authorization/user/SignUpPage";
+import NonProfitSignUpPage from "./components/Authorization/user/signup/NonProfitSignUp";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
 import About from "./components/home/About";
@@ -24,10 +25,12 @@ import Payment from "./components/Stripe/Payment";
 import Docs from "./components/Docs/Docs";
 
 import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
+const stripePromise = loadStripe(
+  'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
+);
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
-
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
@@ -38,11 +41,6 @@ function App() {
       setSessionToken(localStorage.getItem("token"));
     }
   }, []);
-
-  const stripePromise = loadStripe(
-    "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
-  );
-
 
   //! Declaration of Routes
   return (
@@ -56,17 +54,22 @@ function App() {
             element={<SignUpPage updateToken={updateToken} />}
           />
           <Route
+            path="/nonprofitsignup"
+            element={<NonProfitSignUpPage/>}
+          />
+          <Route
             path="/profile"
             element={<ProfileIndex token={sessionToken} />}
           />
           <Route path="/about" element={<AboutPage />} />
-           <Route
-                path="/forgotpassword"
-                element={<ForgotPassword token={sessionToken} />}
-              />
-              <Route
-                path="/resetpassword/:id/:token"
-                element={<ResetPassword token={sessionToken} />}/>
+          <Route
+            path="/forgotpassword"
+            element={<ForgotPassword token={sessionToken} />}
+          />
+          <Route
+            path="/resetpassword/:id/:token"
+            element={<ResetPassword token={sessionToken} />}
+          />
           <Route
             path="/setupIntent"
             element={
@@ -75,10 +78,12 @@ function App() {
           />
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
+
           <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
           <Route path="/paymentinfo" element={<PaymentInfo/>} />
           <Route path="/updatePassword" element={<PasswordReset token= {sessionToken}/>} />
           <Route path="email" element={<EmailUpdate token= {sessionToken}/>} />
+
         </Routes>
       </Elements>
     </div>
