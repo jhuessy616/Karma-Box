@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 // const Token = require("../models/restettokenmodel");
 // const sendEmail = require("../utils/email/sendEmail");
-
+const nodemailer = require("nodemailer");
 
 // Middleware we have created to check if someone is logged in
 const validateSession = require("../middleware/validate-session");
@@ -229,9 +229,38 @@ router.post("/forgotpassword", async (req, res, next) => {
     console.log(token);
     const link = `http://localhost:3000/resetpassword/${user._id}/${token}`
     console.log(link)
+  
+
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASSWORD,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+      },
+    });
+
+    const mailOptions = {
+      from:{
+    name: 'Karma Box',
+    address: 'karma.box.2023@gmail.com'
+} ,// sender address
+      to: email, // client email
+      subject: "Karma Box Password Reset", // Subject line
+      html: `Click <a href="${link}">this link </a> to reset your password.`
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err) console.log(err);
+      else console.log("Email sent successfully");
+    });
+
+
     res.status(200).json({
-      message: 'Password reset link has been sent to your email.',
-  link: link  })
+      message: 'Password reset link has been sent to your email.'  })
      
     // let token = await Token.findOne({ userId: user._id });
     // if (token) { 

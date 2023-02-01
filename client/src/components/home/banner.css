@@ -26,7 +26,7 @@
   font-size: calc(1.2rem + 3vw);
   font-weight: 700;
   letter-spacing: 0.8px;
-  line-height: 1;
+  /* line-height: 1; */
   margin-bottom: 10px;
   display: block;
 }
@@ -59,10 +59,10 @@
   letter-spacing: 0.8px;
   /* line-height: 1.5em; */
   font-size: calc(1rem + .9vw);
-  width: 96%;
+  /* width: 100%; */
 }
 
-.banner .connectButton{
+/* .banner .connectButton{
   color: #fff;
 background: linear-gradient(90.21deg, rgba(0, 59, 255, 0.5) -5.91%, rgba(255, 69, 0, 0.75) 111.58%);
   font-weight: 700;
@@ -79,11 +79,11 @@ background: linear-gradient(90.21deg, rgba(0, 59, 255, 0.5) -5.91%, rgba(255, 69
   font-size: 25px;
   margin-left: 10px;
   transition: 0.3s ease-in-out;
-  line-height: 1;
-}
+  /* line-height: 1; */
+/* }
 .banner button:hover svg {
   margin-left: 25px;
-}
+}  */
 .banner .logo{
     filter: invert(12%) sepia(98%) saturate(3959%) hue-rotate(302deg) brightness(94%) contrast(77%);
 }

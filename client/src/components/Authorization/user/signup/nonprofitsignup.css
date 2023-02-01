@@ -27,10 +27,17 @@ FullWidthButton {
 	min-height: 100vh;
 	/* margin-top: 0px !important; */
 }
+.nonProfitContactForm{
+	margin-top: 50px;
+}
+.nonprofitsignup{
+	background-color: #e7faff;
+	min-height: 100vh;
+}
 
 /* trying to center the form */
-.logInForm {
+/* .logInForm {
     display: 'flex';
     align-items: 'center';
     justify-content: 'center';
-}
+}  */

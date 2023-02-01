@@ -9,9 +9,13 @@
     transition: 0.32 ease-in-out;
    
 }
+.navbarcontainer{
+    margin: auto 
+}
 
 /* logo size */
-nav.navbar  .logodiv img{
+/* .logodiv */
+nav.navbar .logodiv .navbarlogolink  img{
     max-width:20%;
    
 
@@ -19,9 +23,11 @@ nav.navbar  .logodiv img{
     
      filter: invert(38%) sepia(58%) saturate(7088%) hue-rotate(184deg) brightness(98%) contrast(102%);
 }
+/* img{max-width: 20%;} */
 
 .logodiv{
     margin-right:-200px;
+   
 }
 /* .navbarlogolink >img{
   width:100%;

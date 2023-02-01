@@ -2,6 +2,11 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+// import IconButton from "@mui/material";
+
+// import Visibility from "@mui/material";
+// import { InputAdornment, IconButton, Visibility, VisibiltyOff} from "@mui/material";
+// import VisibilityOff from "@mui/material";
 
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 // ! Styling imported from reactstrap
@@ -15,7 +20,8 @@ import {
 	Label,
 	Col,
 	Container,
-	Row,
+  Row,
+ 
 } from "reactstrap";
 import FullWidthButton from "../../Buttons/FullWidthButton";
 import Navbar from "../../../home/NavBar";
@@ -103,34 +109,23 @@ const Login = (props) => {
                   />
                   <Label for="exampleEmail">Email</Label>
                 </FormGroup>{" "}
-				
-                
-				
-                  <InputGroup >
-				  <FormGroup floating>
-				  <Input
-                    id="examplePassword"
-                    name="password"
-                    placeholder="Password"
-                    type={state ? "text" : "password"}
-                    innerRef={passwordRef}
-					
-                  />
-                  <Label for="examplePassword">Password</Label>
-				  </FormGroup>{" "}
-				  
-				  <Button className="eyebtn input-group-text" onClick={toggleBtn}>
-					{ state? <AiOutlineEyeInvisible /> :
-						<AiOutlineEye />
-					}
-				
-					</Button>
-					
-					</InputGroup>
-				
-                	
-					 
-	
+                <InputGroup>
+                  <FormGroup floating>
+                    <Input
+                      id="examplePassword"
+                      name="password"
+                      placeholder="Password"
+                      type={state ? "text" : "password"}
+                      innerRef={passwordRef}
+                    />
+                  </FormGroup>
+                  <Button
+                    className="eyebtn input-group-text "
+                    onClick={toggleBtn}
+                  >
+                    {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                  </Button>
+                </InputGroup>
                 <FullWidthButton>
                   <Button type="submit" color="warning">
                     Log In
@@ -150,3 +145,14 @@ const Login = (props) => {
 };
 
 export default Login;
+// playing with ui end adornments dont seem to work with react 
+// InputProps={{
+//                       endAdornment:
+                    
+//                         <InputAdornment position="end">
+//                           <IconButton onClick={toggleBtn}>
+//                             {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+//                           </IconButton>
+//                         </InputAdornment>
+//                     }}
+//                   />
