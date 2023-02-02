@@ -395,3 +395,20 @@ router.patch("/update/:id", validateSession, async (req, res) => {
 
 // material Ui in json
  "@mui/material": "^5.11.7",
+
+ Buttons for login and forgot password 
+
+<div className="loginbuttons">
+            <Button onClick={() => navigate(`/forgotpassword`)} color="primary">
+              Forgot Password
+            </Button>
+
+            <Button
+              className="loginbtn"
+              onClick={() => navigate(`/signup`)}
+              color="primary"
+            >
+              Signup
+            </Button>
+            </div>
+            ```
