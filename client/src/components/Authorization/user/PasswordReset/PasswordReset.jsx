@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import {
 	InputGroup,
 	Button,
@@ -19,10 +20,10 @@ import Navbar from "../../../ProfilePage/ProfileNavBar";
 
 //! Declaration of Vairables
 const PasswordReset = (props) => {
-	const emailRef = useRef();
-	const passwordRef = useRef();
-	const confirmPasswordRef = useRef();
+	const currentPasswordRef = useRef();
+	const newPasswordRef = useRef();
 	const navigate = useNavigate();
+	const decoded = props.token ? jwt_decode(props.token) : "";
 
 	const [state, setState] = useState(false);
 	const toggleBtn = (e) => {
@@ -32,20 +33,21 @@ const PasswordReset = (props) => {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		const email = emailRef.current.value;
-		const password = passwordRef.current.value;
+		const currentPassword = currentPasswordRef.current.value;
+		const newPassword = newPasswordRef.current.value;
 
 		//!Url our page is hosed on
-		let url = `http://localhost:4000/user/password`;
-		let bodyObject = JSON.stringify({ email, password });
+		let url = `http://localhost:4000/user/update/${decoded.id}`;
+		let bodyObject = JSON.stringify({ currentPassword, newPassword });
 
 		let myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
+		myHeaders.append("Authorization", props.token);
 
 		const requestOptions = {
 			headers: myHeaders,
 			body: bodyObject,
-			method: "POST",
+			method: "PATCH",
 		};
 		//! function that runs when the user hits the signup button, that then allows them to log in
 		try {
@@ -72,16 +74,18 @@ const PasswordReset = (props) => {
 					<div class="col-2 col-md-4 col-lg-4.5"></div>
 
 					<div class="col-8 col-md-4 col-lg-3">
-						<h1>Update Your Password</h1>
+						<h1>Update Your Password.</h1>
 						<Form onSubmit={handleSubmit}>
 							<InputGroup>
 								<FormGroup floating>
 									<Input
-										id="password"
-										name="password"
-										placeholder="Current Password"
+
+										id="currentPassword"
+										name="currentPassword"
+										placeholder="currentPassword"
+
 										type={state ? "text" : "password"}
-										innerRef={passwordRef}
+										innerRef={currentPasswordRef}
 									/>
 									<Label for="currentPassword">Current Password</Label>
 								</FormGroup>{" "}
@@ -92,13 +96,13 @@ const PasswordReset = (props) => {
 							<InputGroup>
 								<FormGroup floating>
 									<Input
-										id="examplePassword"
-										name="password"
-										placeholder="Password"
+										id="newPassword"
+										name="newPassword"
+										placeholder="newPassword"
 										type={state ? "text" : "password"}
-										innerRef={passwordRef}
+										innerRef={newPasswordRef}
 									/>
-									<Label for="examplePassword">New Password</Label>
+									<Label for="currentPassword">New Password</Label>
 								</FormGroup>{" "}
 								<Button className="eyebtn input-group-text" onClick={toggleBtn}>
 									{state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
@@ -107,13 +111,13 @@ const PasswordReset = (props) => {
 							<InputGroup>
 								<FormGroup floating>
 									<Input
-										id="examplePassword"
-										name="password"
-										placeholder="Password"
+										id="newPassword"
+										name="newPassword"
+										placeholder="newPassword"
 										type={state ? "text" : "password"}
-										innerRef={passwordRef}
+										
 									/>
-									<Label for="examplePassword">Confirm New Password</Label>
+									<Label for="newPassword">Confirm New Password</Label>
 								</FormGroup>{" "}
 								<Button className="eyebtn input-group-text" onClick={toggleBtn}>
 									{state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
@@ -121,7 +125,7 @@ const PasswordReset = (props) => {
 							</InputGroup>
 							<FullWidthButton>
 								<Button type="submit" color="warning">
-									Update Information
+									Update Password
 								</Button>
 							</FullWidthButton>
 						</Form>

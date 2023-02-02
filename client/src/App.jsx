@@ -15,6 +15,7 @@ import ResetPassword from "./components/Authorization/user/login/ForgotResetPass
 
 import PaymentStatus from "./components/Stripe/PaymentStatus";
 import PasswordReset from "./components/Authorization/user/PasswordReset/PasswordReset"
+import EmailUpdate from "./components/Authorization/user/EmailUpdate/EmailUpdate";
 
 
 import "./app.css";
@@ -77,12 +78,12 @@ function App() {
           />
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
-          <Route
-            path="/paymentStatus"
-            element={<PaymentStatus token={sessionToken} />}
-          />
-          <Route path="/paymentinfo" element={<PaymentInfo />} />
-          <Route path="/password" element={<PasswordReset />} />
+
+          <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
+          <Route path="/paymentinfo" element={<PaymentInfo/>} />
+          <Route path="/updatePassword" element={<PasswordReset token= {sessionToken}/>} />
+          <Route path="email" element={<EmailUpdate token= {sessionToken}/>} />
+
         </Routes>
       </Elements>
     </div>
