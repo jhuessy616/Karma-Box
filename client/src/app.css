@@ -36,3 +36,7 @@ justify-content: center;
 .aligncenter{
   align-items: center;
 }
+
+.marginneg15{
+  margin-bottom:-15px;
+}

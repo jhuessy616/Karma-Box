@@ -24,6 +24,7 @@ import {
  
 } from "reactstrap";
 import FullWidthButton from "../../Buttons/FullWidthButton";
+
 import Navbar from "../../../home/NavBar";
 import "./login.css";
 
@@ -101,7 +102,6 @@ const Login = (props) => {
         <Row>
           <Col lg="4" md="4" xs="2"></Col>
           <Col lg="4" md="4" xs="8">
-            <p className="txtcenter">{message}</p>
             <div>
               <Form onSubmit={handleSubmit} className="loginForm">
                 <FormGroup floating>
@@ -131,6 +131,9 @@ const Login = (props) => {
                     {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                   </Button>
                 </InputGroup>
+                <p className="txtcenter" style={{ marginTop: -15 }}>
+                  {message}
+                </p>
                 <FullWidthButton>
                   <Button type="submit" color="warning">
                     Log In
@@ -138,10 +141,18 @@ const Login = (props) => {
                 </FullWidthButton>
               </Form>
             </div>
-            <Button onClick={() => navigate(`/forgotpassword`)}>
-              Forgot Password
-            </Button>
+
             
+
+            <div className="loginlinks">
+              <p className="txtcenter">
+                <a href="/forgotpassword">Forgot Password?</a>
+              </p>
+              <p className="txtcenter">
+                Don't have a Karma Box account?
+                <a href="/signup"> Sign up </a>here.
+              </p>
+            </div>
           </Col>
           <Col lg="4" md="4" xs="2"></Col>
         </Row>
