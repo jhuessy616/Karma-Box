@@ -68,18 +68,18 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
 
 router.post("/create-payment-intent", validateSession, async (req, res) => {
   try {
-    console.log(req.user);
     const amount = req.body.amount;
+    console.log('amount: ', amount)
     console.log(req.body)
-    const amountToCharge = parseInt(amount) * 100;
     const paymentIntent = await stripe.paymentIntents.create({
       payment_method: req.user.paymentMethodId,
       customer: req.user.customerId,
       currency: "USD",
-      amount: amountToCharge,
+      amount: +amount * 100,
       off_session: true,
       confirm: true,
     });
+    
     res.send({
       clientSecret: paymentIntent.client_secret,
       paymentIntent: paymentIntent,
@@ -186,5 +186,46 @@ router.get("/setup_intents/:id", validateSession, async (req, res) => {
     paymentMethodId: setupIntent.paymentMethodId,
   });
 });
+
+router.get('/payment_intents', validateSession, async(req, res) => {
+  const user = req.user._id;
+  const customer = req.user.customerId
+  const paymentIntents = await stripe.paymentIntents.list({
+    customer: customer
+  })
+  res.send({
+    paymentIntents: paymentIntents
+  })
+})
+
+router.get('/payment_methods/:id', validateSession, async (req, res) => {
+  try {  
+    const user = req.user._id
+    const paymentId = req.user.paymentMethodId
+    const paymentMethod = await stripe.paymentMethods.update(
+      paymentId,
+      {card: {}}
+    )
+    res.send({paymentMethod})
+  } catch (error) {
+    res.status(400).send({
+      error: {
+        message: error.message,
+      },
+    });
+  }
+})
+
+router.get('/setup_intents', validateSession, async(req, res) => {
+  const customer = req.user.customerId
+  const paymentId = req.user.paymentMethodId
+  const setupIntents = await stripe.setupIntents.list({
+    customer,
+    paymentId
+  })
+  res.send({
+    setupIntents
+  })
+})
 
 module.exports = router;
