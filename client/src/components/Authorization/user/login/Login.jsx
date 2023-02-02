@@ -43,6 +43,11 @@ const Login = (props) => {
 		setState(prevState => !prevState);
 	}
 
+  // Google passport
+
+
+  // end of google passport
+
 	async function handleSubmit(e) {
 		e.preventDefault();
 
@@ -136,6 +141,7 @@ const Login = (props) => {
             <Button onClick={() => navigate(`/forgotpassword`)}>
               Forgot Password
             </Button>
+            
           </Col>
           <Col lg="4" md="4" xs="2"></Col>
         </Row>
