@@ -33,38 +33,19 @@ const stripePromise = loadStripe(
 );
 
 
-function createCookie(key, value, daysToLive) {
-    const date = new Date();
-    date.setTime(date.getTime() + (daysToLive * 24 * 60 * 60 * 1000));
-    let expires = "exires=" + date.toUTCString();
-    document.cookie = `${key}=${value}; ${expires}; path=/`
-}
-function deleteCookie(name) {
-    createCookie(name, null, null);
-}
-function getCookie(name) {
-    const decoded = decodeURIComponent(document.cookie);
-    let ret = decoded.split("; ").filter(e => e.split("=")[0] == name)
-    if (ret.length != 0) {
-        return ret[0].split("=")[1];
-    }
-    return false;
-}
 
 
-// console.log("get", getCookie("karmabox_session"))
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
   const updateToken = (newToken) => {
-    // localStorage.setItem("token", newToken);
-    createCookie("__karmaboxtoken", newToken, 1000);
+    localStorage.setItem("token", newToken);
     setSessionToken(newToken);
   };
 
   useEffect(() => {
-    if (getCookie("__karmaboxtoken")) {
-      setSessionToken(getCookie("__karmaboxtoken"));
+    if (localStorage.getItem("token")) {
+      setSessionToken(localStorage.getItem("token"));
     }
   }, []);
 
