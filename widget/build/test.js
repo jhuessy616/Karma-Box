@@ -235,11 +235,42 @@ KARMABOX_IS_OPEN = false;
 inject(html, style)
 
 
-let baseURL = "http://127.0.0.1:4000";
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDVlYmFjM2IyMWQyYTMwNTNlZDQyZiIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05GeGswbElBNG80R2hLIiwic2V0dXBJZCI6InNldGlfMU1WUm92SFphSFFGSENqVUxBNGFlSkN5IiwicGF5bWVudE1ldGhvZElkIjoicG1fMU1WUnBCSFphSFFGSENqVWxvcGt5ZzNjIiwiaWF0IjoxNjc0OTY0MTY2LCJleHAiOjI1Mzg5NjQxNjZ9.7fNzmo6ySugUgByDnaXRra7RwyYhPZ1ixqZviuLA9jE"
+let karmaboxUrl = "http://localhost:3000"; // url to karma box website
+let getTokenStart = "ill karma your box 123456. testing"; // string to use when starting a message to the token getter ifram
+let baseURL = "http://127.0.0.1:4000"; // url to karmabox backend
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDk1NzI3ZDMzM2E3ZTk3ZjExZmY4MyIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05HdnpEZFh0d1h2dEo5IiwiaWF0IjoxNjc1MTg4NjA1LCJleHAiOjI1MzkxODg2MDV9.S5P88KZuJJQa7rPq76o_fv5_6WUsTJEzXGpV-9Msabc"
 
+function token_init() {
+    let ifr = document.createElement("iframe");
+    ifr.style.display = "none";
+    ifr.src = "http://localhost:3000/gettoken.html";
+    ifr.id = "kb-ifr";
+    let body = document.getElementsByTagName("body")[0];
+    body.appendChild(ifr);
+}
+
+
+function getToken() {
+    let win = document.getElementById("kb-ifr").contentWindow;
+    win.postMessage(getTokenStart + "get", "*");
+}
+function setToken(msg) {
+    let win = document.getElementById("kb-ifr").contentWindow;
+    win.postMessage(getTokenStart + "set" + msg, "*");
+}
+
+token_init();
+
+window.onmessage = (e) => {
+    if (e.origin === karmaboxUrl) {
+        console.log("data", e.data);
+    }
+}
 
 async function testing() {
+
+    setToken("testing 123456")
+    getToken();
 
     let url = `${baseURL}/api/config`;
 
@@ -274,7 +305,7 @@ async function testing() {
     const clientSecret = cs_result.clientSecret;
 
     let stripe = Stripe(publishableKey.publishableKey);
-    console.log(clientSecret)
+    console.log("clientSecret", clientSecret)
     console.log(publishableKey)
     let elements = stripe.elements({
         clientSecret: clientSecret,
@@ -338,9 +369,25 @@ async function testing() {
             }
         });
     });
+
 }
 
 
+
+
+function createCookie(key, value, daysToLive) {
+    const date = new Date();
+    date.setTime(date.getTime() + (daysToLive * 24 * 60 * 60 * 1000));
+    let expires = "exires=" + date.toUTCString();
+    document.cookie = `${key}=${value}; ${expires}; path=/`
+}
+function deleteCookie(name) {
+    createCookie(name, null, null);
+}
+function getCookie(name) {
+    const decoded = decodeURIComponent(document.cookie);
+    return decoded.split("; ").filter(e => e.split("=")[0] == name)[0].split("=")[1];
+}
 
 async function getPublishableKey() {
     let url = `${baseURL}/api/config`;
