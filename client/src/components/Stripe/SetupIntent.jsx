@@ -11,13 +11,18 @@ const stripePromise = loadStripe(
   "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
 );
 
+
 let count = 0;
 
 function SetupIntent({ token }) {
   const [clientSecret, setClientSecret] = useState(null);
   const decoded = token ? jwt_decode(token) : "";
 
+
+// If we have a token we make a fetch request to our create-setup-endpoint again sending our token in the headers.
+// Our response is the setupIntent Object which has a client_secret that we need to complete the transaction. 
   useEffect(() => {
+
     if (token && count === 0) {
       console.log(token);
       count = 1;
@@ -30,16 +35,19 @@ function SetupIntent({ token }) {
         method: "POST",
         headers: myHeaders,
         body: bodyObject,
+
       };
       fetch(`${baseURL}/api/create-setup-intent`, requestOptions)
         .then((result) => result.json())
         .then(async (result) => {
           const setupIntent = result.setupIntent;
           setClientSecret(setupIntent.client_secret);
+
         })
         .catch((err) => console.log(err.message));
       console.log("decoded: ", decoded);
     }
+
   }, [token]);
 
   return (
