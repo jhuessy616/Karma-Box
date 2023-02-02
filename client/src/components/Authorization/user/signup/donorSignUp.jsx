@@ -78,24 +78,26 @@ function DonorSignUp(props) {
   return (
     <>
       <Form onSubmit={(e) => e.preventDefault()} className="donorSignUp">
-        <FormGroup floating>
-          <input
-            id="email"
-            name="email"
-            placeholder="Email"
-            type="email"
-            class="form-control"
-            {...register("email", {
-              required: "You must enter an email",
-              validate: (value) =>
-                value.includes("@") || "Please provide a valid email",
-              validate: (value) =>
-                value.length >= 5 || "Please provide a valid email.",
-            })}
-          />
-          <Label for="email">Email</Label>
-          {errors.email && <p>{errors.email.message}</p>}
-        </FormGroup>
+        
+          <FormGroup floating >
+            <input
+              id="email"
+              name="email"
+              placeholder="Email"
+              type="email"
+              className="form-control emailinputgroup "
+              {...register("email", {
+                required: "You must enter an email",
+                validate: (value) =>
+                  value.includes("@") || "Please provide a valid email",
+                validate: (value) =>
+                  value.length >= 5 || "Please provide a valid email.",
+              })}
+            />
+            <Label for="email">Email</Label>
+            {errors.email && <p>{errors.email.message}</p>}
+          </FormGroup>
+      
 
         <InputGroup className="signupinputgroup">
           <FormGroup floating>
@@ -109,7 +111,7 @@ function DonorSignUp(props) {
                 required: "You must specify a password",
                 minLength: {
                   value: 6,
-                  message: "Password must have at least 6 characters",
+                  message: "Password must have at least six characters",
                 },
               })}
             />
@@ -154,6 +156,10 @@ function DonorSignUp(props) {
         {/* <Input type="submit" onClick={handleSubmit(onSubmit)} /> */}
       </Form>
       <p className="txtcenter">{message}</p>
+      <p className="txtcenter" style={{ marginTop: -15 }}>
+        Already have a Karma Box account? <br></br>
+        <a href="/login"> Log in here </a>
+      </p>
     </>
   );
 }

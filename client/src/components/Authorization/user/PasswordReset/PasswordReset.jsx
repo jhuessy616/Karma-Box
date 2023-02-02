@@ -77,13 +77,13 @@ const PasswordReset = (props) => {
 							<InputGroup>
 								<FormGroup floating>
 									<Input
-										id="examplePassword"
+										id="password"
 										name="password"
-										placeholder="Password"
+										placeholder="Current Password"
 										type={state ? "text" : "password"}
 										innerRef={passwordRef}
 									/>
-									<Label for="examplePassword">Current Password</Label>
+									<Label for="currentPassword">Current Password</Label>
 								</FormGroup>{" "}
 								<Button className="eyebtn input-group-text" onClick={toggleBtn}>
 									{state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}

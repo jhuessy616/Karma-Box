@@ -31,6 +31,7 @@ FullWidthButton {
 /* trying to center the form */
 .logInFormContainer {
 	margin-top:80px;
+	
 }
 .loginForm{
 	margin-top:20px;
@@ -41,10 +42,20 @@ FullWidthButton {
 	font-size: 1.2rem;
 	outline: none;
 	border: none;
-	background-color:#0081c9 ! important;
+	background-color:var(--primary) ! important;
 	margin-bottom: 16.2px;
 	
 	
 
 }
+.loginbtn{
+	width:147.56px;
+	
+		
+}
+.loginbuttons{
+	display:flex;
+	justify-content: space-between;
+	
 
+}
