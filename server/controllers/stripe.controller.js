@@ -12,17 +12,19 @@ router.get("/config", validateSession, (req, res) => {
 });
 
 
-router.post('/create-setup-intent', validateSession, async(req, res) => {
+router.post('/create-setup-intent', validateSession, async (req, res) => {
     try {
         // create a customer with stripe
+        console.log("create-setup-intent");
         const user = req.user._id
+        console.log(req.user);
         const customer = await stripe.customers.create({
             description: 'test customer',
             metadata: {'user': `${user}`},
             // payment_method: '',
         });
 
-        console.log(customer.id)
+        console.log("customerId", customer.id)
         const setupIntent = await stripe.setupIntents.create({
             customer: customer.id,
             payment_method_types: ['card'],
