@@ -6,6 +6,7 @@ import FullWidthButton from "../../../src/components/Authorization/Buttons/FullW
 import ProfileNavbar from "../ProfilePage/ProfileNavBar"
 import "./ProfileIndex.css"
 
+
 //! Declaration of Vairables
 const ProfileIndex = (props) => {
 	const emailRef = useRef();
@@ -52,44 +53,31 @@ const ProfileIndex = (props) => {
 		<div className="Background">
 		  <ProfileNavbar></ProfileNavbar>
 		  <Container>
-		  <h1 className="txtcenter">Welcome to Karma Box!</h1>
-			<h2 className="txtcenter" >Below are your Karma Box donations</h2>
+		  <h1 className="txtcenter">Welcome to Your Karma Box Dashboard!</h1>
+			<h2 className="txtcenter" >Below are your Karma Box donations.</h2>
 			
 		  <Row>
 						<Col lg="4.5" md="4" xs="2">
-	<Card
-    className="my-2"
-    color="info"
-    inverse
-    style={{
-      width: '18rem'
-    }}
-  >
-    <CardHeader>
-      Total Amount Donated
-    </CardHeader>
-    <CardBody>
-      <CardTitle tag="h5">
-        $5,000
-      </CardTitle>
-      {/* <CardText>
-        
-      </CardText> */}
-    </CardBody>
-  </Card></Col>
+	</Col>
 						<Col lg="4.5" md="4" xs="2">		  
 <Table>
-  <thead>
-    <tr>
-      <th>
-        Charity
-      </th>
-      <th>
-        Amount
-      </th>
-    </tr>
-  </thead>
-  <tbody>
+<tbody>
+  <tr className="table-info">
+      <td>
+        <h2>Charity:</h2>
+      </td>
+      <td>
+        <h2>Amount:</h2>
+      </td>
+	  </tr>
+	  <tr className="table-info">
+      <td>
+        Habitat for Humanity
+      </td>
+      <td>
+        $1,000
+</td>
+</tr>
   <tr className="table-info">
       <td>
         Boys and Girls Club
@@ -131,9 +119,30 @@ const ProfileIndex = (props) => {
       </td>
 	  </tr>
 	  </tbody>
-  </Table></Col>
+</Table>
+ 
+  </Col>
 			  
-			  <Col lg="4.5" md="4" xs="2"></Col>
+			  <Col lg="4.5" md="4" xs="2"> <Card
+    className="my-2"
+    color="info"
+    inverse
+    style={{
+      width: '18rem'
+    }}
+  >
+    <CardHeader>
+      Total Amount Donated:
+    </CardHeader>
+    <CardBody>
+      <CardTitle tag="h5">
+        $6,000
+      </CardTitle>
+      {/* <CardText>
+        
+      </CardText> */}
+    </CardBody>
+  </Card></Col>
 			</Row>
 		  </Container>
 		</div>
