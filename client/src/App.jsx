@@ -16,6 +16,7 @@ import ResetPassword from "./components/Authorization/user/login/ForgotResetPass
 import PaymentStatus from "./components/Stripe/PaymentStatus";
 import PasswordReset from "./components/Authorization/user/PasswordReset/PasswordReset"
 import EmailUpdate from "./components/Authorization/user/EmailUpdate/EmailUpdate";
+import PaymentRedirect from "./components/Authorization/user/PaymentRedirect/paymentRedirect";
 
 
 import "./app.css";
@@ -83,6 +84,7 @@ function App() {
           <Route path="/paymentinfo" element={<PaymentInfo/>} />
           <Route path="/updatePassword" element={<PasswordReset token= {sessionToken}/>} />
           <Route path="email" element={<EmailUpdate token= {sessionToken}/>} />
+          <Route path="/paymentRedirect" element={<PaymentRedirect/>}/>
 
         </Routes>
       </Elements>

@@ -55,7 +55,7 @@ const style = `
     width: 75px;
     height: 75px;
     border-radius: 50px;
-    /* background-color: red; */
+    background-color: red;
     background-image: url("http://localhost:3000/assets/logo3.png");
 }
 .karmabox-popup-container {
