@@ -7,10 +7,6 @@ import Navbar from "../ProfilePage/ProfileNavBar";
 import { Container } from "reactstrap";
 import baseURL from "../../utils/baseurl";
 
-// const stripePromise = loadStripe(
-//   "pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl"
-// );
-
 let count = 0;
 
 function SetupIntent({ token }) {
@@ -18,7 +14,11 @@ function SetupIntent({ token }) {
   const [stripePromise, setStripePromise] = useState(null)
   const decoded = token ? jwt_decode(token) : "";
 
+
+// If we have a token we make a fetch request to our create-setup-endpoint again sending our token in the headers.
+// Our response is the setupIntent Object which has a client_secret that we need to complete the transaction. 
   useEffect(() => {
+
     let url = `${baseURL}/api/config`;
     let myHeaders = new Headers();
     myHeaders.append("Authorization", token);
@@ -46,28 +46,34 @@ function SetupIntent({ token }) {
         method: "POST",
         headers: myHeaders,
         body: bodyObject,
+
       };
       fetch(`${baseURL}/api/create-setup-intent`, requestOptions)
         .then((result) => result.json())
         .then(async (result) => {
           const setupIntent = result.setupIntent;
           setClientSecret(setupIntent.client_secret);
+
         })
         .catch((err) => console.log(err.message));
       console.log("decoded: ", decoded);
     }
+
   }, [token]);
 
   return (
     <div className="Background">
       <Navbar></Navbar>
       <Container className="signup">
-        <h1 className="txtcenter">Set up Payment</h1>
-        {clientSecret && stripePromise && (
-          <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <SetupForm />
-          </Elements>
-        )}
+
+
+      <h1 className="txtcenter">Begin Earning Good Karma Today!</h1>
+      {clientSecret && stripePromise && (
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <SetupForm />
+        </Elements>
+      )}
+
       </Container>
     </div>
   );

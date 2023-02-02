@@ -292,8 +292,9 @@ const user = await User.findOne({ _id: id });
    
   }
   catch (error) {
-    
-    res.send(error.message)
+    res.status(500).json({
+      message: "Unsuccessful",
+    specificMessage: error.message});
   }
   })
 
@@ -304,7 +305,7 @@ const user = await User.findOne({ _id: id });
 
     const user = await User.findById({ _id: id });
     if (!user) {
-      res.send("User not found");
+      res.status(404).json({ message: "User Not Found" });
       return;
     }
     const secret = process.env.JWT + user.password;
@@ -318,10 +319,13 @@ const user = await User.findOne({ _id: id });
       const returnOptions = { new: true };
       const user = await User.findOneAndUpdate(filter, update, returnOptions);
 
-      res.status(202).json({ message: "Password updated", updatedUser: user });
+      res.status(202).json({ message: "Password Updated", updatedUser: user });
     
   } catch (error) {
-    res.status(500).json({ message: error.message });
+      res.status(500).json({
+        message:"Unable To Update Password",
+      specificMessage:  error.message
+      });
     }
     
 });

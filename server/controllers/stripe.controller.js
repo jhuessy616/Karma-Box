@@ -27,6 +27,7 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
       metadata: { user: `${user}` },
     });
 
+
     // update the entry in the user model with there customer id and setupintent id
     const filter = { _id: user };
     const update = { customerId: customer.id, setupId: setupIntent.id };
@@ -36,6 +37,7 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
       update,
       returnOptions
     );
+
 
     const token = jwt.sign(
       {
@@ -114,6 +116,7 @@ router.get(
   validateSession,
   async (req, res) => {
     try {
+
       const customerId = req.user.customerId;
       const paymentMethod = await stripe.customers.listPaymentMethods(
         customerId
@@ -121,6 +124,7 @@ router.get(
       res.send({
         paymentMethod: paymentMethod,
       });
+
     } catch (error) {
       res.status(400).send({
         error: {
@@ -128,6 +132,7 @@ router.get(
         },
       });
     }
+
   }
 );
 
@@ -150,6 +155,7 @@ router.post("/payment_methods/attach", validateSession, async (req, res) => {
     });
   }
 });
+
 
 router.get("/setup_intents/:id", validateSession, async (req, res) => {
   const user = req.user._id;

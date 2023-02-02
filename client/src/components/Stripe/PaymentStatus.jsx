@@ -30,6 +30,7 @@ function PaymentStatus({ token }) {
     });
   }
 
+
   function attachPayment(setupIntent) {
     console.log(setupIntent);
     let url = `${baseURL}/api/payment_methods/attach`;
@@ -46,6 +47,7 @@ function PaymentStatus({ token }) {
       console.log("fetched from: ", url);
     });
   }
+
 
   useEffect(() => {
     if (!stripe) {
