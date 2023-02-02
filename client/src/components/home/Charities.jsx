@@ -12,6 +12,10 @@ import "./charities.css"
 // import arrow2 from "../../assets/img/arrow2.svg";
 // import colorSharp from "../../assets/img/color-sharp.png";
 import { Col, Container, Row } from "reactstrap";
+import { ArrowRightCircle } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 function Charities() {
     const responsive = {
     largeDesktop: {
@@ -32,13 +36,13 @@ function Charities() {
       items: 2,
     },
   };
-
+const navigate = useNavigate();
   return (
     <section className="charity" id="charities">
       <Container className="charityContainer">
         <Row className="row">
           <Col md="12" className="col-12">
-            <h2 className="spotlight">This Month's Spotlight Charities</h2>
+            <h2 className="spotlight">This Month's Spotlight Nonprofits</h2>
             <div className="charity-bx wow zoomIn">
               <Carousel
                 responsive={responsive}
@@ -55,13 +59,13 @@ function Charities() {
                   <a href="https://www.naacpldf.org/">
                     <img src={charity2} alt="Charity 2" />
                   </a>
-                    <h5>Legal Defense Fund</h5>
+                  <h5>Legal Defense Fund</h5>
                 </div>
                 <div className="item">
                   <a href="https://asylumaccess.org/">
                     <img src={charity3} alt="Charity 3" />
                   </a>
-                    <h5>Asylum Access</h5>
+                  <h5>Asylum Access</h5>
                 </div>
                 <div className="item">
                   <a href="https://www.rotary.org/en">
@@ -84,8 +88,19 @@ function Charities() {
             </div>
           </Col>
         </Row>
+
+        <h3 className="txtcenter">
+          Interested in implementing Karma Box for your Nonprofit?
+        </h3>
+        <div className="buttoncontainer">
+          <button
+            className="connectButton"
+            onClick={() => navigate("/nonprofitsignup")}
+          >
+            Contact Us! <ArrowRightCircle size={25} />
+          </button>
+        </div>
       </Container>
-      {/* <img className="background-image-left" src={colorSharp} alt="Image" /> */}
     </section>
   );
 }

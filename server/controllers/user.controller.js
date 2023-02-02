@@ -5,6 +5,10 @@ const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 // jwt is the web token we are using
 const jwt = require("jsonwebtoken");
+// const Token = require("../models/restettokenmodel");
+// const sendEmail = require("../utils/email/sendEmail");
+const nodemailer = require("nodemailer");
+
 // Middleware we have created to check if someone is logged in
 const validateSession = require("../middleware/validate-session");
 const adminCheck = require("../middleware/adminCheck");
@@ -16,7 +20,7 @@ router.post("/signup", async (req, res) => {
     //1. Creating a new object based off the User Model Schema (ie User).
     let user = await User.findOne({ email: req.body.email });
     if (user) {
-    throw new Error("Email already exists")
+    throw new Error("An account with this email already exists")
     }
     user = new User({
       email: req.body.email,
@@ -60,7 +64,7 @@ router.post("/login", async (req, res) => {
     );
     //If passwords do not match we throw an ERROR
     if (!isPasswordMatch) {
-      throw new Error("Passwords Do Not Match");
+      throw new Error("Incorrect Password");
     }
     // If all our checks are passed we will provide a token to the user upon successful login
     const token = jwt.sign(
@@ -109,7 +113,7 @@ router.patch("/update/:id", validateSession, async (req, res) => {
     );
     //If passwords do not match we throw an ERROR
     if (!isPasswordMatch) {
-      throw new Error("Passwords Do Not Match");
+      throw new Error("Current password is incorrect");
     }
     // Creating a filter to retrieve user
     const filter = { _id: req.params.id };
@@ -128,7 +132,6 @@ router.patch("/update/:id", validateSession, async (req, res) => {
   }
 });
 
-// ! Forgot password -----------------------------------------
 
 // ! Delete a user endpoint --------------------------------------
 router.delete("/delete/:id", validateSession, async (req, res) => {
@@ -205,5 +208,131 @@ router.get("/", adminCheck, async (req, res) => {
   }
 });
 
+// ! Forgot password -----------------------------------------
+router.post("/forgotpassword", async (req, res, next) => {
+  try {
+    const { email } = req.body
+    console.log(email)
+    const user = await User.findOne({ email });
+ 
+
+    if (!user) {
+      throw new Error("Email does not exist");
+    }
+    const secret = process.env.JWT + user.password
+    const payload = {
+      email: user.email,
+      id: user._id
+   
+    }
+    const token = jwt.sign(payload, secret, { expiresIn: '15m' })
+    console.log(token);
+    const link = `http://localhost:3000/resetpassword/${user._id}/${token}`
+    console.log(link)
+  
+
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASSWORD,
+        clientId: process.env.OAUTH_CLIENTID,
+        clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+      },
+    });
+
+    const mailOptions = {
+      from:{
+    name: 'Karma Box',
+    address: 'karma.box.2023@gmail.com'
+} ,// sender address
+      to: email, // client email
+      subject: "Karma Box Password Reset", // Subject line
+      html: `Click <a href="${link}">this link </a> to reset your password.`
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err) console.log(err);
+      else console.log("Email sent successfully");
+    });
+
+
+    res.status(200).json({
+      message: 'Password reset link has been sent to your email.'  })
+     
+    // let token = await Token.findOne({ userId: user._id });
+    // if (token) { 
+    //       await token.deleteOne()
+    // };
+  }
+  catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+ 
+
+router.get("/resetpassword/:id/:token", async (req, res) => {
+  const { id, token } = req.params
+const user = await User.findOne({ _id: id });
+  if (!user) {
+    res.send({
+      message: "Invalid id"
+    })
+    return
+  }
+  const secret = process.env.JWT + user.password
+  try {
+   const payload= jwt.verify(token, secret)
+    res.status(200).json({
+      message: "Success",
+      email: user.email
+    })
+   
+  }
+  catch (error) {
+    res.status(500).json({
+      message: "Unsuccessful",
+    specificMessage: error.message});
+  }
+  })
+
+
+  // !----------------------------
+  router.post("/resetpassword/:id/:token", async (req, res) => {
+    const { id, token } = req.params;
+
+    const user = await User.findById({ _id: id });
+    if (!user) {
+      res.status(404).json({ message: "User Not Found" });
+      return;
+    }
+    const secret = process.env.JWT + user.password;
+    try {
+      const payload = jwt.verify(token, secret);
+      const filter = { _id: id };
+      if (req.body.newPassword) {
+         req.body.password = bcrypt.hashSync(req.body.newPassword, 10);
+      }
+      const update = req.body;
+      const returnOptions = { new: true };
+      const user = await User.findOneAndUpdate(filter, update, returnOptions);
+
+      res.status(202).json({ message: "Password Updated", updatedUser: user });
+    
+  } catch (error) {
+      res.status(500).json({
+        message:"Unable To Update Password",
+      specificMessage:  error.message
+      });
+    }
+    
+});
+      
+    
+
+
 //!Exporting the router
 module.exports = router;
+
