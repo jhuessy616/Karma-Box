@@ -68,6 +68,28 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
   }
 });
 
+router.post("/create-payment-intent-guest", async (req, res) => {
+    try {
+        const amount = req.body.amount;
+        console.log(amount)
+        const amountToCharge = parseInt(amount) * 100;
+        const paymentIntent = await stripe.paymentIntents.create({
+            currency: "USD",
+            amount: amountToCharge,
+        });
+        res.send({
+            clientSecret: paymentIntent.client_secret,
+            paymentIntent: paymentIntent,
+        });
+    } catch (error) {
+        return res.status(400).send({
+            error: {
+                messgae: error.message,
+            },
+        });
+    }
+});
+
 router.post("/create-payment-intent", validateSession, async (req, res) => {
   try {
     const amount = req.body.amount;

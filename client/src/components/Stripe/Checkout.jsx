@@ -2,7 +2,7 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js"
 
-function Checkout() {
+function Checkout({returnUrl}) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -19,7 +19,7 @@ function Checkout() {
     const { error } = await stripe.confirmPayment({
       elements, 
       confirmParams: {
-        return_url: `${window.location.origin}/completion`,
+        return_url: `${window.location.origin}/afterPayment?return=${returnUrl}`,
       },
     });
     if(error.type === 'card_error' || error.type === 'validation_error') {
@@ -43,4 +43,4 @@ function Checkout() {
   )
 }
 
-export default Checkout
+export default Checkout;
