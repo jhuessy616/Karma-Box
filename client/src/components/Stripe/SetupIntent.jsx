@@ -7,6 +7,10 @@ import Navbar from "../ProfilePage/ProfileNavBar";
 import { Container } from "reactstrap";
 import baseURL from "../../utils/baseurl";
 
+const stripePromise = loadStripe(
+  'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
+);
+
 let count = 0;
 
 function SetupIntent({ token }) {
