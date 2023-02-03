@@ -28,6 +28,7 @@ import Payment from "./components/Stripe/Payment";
 import Docs from "./components/Docs/Docs";
 
 import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
+import UpdatePaymentInfo from "./components/Stripe/UpdatePaymentInfo";
 const stripePromise = loadStripe(
   'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
 );
@@ -81,6 +82,12 @@ function App() {
             path="/setupIntent"
             element={
               <SetupIntent updateToken={updateToken} token={sessionToken} />
+            }
+          />
+          <Route 
+            path='/updatePayment'
+            element={
+              <UpdatePaymentInfo updateToken={updateToken} token={sessionToken} />
             }
           />
           <Route path="/payment" element={<Payment token={sessionToken} />} />
