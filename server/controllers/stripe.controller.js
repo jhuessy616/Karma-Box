@@ -28,6 +28,7 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
       metadata: { user: `${user}` },
     });
 
+
     // update the entry in the user model with there customer id and setupintent id
     const filter = { _id: user };
     const update = { customerId: customer.id, setupId: setupIntent.id };
@@ -37,6 +38,7 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
       update,
       returnOptions
     );
+
 
     const token = jwt.sign(
       {
@@ -67,24 +69,51 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
   }
 });
 
+router.post("/create-payment-intent-guest", async (req, res) => {
+    try {
+        const amount = req.body.amount;
+        console.log(amount)
+        const amountToCharge = parseInt(amount) * 100;
+        const paymentIntent = await stripe.paymentIntents.create({
+            currency: "USD",
+            amount: amountToCharge,
+        });
+        res.send({
+            clientSecret: paymentIntent.client_secret,
+            paymentIntent: paymentIntent,
+        });
+    } catch (error) {
+        return res.status(400).send({
+            error: {
+                messgae: error.message,
+            },
+        });
+    }
+});
+
 router.post("/create-payment-intent", validateSession, async (req, res) => {
   try {
-    console.log(req.user);
     const amount = req.body.amount;
+
 
     const organization =
       // "Help Jonas Breen"
       req.body.organization;
     console.log(req.body);
     const amountToCharge = parseInt(amount) * 100;
+
+    console.log('amount: ', amount)
+    console.log(req.body)
+
     const paymentIntent = await stripe.paymentIntents.create({
       payment_method: req.user.paymentMethodId,
       customer: req.user.customerId,
       currency: "USD",
-      amount: amountToCharge,
+      amount: +amount * 100,
       off_session: true,
       confirm: true,
     });
+
 
     let donation = new Donation({
       user: req.user._id,
@@ -92,6 +121,9 @@ router.post("/create-payment-intent", validateSession, async (req, res) => {
       amount: amount,
     });
     const newDonation = await donation.save();
+
+    
+
     res.send({
       clientSecret: paymentIntent.client_secret,
       paymentIntent: paymentIntent,
@@ -126,6 +158,7 @@ router.get(
   validateSession,
   async (req, res) => {
     try {
+
       const customerId = req.user.customerId;
       const paymentMethod = await stripe.customers.listPaymentMethods(
         customerId
@@ -133,6 +166,7 @@ router.get(
       res.send({
         paymentMethod: paymentMethod,
       });
+
     } catch (error) {
       res.status(400).send({
         error: {
@@ -140,6 +174,7 @@ router.get(
         },
       });
     }
+
   }
 );
 
@@ -162,6 +197,7 @@ router.post("/payment_methods/attach", validateSession, async (req, res) => {
     });
   }
 });
+
 
 router.get("/setup_intents/:id", validateSession, async (req, res) => {
   const user = req.user._id;
@@ -198,5 +234,46 @@ router.get("/setup_intents/:id", validateSession, async (req, res) => {
     paymentMethodId: setupIntent.paymentMethodId,
   });
 });
+
+router.get('/payment_intents', validateSession, async(req, res) => {
+  const user = req.user._id;
+  const customer = req.user.customerId
+  const paymentIntents = await stripe.paymentIntents.list({
+    customer: customer
+  })
+  res.send({
+    paymentIntents: paymentIntents
+  })
+})
+
+router.get('/payment_methods/:id', validateSession, async (req, res) => {
+  try {  
+    const user = req.user._id
+    const paymentId = req.user.paymentMethodId
+    const paymentMethod = await stripe.paymentMethods.update(
+      paymentId,
+      {card: {}}
+    )
+    res.send({paymentMethod})
+  } catch (error) {
+    res.status(400).send({
+      error: {
+        message: error.message,
+      },
+    });
+  }
+})
+
+router.get('/setup_intents', validateSession, async(req, res) => {
+  const customer = req.user.customerId
+  const paymentId = req.user.paymentMethodId
+  const setupIntents = await stripe.setupIntents.list({
+    customer,
+    paymentId
+  })
+  res.send({
+    setupIntents
+  })
+})
 
 module.exports = router;
