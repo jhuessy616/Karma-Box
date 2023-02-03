@@ -30,7 +30,9 @@ import AfterPayment from "./components/Authorization/user/PaymentRedirect/AfterP
 import Docs from "./components/Docs/Docs";
 
 import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
+
 import UpdatePaymentInfo from "./components/Stripe/UpdatePaymentInfo";
+
 const stripePromise = loadStripe(
   'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
 );
@@ -53,23 +55,25 @@ function App() {
     }
   }, []);
 
+  
+
+
     
+
 
   //! Declaration of Routes
   return (
     <div>
       <Elements stripe={stripePromise}>
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login updateToken={updateToken} />} />
           <Route
             path="/signup"
-            element={<SignUpPage updateToken={updateToken} />}
+            element={<SignUpPage updateToken={updateToken}/>}
           />
-          <Route
-            path="/nonprofitsignup"
-            element={<NonProfitSignUpPage/>}
-          />
+          <Route path="/nonprofitsignup" element={<NonProfitSignUpPage />} />
           <Route
             path="/profile"
             element={<ProfileIndex token={sessionToken} />}
@@ -99,12 +103,14 @@ function App() {
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
 
+
           <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
           <Route path="/paymentinfo" element={<PaymentInfo/>} />
           <Route path="/updatePassword" element={<PasswordReset token= {sessionToken}/>} />
           <Route path="email" element={<EmailUpdate token= {sessionToken}/>} />
           <Route path="/paymentRedirect" element={<PaymentRedirect setReturnUrl={setReturnUrl} token={sessionToken}/>}/>
           <Route path="/afterpayment" element={<AfterPayment token={sessionToken}/>}/>
+
 
         </Routes>
       </Elements>

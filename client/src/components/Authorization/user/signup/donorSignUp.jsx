@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "./donorSignUp.css"
 import { useForm } from "react-hook-form";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import sanitize from "../../../../utils/sanitizeinput"
 
 
 
@@ -40,13 +41,10 @@ function DonorSignUp(props) {
 
 
   const onSubmit = async (data) => {
-
-    console.log(data);
-
-
+let email=sanitize(data.email)
     //!Url our page is hosed on
     let url = `http://localhost:4000/user/signup`;
-    let bodyObject = JSON.stringify({ email: data.email, password: data.password });
+    let bodyObject = JSON.stringify({ email: email, password: data.password });
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -60,7 +58,7 @@ function DonorSignUp(props) {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      console.log(data);
+     
       if (data.message === "Success") {
         //We are free to navigate to another page
         props.updateToken(data.token);

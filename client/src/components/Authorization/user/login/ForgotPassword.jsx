@@ -67,7 +67,7 @@ function ForgotPassword(props) {
   return (
     <div className="Background">
       <Navbar></Navbar>
-      <Container className="forgotPasswordFormContainer">
+      <Container className="forgotPasswordFormContainer logInFormContainer">
         <h1 className="txtcenter">Send a link to reset your password</h1>
         <Row>
           <Col lg="4" md="4" xs="2"></Col>
@@ -85,17 +85,13 @@ function ForgotPassword(props) {
                   <Label for="email">Email</Label>
                 </FormGroup>{" "}
                 <FullWidthButton>
-                  <Input
-                    type="submit"
-                    value="Reset Password"
-                   
-                  ></Input>
+                  <Input type="submit" value="Reset Password" className="warningcolor"></Input>
                 </FullWidthButton>
               </Form>
             </div>
           </Col>
-                  <Col lg="4" md="4" xs="2"></Col>
-                  <p className="txtcenter">{message}</p>
+          <Col lg="4" md="4" xs="2"></Col>
+          <p className="txtcenter">{message}</p>
         </Row>
       </Container>
     </div>

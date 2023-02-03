@@ -50,103 +50,82 @@ const ProfileIndex = (props) => {
 
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
-		<div className="Background">
-		  <ProfileNavbar></ProfileNavbar>
-		  <Container>
-		  <h1 className="txtcenter">Welcome to Your Karma Box Dashboard!</h1>
-			<h2 className="txtcenter" >Below are your Karma Box donations.</h2>
-			
-		  <Row>
-						<Col lg="4.5" md="4" xs="2">
-	</Col>
-						<Col lg="4.5" md="4" xs="2">		  
-<Table>
-<tbody>
-  <tr className="table-info">
-      <td>
-        <h2>Charity:</h2>
-      </td>
-      <td>
-        <h2>Amount:</h2>
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        Habitat for Humanity
-      </td>
-      <td>
-        $1,000
-</td>
-</tr>
-  <tr className="table-info">
-      <td>
-        Boys and Girls Club
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        Habitat for Humanity
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        Cancer Research Institute
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        Hope for the Warriors
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        The Alzheimer's Association
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  </tbody>
-</Table>
- 
-  </Col>
-			  
-			  <Col lg="4.5" md="4" xs="2"> <Card
-    className="my-2"
-    color="info"
-    inverse
-    style={{
-      width: '18rem'
-    }}
-  >
-    <CardHeader>
-      Total Amount Donated:
-    </CardHeader>
-    <CardBody>
-      <CardTitle tag="h5">
-        $6,000
-      </CardTitle>
-      {/* <CardText>
+    <div className="Background">
+      <ProfileNavbar></ProfileNavbar>
+      <Container>
+        <h1 className="txtcenter logInFormContainer">
+          Welcome to Your Karma Box Dashboard!
+        </h1>
+        <h2 className="txtcenter">Below are your Karma Box donations.</h2>
+
+        <Row>
+          <Col lg="3" md="3" xs="1"></Col>
+          <Col lg="6" md="6" xs="10">
+            <Card
+              className="my-2"
+              color="info"
+              inverse
+              //   style={{
+              //     width: "18rem",
+              //   }}
+            >
+              <CardHeader className="txtcenter donationamount">
+                Total Amount Donated:
+              </CardHeader>
+              <CardBody>
+                <CardTitle className="txtcenter donationamount" tag="h5">
+                  $6,000
+                </CardTitle>
+                {/* <CardText>
         
       </CardText> */}
-    </CardBody>
-  </Card></Col>
-			</Row>
-		  </Container>
-		</div>
-	  );
+              </CardBody>
+            </Card>
+            <Table style={{ marginTop: 20 }}>
+              <tbody>
+                <tr className="table-info">
+                  <td>
+                    <h2>Organization:</h2>
+                  </td>
+                  <td>
+                    <h2>Amount:</h2>
+                  </td>
+                </tr>
+                <tr className="table-info">
+                  <td>Habitat for Humanity</td>
+                  <td>$1,000</td>
+                </tr>
+                <tr className="table-info">
+                  <td>Boys and Girls Club</td>
+                  <td>$1,000</td>
+                </tr>
+                <tr className="table-info">
+                  <td>Habitat for Humanity</td>
+                  <td>$1,000</td>
+                </tr>
+                <tr className="table-info">
+                  <td>Cancer Research Institute</td>
+                  <td>$1,000</td>
+                </tr>
+                <tr className="table-info">
+                  <td>Hope for the Warriors</td>
+                  <td>$1,000</td>
+                </tr>
+                <tr className="table-info">
+                  <td>The Alzheimer's Association</td>
+                  <td>$1,000</td>
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+
+          <Col lg="3" md="3" xs="1">
+            {" "}
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
 	};
 
 export default ProfileIndex;

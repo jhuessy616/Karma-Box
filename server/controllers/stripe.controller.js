@@ -4,6 +4,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const jwt = require("jsonwebtoken");
 const validateSession = require("../middleware/validate-session");
 const User = require("../models/user.model");
+const Donation = require("../models/donation.model");
 
 router.get("/config", validateSession, (req, res) => {
   res.send({
@@ -93,8 +94,17 @@ router.post("/create-payment-intent-guest", async (req, res) => {
 router.post("/create-payment-intent", validateSession, async (req, res) => {
   try {
     const amount = req.body.amount;
+
+
+    const organization =
+      // "Help Jonas Breen"
+      req.body.organization;
+    console.log(req.body);
+    const amountToCharge = parseInt(amount) * 100;
+
     console.log('amount: ', amount)
     console.log(req.body)
+
     const paymentIntent = await stripe.paymentIntents.create({
       payment_method: req.user.paymentMethodId,
       customer: req.user.customerId,
@@ -103,7 +113,17 @@ router.post("/create-payment-intent", validateSession, async (req, res) => {
       off_session: true,
       confirm: true,
     });
+
+
+    let donation = new Donation({
+      user: req.user._id,
+      organization: organization,
+      amount: amount,
+    });
+    const newDonation = await donation.save();
+
     
+
     res.send({
       clientSecret: paymentIntent.client_secret,
       paymentIntent: paymentIntent,
@@ -111,7 +131,7 @@ router.post("/create-payment-intent", validateSession, async (req, res) => {
   } catch (error) {
     return res.status(400).send({
       error: {
-        messgae: error.message,
+        message: error.message,
       },
     });
   }

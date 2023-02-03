@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const userController = require("./controllers/user.controller.js");
 const stripeController = require('./controllers/stripe.controller.js')
+const donationController = require("./controllers/donation.controller.js");
 const cors = require("cors");
 
 // import and connect to mongo database boilerplate
@@ -31,6 +32,7 @@ app.use(express.urlencoded({extended:false}))
 // Defining our routes
 app.use("/user", userController);
 app.use("/api", stripeController)
+app.use("/donations", donationController);
 
 // !-------------------------------Server Listening-------------------------------------------
 // having server listening

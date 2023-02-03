@@ -31,11 +31,15 @@ FullWidthButton {
 	/* margin-top: 0px !important; */
 }
 
-/* trying to center the form */
+/* trying to center the form
 .logInForm {
     display: 'flex';
     align-items: 'center';
     justify-content: 'center';
 	width: 400px;
-}
+} */
 
+
+.donationamount{
+	font-size: calc(1rem + 1vw);
+}

@@ -11,27 +11,45 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    }, 
+  },
   customerId: {
     type: String,
-    default: "" 
+    default: "",
   },
   setupId: {
     type: String,
-    default: ""
+    default: "",
   },
   paymentMethodId: {
     type: String,
-    default: ""
+    default: "",
   },
-   isAdmin: {
+  isAdmin: {
     type: Boolean,
-       default: false,
-    },
-    isCharity: {
-        type: Boolean,
-        default:false,
-   }
+    default: false,
+  },
+  isCharity: {
+    type: Boolean,
+    default: false,
+  },
+//     payments: {
+//         type: [{
+//             date: {
+//                 type: Date,
+//                 default: Date.now(),
+//         },
+//         organization: {
+//           type: String,
+//         },
+//       amount: {
+//         type: Number,
+//       },
+//         }],
+//         default: []
+//   },
+  totalPayments: {
+    type: Number,
+  },
 });
 // !Exporting UserSchema
 module.exports = mongoose.model("User", UserSchema);
