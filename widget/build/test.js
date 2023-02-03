@@ -236,7 +236,7 @@ inject(html, style)
 
 
 let baseURL = "http://127.0.0.1:4000"; // url to karmabox backend
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGJlNThhYWM5NzZhNTQ2YzI0MGEwYyIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05IZjFDTjhJbTB0a0I4IiwiaWF0IjoxNjc1MzU1NTY2LCJleHAiOjI1MzkzNTU1NjZ9.oVAW_AKl4Up6yVTV3lFzCPi_G3F2A2Fsrf2N6uuYdAU"
+// let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGJlNThhYWM5NzZhNTQ2YzI0MGEwYyIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05IZjFDTjhJbTB0a0I4IiwiaWF0IjoxNjc1MzU1NTY2LCJleHAiOjI1MzkzNTU1NjZ9.oVAW_AKl4Up6yVTV3lFzCPi_G3F2A2Fsrf2N6uuYdAU"
 
 
 async function testing() {
@@ -265,7 +265,7 @@ async function testing() {
         }
 
         console.log("testing")
-        window.location.href = `http://localhost:3000/confirmpayment/?a=${amount}&f=${window.location}`;
+        window.location.href = `http://localhost:3000/paymentRedirect/?a=${amount}&f=${window.location}`;
     });
 
 
@@ -365,23 +365,6 @@ async function getPublishableKey() {
 }
 
 
-async function getClientSecret() {
-
-    let url = `${baseURL}/api/create-payment-intent`;
-    headers = new Headers();
-    headers.append("Authorization", token);
-
-    fetch(url, {
-        headers: headers,
-        method: "POST",
-        body: JSON.stringify({}),
-    }).then(async (result) => {
-        const { clientSecret } = await result.json();
-        console.log(clientSecret)
-        return clientSecret;
-    });
-
-}
 
 
 // injects the widget button into the body element and adds event listeners for opening
