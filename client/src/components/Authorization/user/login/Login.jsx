@@ -27,6 +27,7 @@ import FullWidthButton from "../../Buttons/FullWidthButton";
 
 import Navbar from "../../../home/NavBar";
 import "./login.css";
+import sanitize from "../../../../utils/sanitizeinput";
 
 
 //! Declaration of Variables
@@ -47,7 +48,8 @@ const Login = (props) => {
 	async function handleSubmit(e) {
 		e.preventDefault();
 
-		const email = emailRef.current.value;
+    const email = sanitize(emailRef.current.value);
+    console.log(email)
 		const password = passwordRef.current.value;
 
 		// if (email === "" || password === "") {

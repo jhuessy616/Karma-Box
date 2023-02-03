@@ -6,6 +6,7 @@ import { Col, Container, Row } from "reactstrap";
 import "./SignUpPage.css"
 import Navbar from "../../home/NavBar"
 
+
 const SignUpPage = (props) => {
   //! The container thats holding the signup and log in page.
   return (

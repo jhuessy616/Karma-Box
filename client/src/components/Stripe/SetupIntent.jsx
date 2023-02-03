@@ -48,7 +48,7 @@ function SetupIntent({ token }) {
       <Container className="signup">
 
 
-      <h1 className="txtcenter">Begin Earning Good Karma Today!</h1>
+      <h1 className="txtcenter" style={{marginTop:20}}>Begin Earning Good Karma Today!</h1>
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <SetupForm />

@@ -25,6 +25,7 @@ import Payment from "./components/Stripe/Payment";
 import Docs from "./components/Docs/Docs";
 
 import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
+
 const stripePromise = loadStripe(
   "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
 );
@@ -41,22 +42,20 @@ function App() {
       setSessionToken(localStorage.getItem("token"));
     }
   }, []);
-
+  
   //! Declaration of Routes
   return (
     <div>
       <Elements stripe={stripePromise}>
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login updateToken={updateToken} />} />
           <Route
             path="/signup"
-            element={<SignUpPage updateToken={updateToken} />}
+            element={<SignUpPage updateToken={updateToken}/>}
           />
-          <Route
-            path="/nonprofitsignup"
-            element={<NonProfitSignUpPage/>}
-          />
+          <Route path="/nonprofitsignup" element={<NonProfitSignUpPage />} />
           <Route
             path="/profile"
             element={<ProfileIndex token={sessionToken} />}
@@ -79,11 +78,16 @@ function App() {
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
 
-          <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
-          <Route path="/paymentinfo" element={<PaymentInfo/>} />
-          <Route path="/updatePassword" element={<PasswordReset token= {sessionToken}/>} />
-          <Route path="email" element={<EmailUpdate token= {sessionToken}/>} />
-
+          <Route
+            path="/paymentStatus"
+            element={<PaymentStatus token={sessionToken} />}
+          />
+          <Route path="/paymentinfo" element={<PaymentInfo />} />
+          <Route
+            path="/updatePassword"
+            element={<PasswordReset token={sessionToken} />}
+          />
+          <Route path="email" element={<EmailUpdate token={sessionToken} />} />
         </Routes>
       </Elements>
     </div>

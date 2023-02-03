@@ -1,0 +1,146 @@
+:root {
+	--primary: #0081c9;
+	--secondary: #5bc0f8;
+	--tertiary: #86e5ff;
+	--yellow: #ffc93c;
+}
+h1 {
+	color: var(--primary);
+}
+h3 {
+	color: var(--secondary);
+}
+.sitebanner {
+      text-align: center;
+      background: url("../../assets/img/turtleplastic.jpeg");
+      background-size: cover;
+      min-height: 70vh;
+      /* min-width: 90vw; */
+      /* min-width: 100vw; */
+      /* margin: 0 auto; */
+      /* display:block; */
+      /* position: relative */
+    }
+   .sitebanner a {
+      color: white;
+      font-size:22px;
+}
+   .sitebanner h1 {
+      /* margin: 40px; */
+      font-size: calc(2rem + 5vw) ;
+      color: white;
+      padding-top: 30px;
+      margin-top: 0px;
+    }
+/* span{
+  background:rgba(0,0,0,0.8);
+  padding:0px 15px  
+} */
+/* h2{
+  color:white;
+  font-size:30px;
+  margin:30px 0px 10px 0px;
+  
+} */
+.plasticimages img{
+  width: 300px;
+  height: 300px;
+}
+.plasticimages{
+    display: flex;
+    justify-content: space-around;
+}
+.aboutParagraph {
+	font-size: 20px;
+	line-height: 35px;
+	color: var(--primary);
+	margin-top: 32px;
+}
+.aboutParagraph::first-letter{
+	font-size: 300%;
+	letter-spacing: 5px;
+	font-weight: 600;
+}
+/* .plasticimages{
+    display:flex;
+    justify-content: space-between !important;
+   
+} */
+    /* img {
+      margin: 40px 0px 0px 0px;
+       opacity: 0;
+      /* border: 7px solid white;
+      border-radius: 20px; */
+    
+/* 
+   .overview ul {
+      padding:10px;
+     background: rgba(0,0,0,0.75);
+     
+     
+}
+
+    
+     .overview li{
+      display: inline;
+      padding: 0px 100px 0px 100px; 
+      }
+
+.abouthero{
+  background:rgba(153,204,255,.8);
+} */
+p {
+  font-size:24px !important;
+  margin: auto 20px;
+  padding: 3px;
+}
+    
+.tamaravideo{
+    display:flex;
+    justify-content: center;
+}
+.videoinfo{
+  
+    font-size: 20px;
+}
+
+.videotitle{
+    margin-top: 50px;
+    margin-bottom:15px;
+    font-size: 60px;
+}
+.plasticimages{
+   margin-top: 50px; 
+}
+.txtcenter{
+  text-align: center;
+}
+ @media (max-width: 500px) {
+      h1 {
+        font-size: 40px;
+   }
+   h2{
+     font-size:18px;
+   }
+   img{
+     width:65%;}
+   a{ 
+     font-size:12px;}
+   .link a{
+     font-size:18px;
+   }
+   video{
+     width:99%;
+   margin:-50px 0px 0px -10px;
+   }
+   .sighting h1{
+     font-size:27px;
+   }
+   .sighting p{
+     font-size:18px;  
+        }
+   #background{
+     background:url(https://www.dropbox.com/s/fpep6rinkncj6ln/spyro9.jpeg?raw=1);
+     background-size: cover;
+   }
+}

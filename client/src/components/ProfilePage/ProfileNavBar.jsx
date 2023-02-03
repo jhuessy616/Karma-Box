@@ -16,7 +16,7 @@ const ProfileNavBar = () => {
   }
 
   return (
-    <Navbar expand="sm">
+    <Navbar expand="md">
       <Container>
         <div className="logodiv">
           <a className="navbarlogolink" href="/">
@@ -37,7 +37,7 @@ const ProfileNavBar = () => {
               // className="me-2"
               direction="down"
             >
-              <DropdownToggle tag="span" caret className="nav-link navbar-link">
+              <DropdownToggle tag="span" caret className="nav-link navbar-link user-settings" style={{cursor:"pointer"}}>
                 User Settings
               </DropdownToggle>
               <DropdownMenu>
@@ -65,7 +65,7 @@ const ProfileNavBar = () => {
               className="navbar-link"
             >
               {" "}
-              Payment Info
+              Payment
             </Nav.Link>
             <Nav.Link
               href="http://localhost:3000/"

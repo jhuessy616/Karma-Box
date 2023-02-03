@@ -110,7 +110,7 @@ function ForgotResetPassword(props) {
     <div className="Background">
       <Navbar></Navbar>
 
-      <Container className="forgotResetPasswordFormContainer">
+      <Container className="forgotResetPasswordFormContainer logInFormContainer">
         <h1></h1>
         {form === "valid" ? (
           // <h1 className="txtcenter">Reset your password</h1>
@@ -163,11 +163,15 @@ function ForgotResetPassword(props) {
                       {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                     </Button>
                   </InputGroup>
-                                  { }
-                                  <p className="txtcenter">{passwordMatchMessage}</p>
+                  {}
+                  <p className="txtcenter">{passwordMatchMessage}</p>
 
                   <FullWidthButton>
-                    <Input type="submit" value="Reset Password"></Input>
+                    <Input
+                      type="submit"
+                      className="warningcolor"
+                      value="Reset Password"
+                    ></Input>
                   </FullWidthButton>
                 </Form>
               </div>
