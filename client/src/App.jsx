@@ -30,8 +30,9 @@ import AfterPayment from "./components/Authorization/user/PaymentRedirect/AfterP
 import Docs from "./components/Docs/Docs";
 
 import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
+import UpdatePaymentInfo from "./components/Stripe/UpdatePaymentInfo";
 const stripePromise = loadStripe(
-  "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
+  'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
 );
 
 
@@ -89,6 +90,13 @@ function App() {
             }
           />
           <Route path="/payment" element={<Payment returnUrl={returnUrl} />} />
+          <Route 
+            path='/updatePayment'
+            element={
+              <UpdatePaymentInfo updateToken={updateToken} token={sessionToken} />
+            }
+          />
+          <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
 
           <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />

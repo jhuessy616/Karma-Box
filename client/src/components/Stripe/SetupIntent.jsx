@@ -8,14 +8,14 @@ import { Container } from "reactstrap";
 import baseURL from "../../utils/baseurl";
 
 const stripePromise = loadStripe(
-  "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
+  'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
 );
-
 
 let count = 0;
 
 function SetupIntent({ token }) {
   const [clientSecret, setClientSecret] = useState(null);
+  const [stripePromise, setStripePromise] = useState(null)
   const decoded = token ? jwt_decode(token) : "";
 
 
@@ -23,6 +23,21 @@ function SetupIntent({ token }) {
 // Our response is the setupIntent Object which has a client_secret that we need to complete the transaction. 
   useEffect(() => {
 
+    let url = `${baseURL}/api/config`;
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", token);
+    const requestOptions = {
+      headers: myHeaders,
+      method: "GET",
+    };
+    fetch(url, requestOptions).then(async (result) => {
+      const { publishableKey } = await result.json();
+      console.log(publishableKey);
+      setStripePromise(loadStripe(`${publishableKey}`));
+    });
+  }, [token]);
+
+  useEffect(() => {
     if (token && count === 0) {
       console.log(token);
       count = 1;
