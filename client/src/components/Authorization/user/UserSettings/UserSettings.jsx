@@ -47,7 +47,6 @@ const ProfileIndex = (props) => {
 	  }
 	}
 
-	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
 			<UserSettingsNavbar></UserSettingsNavbar>

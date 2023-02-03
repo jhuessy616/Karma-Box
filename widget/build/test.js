@@ -52,12 +52,28 @@ const style = `
 }
 .karmabox-button-button {
     border: none;
-    width: 75px;
-    height: 75px;
+    width: 60px;
+    height: 60px;
     border-radius: 50px;
-    background-color: red;
-    background-image: url("http://localhost:3000/assets/logo3.png");
+    background-color: #86e5ff;
+    /* background-image: url("http://localhost:3000/assets/logo3.png"); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    cursor: pointer;
 }
+
+.karmabox-image-image {
+    filter: invert(33%) sepia(47%) saturate(4640%) hue-rotate(181deg) brightness(93%) contrast(102%);
+    border: none;
+    width: 50px;
+    height: 50px;
+}
+
+
+
+
 .karmabox-popup-container {
     --kb-tab-height: 35px;
     --kb-body-height: calc(500px var(--kb-tab-height));
@@ -226,7 +242,10 @@ const style = `
 
 `;
 const html = `<div class="karmabox-button-container">
-    <div type="button" class="karmabox-button-button"></div>
+<div class="karmabox-button-button ">
+    <input type="image" src="http://localhost:3000/assets/logo3.png" class="karmabox-image-image"/>
+    <!-- <div type="button" class="karmabox-button-button"><img src="../assets/logo3.png" /></div> -->
+</div>
 </div>
 `;
 KARMABOX_IS_OPEN = false;

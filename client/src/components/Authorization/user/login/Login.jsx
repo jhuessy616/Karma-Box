@@ -34,8 +34,7 @@ const Login = (props) => {
 	const passwordRef = useRef();
   const navigate = useNavigate();
     const [message, setMessage] = useState();
-	// const [loginError, setLoginError] = useState("");
-	// const [loginErrorClass, setLoginErrorClass] = useState("none");
+
 
 	const [state, setState] = useState(false);
 	const toggleBtn = (e) => {
@@ -43,10 +42,6 @@ const Login = (props) => {
 		setState(prevState => !prevState);
 	}
 
-  // Google passport
-
-
-  // end of google passport
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -54,11 +49,6 @@ const Login = (props) => {
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 
-		// if (email === "" || password === "") {
-		// 	setLoginError("missing input");
-		// 	setLoginErrorClass("some");
-		// 	return;
-		// }
 		//!Url our page is hosed on
 		let url = `http://localhost:4000/user/login`;
 
@@ -77,9 +67,7 @@ const Login = (props) => {
 			const data = await response.json();
 			console.log(data);
 			if (data.message === "Success") {
-				//We are free to navigate to another page
 				props.updateToken(data.token);
-				// if (props.user.isCharity === false)
 				navigate("/profile");
 			} else {
 				setMessage(data.message);
@@ -151,14 +139,3 @@ const Login = (props) => {
 };
 
 export default Login;
-// playing with ui end adornments dont seem to work with react 
-// InputProps={{
-//                       endAdornment:
-                    
-//                         <InputAdornment position="end">
-//                           <IconButton onClick={toggleBtn}>
-//                             {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-//                           </IconButton>
-//                         </InputAdornment>
-//                     }}
-//                   />

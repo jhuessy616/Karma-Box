@@ -30,13 +30,12 @@ const PaymentInfo = (props) => {
 		body: bodyObject,
 		method: "POST",
 	  };
-	  //! function that runs when the user hits the signup button, that then allows them to log in
 	  try {
 		const response = await fetch(url, requestOptions);
 		const data = await response.json();
 		console.log(data);
 		if (data.message === "Success") {
-		  //We are free to navigate to another page
+
 		  props.updateToken(data.token);
 		  navigate("/profile");
 		} else {
@@ -47,7 +46,6 @@ const PaymentInfo = (props) => {
 	  }
 	}
 
-	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
 		  <PaymentInfoNavbar></PaymentInfoNavbar>

@@ -29,7 +29,7 @@ const CharitySignupOriginal = (props) => {
       body: bodyObject,
       method: "POST",
     };
-    //! function that runs when the user hits the signup button, that then allows them to log in
+
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
@@ -46,7 +46,7 @@ const CharitySignupOriginal = (props) => {
     }
   }
 
-  //! Input field where user enters information
+
   return (
     <>
       <h1>Contact us to become an approved Non-Profit</h1>

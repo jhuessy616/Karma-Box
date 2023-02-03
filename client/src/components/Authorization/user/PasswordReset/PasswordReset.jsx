@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import FullWidthButton from "../../Buttons/FullWidthButton";
-import Navbar from "../../../ProfilePage/ProfileNavBar";
+import Navbar from "../ProfilePage/ProfileNavBar";
 
 //! Declaration of Vairables
 const PasswordReset = (props) => {
@@ -55,7 +55,6 @@ const PasswordReset = (props) => {
 			const data = await response.json();
 			console.log(data);
 			if (data.message === "Success") {
-				//We are free to navigate to another page
 				props.updateToken(data.token);
 				navigate("/profile");
 			} else {
@@ -113,7 +112,6 @@ const PasswordReset = (props) => {
 										name="newPassword"
 										placeholder="newPassword"
 										type={state ? "text" : "password"}
-										
 									/>
 									<Label for="newPassword">Confirm New Password</Label>
 								</FormGroup>{" "}

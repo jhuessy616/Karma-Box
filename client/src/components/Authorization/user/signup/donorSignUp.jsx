@@ -1,5 +1,4 @@
-// ! Dependencies imported
-// ! Styling imported from reactstrap
+
 import { Button, Form, FormGroup, Input, Label, InputGroup } from "reactstrap";
 import { useRef, useState } from "react";
 import FullWidthButton from "../../Buttons/FullWidthButton";
@@ -44,7 +43,7 @@ function DonorSignUp(props) {
     console.log(data);
 
 
-    //!Url our page is hosed on
+
     let url = `http://localhost:4000/user/signup`;
     let bodyObject = JSON.stringify({ email: data.email, password: data.password });
 
@@ -56,7 +55,7 @@ function DonorSignUp(props) {
       body: bodyObject,
       method: "POST",
     };
-    //! function that runs when the user hits the signup button, that then allows them to log in
+
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
@@ -151,7 +150,7 @@ function DonorSignUp(props) {
             Sign Up
           </Button>
         </FullWidthButton>
-        {/* <Input type="submit" onClick={handleSubmit(onSubmit)} /> */}
+
       </Form>
       <p className="txtcenter">{message}</p>
     </>

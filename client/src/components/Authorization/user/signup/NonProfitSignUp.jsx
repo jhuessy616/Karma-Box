@@ -108,7 +108,7 @@ const CharitySignUp = () => {
               </FormGroup>
 
               <FormGroup>
-                {/* <Input type="submit" value="Send" /> */}
+
                 <FullWidthButton>
                   <Button type="submit" color="primary">
                     Contact Us
