@@ -9,8 +9,12 @@ const DonationSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: Date,
-    default: Date.now(),
+    type: String,
+    default: new Date().toLocaleDateString(),
+  },
+  fullDate: {
+    type: String,
+    default: new Date().toLocaleString(),
   },
   organization: {
     type: String,
