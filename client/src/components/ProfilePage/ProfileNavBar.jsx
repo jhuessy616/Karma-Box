@@ -7,14 +7,45 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import "../home/navbar.css";
 
-const ProfileNavBar = () => {
+const ProfileNavBar = (props) => {
   function logOut() {
     localStorage.clear();
+    props.setSessionToken("")
   }
+  const decoded = props.token ? jwt_decode(props.token) : "";
+  const navigate = useNavigate();
+  
+  async function deleteUser(id) {
+    
+    const url = `http://localhost:4000/user/delete/${id}`;
 
+     let myHeaders = new Headers();
+     myHeaders.append("Authorization", props.token);
+
+     let requestOptions = {
+       headers: myHeaders,
+       method: "DELETE",
+     };
+     try {
+       let response = await fetch(url, requestOptions);
+       let data = await response.json();
+       console.log(data);
+       if (data.message === "User was deleted") {
+         alert("Your account has been deleted.")
+         localStorage.clear();
+         navigate("/")
+         props.setSessionToken("");
+       } else {
+         alert(data.message);
+       }
+     } catch (err) {
+       console.log(err);
+     }
+   }
   return (
     <Navbar expand="md">
       <Container>
@@ -37,7 +68,12 @@ const ProfileNavBar = () => {
               // className="me-2"
               direction="down"
             >
-              <DropdownToggle tag="span" caret className="nav-link navbar-link user-settings" style={{cursor:"pointer"}}>
+              <DropdownToggle
+                tag="span"
+                caret
+                className="nav-link navbar-link user-settings"
+                style={{ cursor: "pointer" }}
+              >
                 User Settings
               </DropdownToggle>
               <DropdownMenu>
@@ -57,11 +93,30 @@ const ProfileNavBar = () => {
                     Password Update
                   </Nav.Link>
                 </DropdownItem>
+                <DropdownItem>
+                  <Nav.Link
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you wish to delete your account?"
+                        )
+                      ) {
+                        deleteUser(decoded.id);
+                      }
+
+                      this.onCancel();
+                    }}
+                    className="navbar-link"
+                  >
+                    Delete Account
+                  </Nav.Link>
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
 
             <Nav.Link
-              href="http://localhost:3000/setupIntent"
+              href="https://billing.stripe.com/p/login/test_dR66p8e4bc39gsU4gg"
+              // href="http://localhost:3000/setupIntent"
               className="navbar-link"
             >
               {" "}
