@@ -1,7 +1,7 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js"
-
+import "./setupform.css"
 function Checkout({returnUrl}) {
   const stripe = useStripe();
   const elements = useElements();
@@ -31,7 +31,8 @@ function Checkout({returnUrl}) {
   }
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <div id="payment-body2">
+    <form id="payment-form2" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
       <button disabled={isProcessing || !stripe || !elements} id="submit">
         <span id="button-text">
@@ -40,6 +41,7 @@ function Checkout({returnUrl}) {
       </button>
       {message && <div id="payment-message">{message}</div>}
     </form>
+    </div>
   )
 }
 

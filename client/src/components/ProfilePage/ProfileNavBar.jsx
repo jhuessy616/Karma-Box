@@ -7,45 +7,70 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import jwt_decode from "jwt-decode";
+
 import { useNavigate } from "react-router-dom";
 import "../home/navbar.css";
+import baseURL from "../../utils/baseurl";
+import jwt_decode from "jwt-decode";
+import { useEffect, useState } from "react";
 
 const ProfileNavBar = (props) => {
+  const [paymentMethod, setPaymentMethod] = useState();
   function logOut() {
     localStorage.clear();
-    props.setSessionToken("")
+    props.setSessionToken("");
   }
   const decoded = props.token ? jwt_decode(props.token) : "";
   const navigate = useNavigate();
-  
+  console.log("token", decoded);
+  async function fetchUser() {
+    const url = "http://localhost:4000/user/me";
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", props.token);
+
+    let requestOptions = {
+      headers: myHeaders,
+      method: "GET",
+    };
+    try {
+      let response = await fetch(url, requestOptions);
+      let data = await response.json();
+      console.log(data);
+      setPaymentMethod(data.user.paymentMethodId);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    fetchUser();
+  }, [props.token]);
+
   async function deleteUser(id) {
-    
     const url = `http://localhost:4000/user/delete/${id}`;
 
-     let myHeaders = new Headers();
-     myHeaders.append("Authorization", props.token);
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", props.token);
 
-     let requestOptions = {
-       headers: myHeaders,
-       method: "DELETE",
-     };
-     try {
-       let response = await fetch(url, requestOptions);
-       let data = await response.json();
-       console.log(data);
-       if (data.message === "User was deleted") {
-         alert("Your account has been deleted.")
-         localStorage.clear();
-         navigate("/")
-         props.setSessionToken("");
-       } else {
-         alert(data.message);
-       }
-     } catch (err) {
-       console.log(err);
-     }
-   }
+    let requestOptions = {
+      headers: myHeaders,
+      method: "DELETE",
+    };
+    try {
+      let response = await fetch(url, requestOptions);
+      let data = await response.json();
+      console.log(data);
+      if (data.message === "User was deleted") {
+        alert("Your account has been deleted.");
+        localStorage.clear();
+        navigate("/");
+        props.setSessionToken("");
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <Navbar expand="md">
       <Container>
@@ -113,15 +138,22 @@ const ProfileNavBar = (props) => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-
-            <Nav.Link
-              href="https://billing.stripe.com/p/login/test_dR66p8e4bc39gsU4gg"
-              // href="http://localhost:3000/setupIntent"
-              className="navbar-link"
-            >
-              {" "}
-              Payment
-            </Nav.Link>
+            {{ paymentMethod } ? (
+              <Nav.Link
+                href="https://billing.stripe.com/p/login/test_dR66p8e4bc39gsU4gg"
+                className="navbar-link"
+              >
+                {" "}
+                Payment
+              </Nav.Link>
+            ) : (
+              <Nav.Link
+                href="http://localhost:3000/setupIntent"
+                className="navbar-link"
+              >
+                Payment
+              </Nav.Link>
+            )}
             <Nav.Link
               href="http://localhost:3000/"
               className="navbar-link"

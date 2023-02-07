@@ -10,3 +10,8 @@
     /* max-width: 150px; */
      margin-top: 150px
 }
+.buttons-redirect{
+    display: flex;
+    justify-content: center;
+}
+h2{color: var(--primary) !important}

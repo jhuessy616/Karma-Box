@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 
 import { Col, Container, Row, Table } from "reactstrap";
 
-import ProfileNavbar from "../ProfilePage/ProfileNavBar";
+import AdminNavbar from "../Admin/AdminNavbar";
 
-import "./ProfileIndex.css";
+import "../ProfilePage/ProfileIndex.css";
 
 //! Declaration of Vairables
 const AdminProfile = (props) => {
   const [donations, setDonations] = useState([]);
   const fetchDonations = async () => {
-    const url = "http://localhost:4000/donations/allDonations";
+    const url = "localhost:4000/donations/alldonations";
     let myHeaders = new Headers();
     myHeaders.append("Authorization", props.token);
 
@@ -42,7 +42,7 @@ const AdminProfile = (props) => {
   //! Container that hosted the create chatroom and display chatroom.
   return (
     <div className="Background">
-      <ProfileNavbar token={props.token}></ProfileNavbar>
+      <AdminNavbar token={props.token}></AdminNavbar>
       <Container className="profilepage">
         <h1 className="txtcenter ">Karma Box Admin!</h1>
         <h2 className="txtcenter">All Donations</h2>
