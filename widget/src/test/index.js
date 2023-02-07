@@ -38,6 +38,15 @@ async function testing() {
 
 
     //
+    let url = `${baseURL}/api/config`;
+
+    headers = new Headers();
+    headers.append("Authorization", token);
+
+    let result = await fetch(url, {
+        headers: headers,
+        method: "GET",
+    });
   }
   document
     .getElementById("kba-amount-1")
@@ -59,8 +68,9 @@ async function testing() {
         );
       }
 
-      url = `${baseURL}/api/create-payment-intent-guest`;
+      url = `${baseURL}/api/create-payment-intent`;
       headers = new Headers();
+      headers.append("Authorization", token);
       headers.append("Content-Type", "application/json");
       const bodyObject = JSON.stringify({
         amount: amount,
@@ -121,8 +131,11 @@ function getCookie(name) {
 async function getPublishableKey() {
   let url = `${baseURL}/api/config`;
 
+  headers = new Headers();
+  headers.append("Authorization", token);
 
   fetch(url, {
+    headers: headers,
     method: "GET",
   }).then(async (result) => {
     const publishableKey = await result.json();
