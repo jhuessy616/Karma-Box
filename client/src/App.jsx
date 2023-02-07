@@ -17,7 +17,7 @@ import PaymentStatus from "./components/Stripe/PaymentStatus";
 import PasswordReset from "./components/Authorization/user/PasswordReset/PasswordReset"
 import EmailUpdate from "./components/Authorization/user/EmailUpdate/EmailUpdate";
 import PaymentRedirect from "./components/Authorization/user/PaymentRedirect/paymentRedirect";
-
+import AdminProfile from "./components/Admin/AdminProfile"
 
 import "./app.css";
 
@@ -75,9 +75,15 @@ function App() {
           <Route path="/nonprofitsignup" element={<NonProfitSignUpPage />} />
           <Route
             path="/profile"
-            element={<ProfileIndex token={sessionToken} setSessionToken={setSessionToken} />}
+            element={
+              <ProfileIndex
+                token={sessionToken}
+                setSessionToken={setSessionToken}
+              />
+            }
           />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/admin" element={<AdminProfile />} />
           <Route
             path="/forgotpassword"
             element={<ForgotPassword token={sessionToken} />}

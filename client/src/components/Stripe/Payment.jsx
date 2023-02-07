@@ -3,9 +3,11 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Checkout from "./Checkout";
 import baseURL from "../../utils/baseurl";
+import { Container } from "reactstrap";
 const stripePromise = loadStripe(
   "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
 );
+
 
 function Payment({returnUrl}) {
     const [clientSecret, setClientSecret] = useState(null);
@@ -27,13 +29,16 @@ function Payment({returnUrl}) {
     }, []);
 
   return (
-    <div>
-      <h1>Payment</h1>
-      {clientSecret && stripePromise && (
-        <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <Checkout returnUrl={returnUrl}/>
-        </Elements>
-      )}
+   
+    <div className="Background txtcenter login">
+     
+        <h1 style={{paddingTop:50}}>Payment</h1>
+        {clientSecret && stripePromise && (
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
+            <Checkout returnUrl={returnUrl} />
+          </Elements>
+        )}
+    
     </div>
   );
 }

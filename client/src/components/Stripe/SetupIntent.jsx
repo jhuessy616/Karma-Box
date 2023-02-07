@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import SetupForm from "./SetupForm";
 import jwt_decode from "jwt-decode";
-import Navbar from "../ProfilePage/ProfileNavBar";
+import ProfileNavbar from "../ProfilePage/ProfileNavBar";
 import { Container } from "reactstrap";
 import baseURL from "../../utils/baseurl";
 
@@ -67,11 +67,11 @@ function SetupIntent({ token }) {
 
   return (
     <div className="Background">
-      <Navbar></Navbar>
+      {/* <ProfileNavbar></ProfileNavbar> */}
       <Container className="signup">
 
 
-      <h1 className="txtcenter" style={{marginTop:20}}>Begin Earning Good Karma Today!</h1>
+      <h1 className="txtcenter" style={{paddingTop:50}}>Begin Earning Good Karma Today!</h1>
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <SetupForm />
