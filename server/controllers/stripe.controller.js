@@ -6,7 +6,7 @@ const validateSession = require("../middleware/validate-session");
 const User = require("../models/user.model");
 const Donation = require("../models/donation.model");
 
-router.get("/config", validateSession, (req, res) => {
+router.get("/config", (req, res) => {
   res.send({
     publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   });

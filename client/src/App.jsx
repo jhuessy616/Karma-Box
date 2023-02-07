@@ -55,11 +55,6 @@ function App() {
     }
   }, []);
 
-  console.log("app token", sessionToken)
-
-
-    
-
 
   //! Declaration of Routes
   return (

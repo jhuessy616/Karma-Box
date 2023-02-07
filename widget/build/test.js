@@ -87,8 +87,10 @@ const style = `
     position: fixed;
     bottom: 0;
     right: 0;
-    margin-right: 20px;
-    margin-bottom: 100px;
+    margin-right: 72px;
+   /* 20 */
+    margin-bottom: 86px;
+    /* 90 */
     padding: 0px 20px 20px 20px;
     background-color: #d3f5ff;
     border-radius: 8px;
@@ -283,11 +285,12 @@ KARMABOX_IS_OPEN = false;
 // setting up popup, widget, etc..
 inject(html, style);
 
+let karmabox_url = "http://localhost:3000";
 let baseURL = "http://127.0.0.1:4000"; // url to karmabox backend
 // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGJlNThhYWM5NzZhNTQ2YzI0MGEwYyIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05IZjFDTjhJbTB0a0I4IiwiaWF0IjoxNjc1MzU1NTY2LCJleHAiOjI1MzkzNTU1NjZ9.oVAW_AKl4Up6yVTV3lFzCPi_G3F2A2Fsrf2N6uuYdAU"
 
 
-async function testing() {
+async function karmabox_acount_tab() {
 
     // karma box acount tab
     function amountSelect(e) {
@@ -306,123 +309,69 @@ async function testing() {
     document.getElementById("kba-amount-3").addEventListener("click", amountSelect);
 
 
-    document.getElementById("karmabox-popup-kba-submit").addEventListener("click", async e => {
+    document.getElementById("karmabox-popup-kba-submit").addEventListener("click", async (e) => {
         let amount = document.getElementById("kba-custom-amount").value;
         if (amount == atob("dGVzdA==")) {
-            document.getElementById("kb-charity").innerText = atob("aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2pvbmFzLWJyZWVuLTQ4MWIyMjI1OC8=");
+            document.getElementById("kb-charity").innerText = atob(
+                "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2pvbmFzLWJyZWVuLTQ4MWIyMjI1OC8="
+            );
+        } else {
+            window.location.href = `${karmabox_url}/paymentRedirect/?f=${window.location}&a=${amount}`;
         }
-
-        console.log("testing")
-        window.location.href = `http://localhost:3000/paymentRedirect/?a=${amount}&f=${window.location}`;
+    });
+}
+async function cardTab() {
+    url = `${baseURL}/api/create-payment-intent-guest`;
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    body = JSON.stringify({
+        amount: 500,
     });
 
+    const res = await fetch(url, {
+        method: "POST",
+        headers,
+        body
+    });
+    const cs_result = await res.json();
 
-    //
-    let url = `${baseURL}/api/config`;
-
-    headers = new Headers();
-    headers.append("Authorization", token);
-
-    let result = await fetch(url, {
-        headers: headers,
+    url = `${baseURL}/api/config`;
+    const res2 = await fetch(url, {
         method: "GET",
     });
-  }
-  document
-    .getElementById("kba-amount-1")
-    .addEventListener("click", amountSelect);
-  document
-    .getElementById("kba-amount-2")
-    .addEventListener("click", amountSelect);
-  document
-    .getElementById("kba-amount-3")
-    .addEventListener("click", amountSelect);
+    const publishableKey = await res2.json();
+    console.log(cs_result)
 
-  document
-    .getElementById("karmabox-popup-kba-submit")
-    .addEventListener("click", async (e) => {
-      let amount = document.getElementById("kba-custom-amount").value;
-      if (amount == atob("dGVzdA==")) {
-        document.getElementById("kb-charity").innerText = atob(
-          "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2pvbmFzLWJyZWVuLTQ4MWIyMjI1OC8="
-        );
-      }
-
-      url = `${baseURL}/api/create-payment-intent`;
-      headers = new Headers();
-      headers.append("Authorization", token);
-      headers.append("Content-Type", "application/json");
-      const bodyObject = JSON.stringify({
-        amount: amount,
-      });
-      console.log(amount);
-      const res = await fetch(url, {
-        headers: headers,
-        method: "POST",
-        body: bodyObject,
-      });
-      const cs_result = await res.json();
-      console.log(cs_result);
-    });
 
     let stripe = Stripe(publishableKey.publishableKey);
     let elements = stripe.elements({
-        clientSecret: clientSecret,
+        clientSecret: cs_result.clientSecret,
     });
-    
-
-    // card tab
-    // let cardElement = elements.create("payment");
-    // let cardContainer = document.getElementsByClassName("payment-element")[0];
-    // cardElement.mount(cardContainer);
-    //
-    // document.getElementById("karmabox-popup-submit").addEventListener("click", e => {
-    //     e.preventDefault();
-    //     stripe.confirmPayment({
-    //         elements,
-    //         confirmParams: {
-    //             return_url: "http://127.0.0.1:5500/capstone/Karma-Box/widget/test/index.html?",
-    //         },
-    //         redirect: "if_required",
-    //     }).then(result => {
-    //         if (result.error) {
-    //             console.log("payment error");
-    //         }
-    //     });
-    // });
 
 
+    let cardElement = elements.create("payment");
+    let cardContainer = document.getElementsByClassName("payment-element")[0];
+    cardElement.mount(cardContainer);
 
+    document.getElementById("karmabox-popup-submit").addEventListener("click", e => {
+        e.preventDefault();
+        cardElement.clear();
+        
+        stripe.confirmPayment({
+            elements,
+            confirmParams: {
+                return_url: "http://127.0.0.1:5500/capstone/Karma-Box/widget/test/index.html?",
+            },
+            redirect: "if_required",
+        }).then(result => {
+            if (result.error) {
+                console.log("payment error");
+            }
+        });
+    });
 
-function createCookie(key, value, daysToLive) {
-    const date = new Date();
-    date.setTime(date.getTime() + (daysToLive * 24 * 60 * 60 * 1000));
-    let expires = "exires=" + date.toUTCString();
-    document.cookie = `${key}=${value}; ${expires}; path=/`
-}
-function deleteCookie(name) {
-    createCookie(name, null, null);
-}
-function getCookie(name) {
-    const decoded = decodeURIComponent(document.cookie);
-    return decoded.split("; ").filter(e => e.split("=")[0] == name)[0].split("=")[1];
 }
 
-async function getPublishableKey() {
-  let url = `${baseURL}/api/config`;
-
-  headers = new Headers();
-  headers.append("Authorization", token);
-
-  fetch(url, {
-    headers: headers,
-    method: "GET",
-  }).then(async (result) => {
-    const publishableKey = await result.json();
-    console.log(publishableKey);
-    return publishableKey.publishableKey;
-  });
-}
 
 // injects the widget button into the body element and adds event listeners for opening
 // and closing the popup.
@@ -445,7 +394,7 @@ function inject(html, css) {
             new_element.addEventListener("click", e => e.stopPropagation());
             KARMABOX_IS_OPEN = true;
             addEvents();
-            testing();
+            karmabox_acount_tab();
         } else {
             let child = document.getElementById("karmabox-body-child");
             document.getElementsByTagName("body")[0].removeChild(child)[0];
@@ -490,5 +439,6 @@ function addEvents() {
       "kb-body-container-kba kb-display-none";
     document.getElementsByClassName("kb-body-container-card")[0].className =
       "kb-body-container-card";
+    cardTab();
   });
 }
