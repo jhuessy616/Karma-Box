@@ -39,7 +39,18 @@ FullWidthButton {
 	width: 400px;
 } */
 
+.profilepage{
+margin-top: 100px;
+}
+.total-donations h1{
+	font-size: calc(1.2rem + 1vw);
+	margin-top: 30px;
+	background-color: var(--secondary);
+	color:black
+}
 
-.donationamount{
-	font-size: calc(1rem + 1vw);
+
+.donations-table{
+	background-color: #cff4fc;
+--bs-table-striped-bg: rgba(0, 129, 201, .05)!important
 }
