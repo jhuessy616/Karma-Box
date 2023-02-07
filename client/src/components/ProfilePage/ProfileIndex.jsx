@@ -1,154 +1,88 @@
 // ! Dependencies imported
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom"
-import { Button, Form, FormGroup, Input, Label, Col, Container, Row, Table, Card, CardHeader, CardBody, CardTitle, CardText } from "reactstrap";
-import FullWidthButton from "../../../src/components/Authorization/Buttons/FullWidthButton";
+import React, { useState, useEffect } from "react";
+
+import {  Col, Container, Row, Table,   } from "reactstrap";
+
 import ProfileNavbar from "../ProfilePage/ProfileNavBar"
+
 import "./ProfileIndex.css"
 
 
 //! Declaration of Vairables
 const ProfileIndex = (props) => {
-	const emailRef = useRef();
-	const passwordRef = useRef();
-	const confirmPasswordRef = useRef();
-	const navigate = useNavigate();
-  
-	async function handleSubmit(e) {
-	  e.preventDefault();
-  const email = emailRef.current.value;
-	  const password = passwordRef.current.value;
-	  
-	  //!Url our page is hosed on
-	  let url = `http://localhost:4000/user/profile`;
-	  let bodyObject = JSON.stringify({  email, password });
-  
-	  let myHeaders = new Headers();
-	  myHeaders.append("Content-Type", "application/json");
-  
-	  const requestOptions = {
-		headers: myHeaders,
-		body: bodyObject,
-		method: "POST",
-	  };
-	  //! function that runs when the user hits the signup button, that then allows them to log in
-	  try {
-		const response = await fetch(url, requestOptions);
-		const data = await response.json();
-		console.log(data);
-		if (data.message === "Success") {
-		  //We are free to navigate to another page
-		  props.updateToken(data.token);
-		  navigate("/profile");
-		} else {
-		  alert(data.message);
-		}
-	  } catch (error) {
-		console.log(error.message);
-	  }
-	}
+	    const [donations, setDonations] = useState([]);
+      const fetchDonations = async () => {
+        const url = "http://localhost:4000/donations/userDonations";
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", props.token);
 
+        const requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+        };
+
+        try {
+          const response = await fetch(url, requestOptions);
+          const data = await response.json();
+          setDonations(data.donations);
+          console.log(donations);
+        } catch (err) {
+          console.log(err.message);
+        }
+      };
+      useEffect(() => {
+        if (props.token) {
+          fetchDonations();
+        }
+      }, [props.token]);
+
+	let totalDonated = 0
+	for (let donation of donations) {
+		totalDonated += donation.amount
+}
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
-		<div className="Background">
-		  <ProfileNavbar token={props.token}></ProfileNavbar>
-		  <Container>
-		  <h1 className="txtcenter">Welcome to Your Karma Box Dashboard!</h1>
-			<h2 className="txtcenter" >Below are your Karma Box donations.</h2>
-			<form method="POST" action="/create-customer-portal-session">
-        <button type="submit">Update Payment Information</button>
-      </form>
-		  <Row>
-						<Col lg="4.5" md="4" xs="2">
-	</Col>
-						<Col lg="4.5" md="4" xs="2">		  
-<Table>
-<tbody>
-  <tr className="table-info">
-      <td>
-        <h2>Charity:</h2>
-      </td>
-      <td>
-        <h2>Amount:</h2>
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        Habitat for Humanity
-      </td>
-      <td>
-        $1,000
-</td>
-</tr>
-  <tr className="table-info">
-      <td>
-        Boys and Girls Club
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        Habitat for Humanity
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        Cancer Research Institute
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        Hope for the Warriors
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  <tr className="table-info">
-      <td>
-        The Alzheimer's Association
-      </td>
-      <td>
-        $1,000
-      </td>
-	  </tr>
-	  </tbody>
-</Table>
- 
-  </Col>
-			  
-			  <Col lg="4.5" md="4" xs="2"> <Card
-    className="my-2"
-    color="info"
-    inverse
-    style={{
-      width: '18rem'
-    }}
-  >
-    <CardHeader>
-      Total Amount Donated:
-    </CardHeader>
-    <CardBody>
-      <CardTitle tag="h5">
-        $6,000
-      </CardTitle>
-      {/* <CardText>
-        
-      </CardText> */}
-    </CardBody>
-  </Card></Col>
-			</Row>
-		  </Container>
-		</div>
-	  );
+    <div className="Background">
+      <ProfileNavbar token={props.token} setSessionToken={props.setSessionToken}></ProfileNavbar>
+      <Container className="profilepage">
+        <h1 className="txtcenter ">
+          Welcome to Your Karma Box Dashboard!
+        </h1>
+        <h2 className="txtcenter">Below are your Karma Box donations</h2>
+
+        <Row>
+          <Col lg="3" md="3" xs="1"></Col>
+          <Col lg="6" md="6" xs="10">
+            <div className="total-donations">
+              <h1 className="txtcenter">Total Donated: ${totalDonated}</h1>{" "}
+            </div>
+            <Table striped className='donations-table'>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Organization</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {donations.map((donation) => (
+                  <tr key={donation._id}>
+                    <td scope="row">{donation.date}</td>
+                    <td>{donation.organization}</td>
+                    <td>${donation.amount}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Col>
+
+          <Col lg="3" md="3" xs="1">
+            {" "}
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
 	};
 
 export default ProfileIndex;

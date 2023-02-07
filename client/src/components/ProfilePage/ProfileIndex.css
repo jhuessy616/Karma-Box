@@ -31,11 +31,26 @@ FullWidthButton {
 	/* margin-top: 0px !important; */
 }
 
-/* trying to center the form */
+/* trying to center the form
 .logInForm {
     display: 'flex';
     align-items: 'center';
     justify-content: 'center';
 	width: 400px;
+} */
+
+.profilepage{
+margin-top: 100px;
+}
+.total-donations h1{
+	font-size: calc(1.2rem + 1vw);
+	margin-top: 30px;
+	background-color: var(--secondary);
+	color:black
 }
 
+
+.donations-table{
+	background-color: #cff4fc;
+--bs-table-striped-bg: rgba(0, 129, 201, .05)!important
+}

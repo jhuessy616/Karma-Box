@@ -30,6 +30,7 @@ FullWidthButton {
   text-align: center;
 }
 
+
 .justcenter{
 justify-content: center;
 }
@@ -39,4 +40,8 @@ justify-content: center;
 
 .marginneg15{
   margin-bottom:-15px;
+}
+
+.warningcolor{
+  background-color: #ffc107 !important;
 }

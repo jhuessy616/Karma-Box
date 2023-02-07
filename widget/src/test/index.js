@@ -33,7 +33,7 @@ async function testing() {
         }
 
         console.log("testing")
-        window.location.href = `http://localhost:3000/confirmpayment/?a=${amount}&f=${window.location}`;
+        window.location.href = `http://localhost:3000/paymentRedirect/?a=${amount}&f=${window.location}`;
     });
 
 
@@ -111,7 +111,7 @@ async function testing() {
     //     });
     // });
 
-}
+
 
 
 function createCookie(key, value, daysToLive) {

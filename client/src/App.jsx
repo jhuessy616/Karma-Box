@@ -25,21 +25,25 @@ import SetupIntent from "./components/Stripe/SetupIntent";
 
 import Payment from "./components/Stripe/Payment";
 
+import AfterPayment from "./components/Authorization/user/PaymentRedirect/AfterPayment.jsx"
+
 import Docs from "./components/Docs/Docs";
 
 import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
+
 import UpdatePaymentInfo from "./components/Stripe/UpdatePaymentInfo";
 
 const stripePromise = loadStripe(
-  'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
+  'pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T'
 );
-
 
 
 
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
+    const [returnUrl, setReturnUrl] = useState("");
+
   const updateToken = (newToken) => {
     localStorage.setItem("token", newToken);
     setSessionToken(newToken);
@@ -51,24 +55,27 @@ function App() {
     }
   }, []);
 
+  console.log("app token", sessionToken)
+
+
+    
+
+
   //! Declaration of Routes
   return (
     <div>
       <Elements stripe={stripePromise}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home token={sessionToken} />} />
           <Route path="/login" element={<Login updateToken={updateToken} />} />
           <Route
             path="/signup"
             element={<SignUpPage updateToken={updateToken} />}
           />
-          <Route
-            path="/nonprofitsignup"
-            element={<NonProfitSignUpPage/>}
-          />
+          <Route path="/nonprofitsignup" element={<NonProfitSignUpPage />} />
           <Route
             path="/profile"
-            element={<ProfileIndex token={sessionToken} />}
+            element={<ProfileIndex token={sessionToken} setSessionToken={setSessionToken} />}
           />
           <Route path="/about" element={<AboutPage />} />
           <Route
@@ -85,22 +92,41 @@ function App() {
               <SetupIntent updateToken={updateToken} token={sessionToken} />
             }
           />
-          <Route 
-            path='/updatePayment'
+          <Route path="/payment" element={<Payment returnUrl={returnUrl} />} />
+          <Route
+            path="/updatePayment"
             element={
-              <UpdatePaymentInfo updateToken={updateToken} token={sessionToken} />
+              <UpdatePaymentInfo
+                updateToken={updateToken}
+                token={sessionToken}
+              />
             }
           />
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
-
-          <Route path="/paymentStatus" element={<PaymentStatus token={sessionToken} />} />
-          <Route path="/paymentinfo" element={<PaymentInfo/>} />
-          <Route path="/updatePassword" element={<PasswordReset token= {sessionToken}/>} />
-          <Route path="email" element={<EmailUpdate token= {sessionToken}/>} />
-          <Route path="/paymentRedirect" element={<PaymentRedirect/>}/>
-          <Route path="/checkout" element={<Payment token={sessionToken} />} />
-
+          <Route
+            path="/paymentStatus"
+            element={<PaymentStatus token={sessionToken} />}
+          />
+          <Route path="/paymentinfo" element={<PaymentInfo />} />
+          <Route
+            path="/updatePassword"
+            element={<PasswordReset token={sessionToken} />}
+          />
+          <Route path="email" element={<EmailUpdate token={sessionToken} />} />
+          <Route
+            path="/paymentRedirect"
+            element={
+              <PaymentRedirect
+                setReturnUrl={setReturnUrl}
+                token={sessionToken}
+              />
+            }
+          />
+          <Route
+            path="/afterpayment"
+            element={<AfterPayment token={sessionToken} />}
+          />
         </Routes>
       </Elements>
     </div>

@@ -7,39 +7,49 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import "../home/navbar.css";
 import baseURL from '../../utils/baseurl'
 import jwt_decode from "jwt-decode"
 
-const ProfileNavBar = ({ token }) => {
-  // const decoded = token ? jwt_decode(token) : "";
+const ProfileNavBar = (props) => {
   function logOut() {
     localStorage.clear();
+    props.setSessionToken("")
   }
+  const decoded = props.token ? jwt_decode(props.token) : "";
+  const navigate = useNavigate();
+  
+  async function deleteUser(id) {
+    
+    const url = `http://localhost:4000/user/delete/${id}`;
 
-  // async function handleClick(e) {
-  //   e.preventDefault()
-  //   let url = `${baseURL}/api/billing_portal/sessions`
-  //   const myHeaders = new Headers()
-  //   myHeaders.append("Authorization", token)
-  //   const bodyObject = JSON.stringify({customer: decoded.id})
-  //   const requestOptions = {
-  //     headers: myHeaders,
-  //     method: "POST",
-  //     body: bodyObject
-  //   };
-  //   try {
-  //     const response = await fetch(url, requestOptions);
-  //     const data = await response.json();
-  //     console.log(data)
-  //   } catch (error) {
-  //     console.log(error.message)
-  //   }
-  // }
+     let myHeaders = new Headers();
+     myHeaders.append("Authorization", props.token);
 
+     let requestOptions = {
+       headers: myHeaders,
+       method: "DELETE",
+     };
+     try {
+       let response = await fetch(url, requestOptions);
+       let data = await response.json();
+       console.log(data);
+       if (data.message === "User was deleted") {
+         alert("Your account has been deleted.")
+         localStorage.clear();
+         navigate("/")
+         props.setSessionToken("");
+       } else {
+         alert(data.message);
+       }
+     } catch (err) {
+       console.log(err);
+     }
+   }
   return (
-    <Navbar expand="sm">
+    <Navbar expand="md">
       <Container>
         <div className="logodiv">
           <a className="navbarlogolink" href="/">
@@ -60,7 +70,12 @@ const ProfileNavBar = ({ token }) => {
               // className="me-2"
               direction="down"
             >
-              <DropdownToggle tag="span" caret className="nav-link navbar-link">
+              <DropdownToggle
+                tag="span"
+                caret
+                className="nav-link navbar-link user-settings"
+                style={{ cursor: "pointer" }}
+              >
                 User Settings
               </DropdownToggle>
               <DropdownMenu>
@@ -80,14 +95,33 @@ const ProfileNavBar = ({ token }) => {
                     Password Update
                   </Nav.Link>
                 </DropdownItem>
+                <DropdownItem>
+                  <Nav.Link
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you wish to delete your account?"
+                        )
+                      ) {
+                        deleteUser(decoded.id);
+                      }
+
+                      this.onCancel();
+                    }}
+                    className="navbar-link"
+                  >
+                    Delete Account
+                  </Nav.Link>
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
             <Nav.Link
-              href="https://billing.stripe.com/p/login/test_9AQdR74HY13U3ew000"
+              href="https://billing.stripe.com/p/login/test_dR66p8e4bc39gsU4gg"
+              // href="http://localhost:3000/setupIntent"
               className="navbar-link"
             >
               {" "}
-              Payment Info
+              Payment
             </Nav.Link>
             <Nav.Link
               href="http://localhost:3000/"
