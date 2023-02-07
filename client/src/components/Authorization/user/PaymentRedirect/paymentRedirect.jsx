@@ -24,7 +24,7 @@ function PaymentRedirect({token, setReturnUrl}){
         headers.append("Authorization", token);
         let body = JSON.stringify({
             amount: amount,
-            organization: "mermaids against plastic" // change to url coming from widget when thats not going to be localhost
+            organization: "Mermaids Against Plastic" // change to url coming from widget when thats not going to be localhost
         });
 
         const res = await fetch(url, {
