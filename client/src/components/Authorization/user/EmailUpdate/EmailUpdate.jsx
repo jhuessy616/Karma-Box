@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Button, InputGroup, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
 import jwt_decode from "jwt-decode";
 import FullWidthButton from "../../Buttons/FullWidthButton";
-import UserSettingsNavbar from "../../../ProfilePage/ProfileNavBar"
+import ProfileNavbar from "../../../ProfilePage/ProfileNavBar"
 import { useState } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import sanitize from "../../../../utils/sanitizeinput";
@@ -75,10 +75,13 @@ const EmailUpdate = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
     <div className="Background">
-      <UserSettingsNavbar></UserSettingsNavbar>
+      <ProfileNavbar
+        token={props.token}
+        setSessionToken={props.setSessionToken}
+      ></ProfileNavbar>
       <Container className="logInFormContainer">
         <Row>
-            <h1 className="txtcenter">Update Your Email</h1>
+          <h1 className="txtcenter">Update Your Email</h1>
           <div class="col-2 col-md-3 col-lg-4"></div>
 
           <div class="col-8 col-md-6 col-lg-4">

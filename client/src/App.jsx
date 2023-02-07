@@ -32,6 +32,7 @@ import Docs from "./components/Docs/Docs";
 import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
 
 import UpdatePaymentInfo from "./components/Stripe/UpdatePaymentInfo";
+import AdminUsersIndex from "./components/Admin/AdminUsersIndex";
 
 const stripePromise = loadStripe(
   'pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T'
@@ -78,7 +79,14 @@ function App() {
             }
           />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/admin" element={<AdminProfile />} />
+          <Route
+            path="/admin"
+            element={<AdminProfile token={sessionToken} />}
+          />
+          <Route
+            path="/admin/users"
+            element={<AdminUsersIndex token={sessionToken} />}
+          />
           <Route
             path="/forgotpassword"
             element={<ForgotPassword token={sessionToken} />}
@@ -108,14 +116,32 @@ function App() {
 
           <Route
             path="/paymentStatus"
-            element={<PaymentStatus token={sessionToken} />}
+            element={
+              <PaymentStatus
+                token={sessionToken}
+                setSessionToken={setSessionToken}
+              />
+            }
           />
           <Route path="/paymentinfo" element={<PaymentInfo />} />
           <Route
             path="/updatePassword"
-            element={<PasswordReset token={sessionToken} />}
+            element={
+              <PasswordReset
+                token={sessionToken}
+                setSessionToken={setSessionToken}
+              />
+            }
           />
-          <Route path="email" element={<EmailUpdate token={sessionToken} />} />
+          <Route
+            path="email"
+            element={
+              <EmailUpdate
+                token={sessionToken}
+                setSessionToken={setSessionToken}
+              />
+            }
+          />
           <Route
             path="/paymentRedirect"
             element={

@@ -11,7 +11,7 @@ import "../ProfilePage/ProfileIndex.css";
 const AdminProfile = (props) => {
   const [donations, setDonations] = useState([]);
   const fetchDonations = async () => {
-    const url = "localhost:4000/donations/alldonations";
+    const url = "http://localhost:4000/donations/alldonations";
     let myHeaders = new Headers();
     myHeaders.append("Authorization", props.token);
 
@@ -44,20 +44,20 @@ const AdminProfile = (props) => {
     <div className="Background">
       <AdminNavbar token={props.token}></AdminNavbar>
       <Container className="profilepage">
-        <h1 className="txtcenter ">Karma Box Admin!</h1>
+        <h1 className="txtcenter ">Karma Box administrator</h1>
         <h2 className="txtcenter">All Donations</h2>
 
         <Row>
-          <Col lg="3" md="3" xs="1"></Col>
-          <Col lg="6" md="6" xs="10">
+          <Col lg="1" md="1" xs="1"></Col>
+          <Col lg="10" md="10" xs="10">
             <div className="total-donations">
               <h1 className="txtcenter">Total Donated: ${totalDonated}</h1>{" "}
             </div>
             <Table striped className="donations-table">
               <thead>
                 <tr>
-                                  <th>Date</th>
-                                  <th>User</th>
+                  <th>Date</th>
+                  <th>User</th>
                   <th>Organization</th>
                   <th>Amount</th>
                 </tr>
@@ -65,8 +65,8 @@ const AdminProfile = (props) => {
               <tbody>
                 {donations.map((donation) => (
                   <tr key={donation._id}>
-                        <td scope="row">{donation.date}</td>
-                        <td>{donation.user.email}</td>
+                    <td scope="row">{donation.date}</td>
+                    <td>{donation.user.email}</td>
                     <td>{donation.organization}</td>
                     <td>${donation.amount}</td>
                   </tr>
@@ -75,7 +75,7 @@ const AdminProfile = (props) => {
             </Table>
           </Col>
 
-          <Col lg="3" md="3" xs="1">
+          <Col lg="1" md="1" xs="1">
             {" "}
           </Col>
         </Row>

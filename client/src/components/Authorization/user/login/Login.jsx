@@ -28,14 +28,15 @@ import FullWidthButton from "../../Buttons/FullWidthButton";
 import Navbar from "../../../home/NavBar";
 import "./login.css";
 import sanitize from "../../../../utils/sanitizeinput";
-
+import jwt_decode from "jwt-decode";
 
 //! Declaration of Variables
 const Login = (props) => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
   const navigate = useNavigate();
-    const [message, setMessage] = useState();
+  const [message, setMessage] = useState();
+ 
 	// const [loginError, setLoginError] = useState("");
 	// const [loginErrorClass, setLoginErrorClass] = useState("none");
 
@@ -78,13 +79,18 @@ const Login = (props) => {
 		try {
 			const response = await fetch(url, requestOptions);
 			const data = await response.json();
-			console.log(data);
-			if (data.message === "Success") {
-				//We are free to navigate to another page
-				props.updateToken(data.token);
-				// if (props.user.isCharity === false)
-				navigate("/profile");
-			} else {
+			console.log("data", data);
+      if (data.message === "Success") {
+        if (data.user.isAdmin === false) {
+          props.updateToken(data.token);
+          navigate("/profile");
+        }
+        else if (data.message === "Success" & data.user.isAdmin === true) {
+          props.updateToken(data.token);
+          navigate("/admin");
+        }
+      }
+			 else {
 				setMessage(data.message);
 			}
 		} catch (error) {

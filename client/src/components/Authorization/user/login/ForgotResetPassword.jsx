@@ -25,8 +25,10 @@ function ForgotResetPassword(props) {
     const [form, setForm] = useState("loading");
     const [message, setMessage] = useState();
     const [passwordMatchMessage, setPasswordMatchMessage] = useState();
+    const [disabled, setDisabled] = useState(false);
     const passwordRef = useRef();
-     const confirmPasswordRef = useRef();
+    const confirmPasswordRef = useRef();
+    const formRef = useRef();
     const navigate = useNavigate();
       const [state, setState] = useState(false);
       const toggleBtn = (e) => {
@@ -92,9 +94,12 @@ function ForgotResetPassword(props) {
                 const response = await fetch(url, requestOptions);
                 const data = await response.json();
                 console.log(data);
-                if (data.message === "Password updated") {
+                if (data.message === "Password Updated") {
+                    formRef.current.reset();
+                  
                     setMessage("Password succesfully updated");
-                    navigate("/login");
+                    setDisabled(true)
+                    // navigate("/login");
                     console.log(form);
                 } else {
                     setMessage(data.message);
@@ -121,8 +126,8 @@ function ForgotResetPassword(props) {
               <div>
                 <Form
                   onSubmit={handleSubmit}
-                  //   action={`http://localhost:4000/user/resetpassword/${id}/${token}`}
-                  //   method="post"
+                  innerRef={formRef}
+                 
                 >
                   <InputGroup className="signupinputgroup">
                     <FormGroup floating>
@@ -132,6 +137,7 @@ function ForgotResetPassword(props) {
                         placeholder="New Password"
                         type={state ? "text" : "password"}
                         innerRef={passwordRef}
+                        disabled={disabled}
                       />
                       <Label for="newPassword">New Password</Label>
                     </FormGroup>{" "}
@@ -151,6 +157,7 @@ function ForgotResetPassword(props) {
                         placeholder="Confirm New Password"
                         type={state ? "text" : "password"}
                         innerRef={confirmPasswordRef}
+                        disabled={disabled}
                       />
                       <Label for="confirmNewPassword">
                         Confirm New Password

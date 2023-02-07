@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 import { useStripe } from "@stripe/react-stripe-js";
-import Navbar from "../ProfilePage/ProfileNavBar";
+import ProfileNavbar from "../ProfilePage/ProfileNavBar";
 import { Link } from "react-router-dom";
 import baseURL from "../../utils/baseurl";
 
-function PaymentStatus({ token }) {
+function PaymentStatus({ token, setSessionToken }) {
   const stripe = useStripe();
   const clientSecret = new URLSearchParams(window.location.search).get(
     "setup_intent_client_secret"
@@ -30,7 +30,6 @@ function PaymentStatus({ token }) {
     });
   }
 
-
   function attachPayment(setupIntent) {
     console.log(setupIntent);
     let url = `${baseURL}/api/payment_methods/attach`;
@@ -48,7 +47,6 @@ function PaymentStatus({ token }) {
     });
   }
 
-
   useEffect(() => {
     if (!stripe) {
       return;
@@ -63,7 +61,7 @@ function PaymentStatus({ token }) {
       // eslint-disable-next-line default-case
       switch (setupIntent.status) {
         case "succeeded":
-          setMessage("Success! your payment method has been saved.");
+          setMessage("Success! Your payment method has been saved.");
           savePayment(setupIntent);
           break;
         case "processing":
@@ -83,7 +81,10 @@ function PaymentStatus({ token }) {
 
   return (
     <div className="Background">
-      <Navbar></Navbar>
+      <ProfileNavbar
+        token={token}
+        setSessionToken={setSessionToken}
+      ></ProfileNavbar>
       <h1
         className="txtcenter"
         style={{ paddingTop: "25vh", justifySelf: "center" }}
