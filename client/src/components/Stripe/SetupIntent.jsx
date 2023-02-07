@@ -7,9 +7,9 @@ import ProfileNavbar from "../ProfilePage/ProfileNavBar";
 import { Container } from "reactstrap";
 import baseURL from "../../utils/baseurl";
 
-const stripePromise = loadStripe(
-  'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
-);
+// const stripePromise = loadStripe(
+//   'pk_test_51MPto2DlyQc1W9SgotQU0GrS8j4UIkzyNQSW9p2XiCiGm1fybuxJGWdGNtfw8wgMDiXlTThmcTwgVoclY3JjGgLB00XEumSXYl'
+// );
 
 let count = 0;
 
@@ -45,6 +45,7 @@ function SetupIntent({ token }) {
       myHeaders.append("Authorization", token);
       const bodyObject = {
         customer: decoded.id,
+        // email: decoded.email
       };
       const requestOptions = {
         method: "POST",
@@ -67,18 +68,20 @@ function SetupIntent({ token }) {
 
   return (
     <div className="Background">
-      {/* <ProfileNavbar></ProfileNavbar> */}
-      <Container className="signup">
-
-
-      <h1 className="txtcenter" style={{paddingTop:50}}>Begin Earning Good Karma Today!</h1>
-      {clientSecret && stripePromise && (
-        <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <SetupForm />
-        </Elements>
+      {token ? (
+        <Container className="signup">
+        <h1 className="txtcenter" style={{paddingTop:50}}>Begin Earning Good Karma Today!</h1>
+        {clientSecret && stripePromise && (
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
+            <SetupForm />
+          </Elements>
+        )} 
+        </Container>
+      ) : (
+        <h1>Sorry you must be logged in to view this page</h1>
       )}
-
-      </Container>
+      {/* <ProfileNavbar></ProfileNavbar> */}
+      
     </div>
   );
 }

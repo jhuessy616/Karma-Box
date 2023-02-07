@@ -43,7 +43,9 @@ const ProfileIndex = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
     <div className="Background">
-      <ProfileNavbar token={props.token} setSessionToken={props.setSessionToken}></ProfileNavbar>
+      {props.token ? (
+        <div>
+          <ProfileNavbar token={props.token} setSessionToken={props.setSessionToken}></ProfileNavbar>
       <Container className="profilepage">
         <h1 className="txtcenter ">
           Welcome to Your Karma Box Dashboard!
@@ -81,6 +83,11 @@ const ProfileIndex = (props) => {
           </Col>
         </Row>
       </Container>
+        </div>
+      ) : (
+        <h1>Sorry you must be logged in to view this page.</h1>
+      )}
+      
     </div>
   );
 	};
