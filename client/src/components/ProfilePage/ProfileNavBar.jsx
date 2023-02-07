@@ -9,11 +9,34 @@ import {
 } from "reactstrap";
 
 import "../home/navbar.css";
+import baseURL from '../../utils/baseurl'
+import jwt_decode from "jwt-decode"
 
-const ProfileNavBar = () => {
+const ProfileNavBar = ({ token }) => {
+  // const decoded = token ? jwt_decode(token) : "";
   function logOut() {
     localStorage.clear();
   }
+
+  // async function handleClick(e) {
+  //   e.preventDefault()
+  //   let url = `${baseURL}/api/billing_portal/sessions`
+  //   const myHeaders = new Headers()
+  //   myHeaders.append("Authorization", token)
+  //   const bodyObject = JSON.stringify({customer: decoded.id})
+  //   const requestOptions = {
+  //     headers: myHeaders,
+  //     method: "POST",
+  //     body: bodyObject
+  //   };
+  //   try {
+  //     const response = await fetch(url, requestOptions);
+  //     const data = await response.json();
+  //     console.log(data)
+  //   } catch (error) {
+  //     console.log(error.message)
+  //   }
+  // }
 
   return (
     <Navbar expand="sm">
@@ -59,9 +82,8 @@ const ProfileNavBar = () => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-
             <Nav.Link
-              href="http://localhost:3000/setupIntent"
+              href="https://billing.stripe.com/p/login/test_9AQdR74HY13U3ew000"
               className="navbar-link"
             >
               {" "}

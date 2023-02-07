@@ -51,11 +51,13 @@ const ProfileIndex = (props) => {
 	//! Container that hosted the create chatroom and display chatroom.
 	return (
 		<div className="Background">
-		  <ProfileNavbar></ProfileNavbar>
+		  <ProfileNavbar token={props.token}></ProfileNavbar>
 		  <Container>
 		  <h1 className="txtcenter">Welcome to Your Karma Box Dashboard!</h1>
 			<h2 className="txtcenter" >Below are your Karma Box donations.</h2>
-			
+			<form method="POST" action="/create-customer-portal-session">
+        <button type="submit">Update Payment Information</button>
+      </form>
 		  <Row>
 						<Col lg="4.5" md="4" xs="2">
 	</Col>
