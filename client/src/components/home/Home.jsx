@@ -8,13 +8,13 @@ import "./home.css"
 
 
 
-function Home(props) {
+function Home() {
 
 
   return (
     <div className="HomePage">
       
-          <NavBar token={props.token} />
+        <NavBar />
         <Banner />
       
      

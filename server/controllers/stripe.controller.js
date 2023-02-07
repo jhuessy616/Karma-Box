@@ -118,7 +118,6 @@ router.post("/create-payment-intent", validateSession, async (req, res) => {
 
     let donation = new Donation({
       user: req.user._id,
-   
       organization: organization,
       amount: amount,
     });
