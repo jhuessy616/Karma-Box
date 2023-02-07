@@ -5,7 +5,7 @@ export default function LogedIn(props) {
         <>
       <h1
         className="txtcenter"
-        style={{ paddingTop: "25vh", justifySelf: "center" }}
+        style={{  justifySelf: "center" }}
       >
         Thank you for donating through Karma Box! 
       </h1>
