@@ -16,18 +16,16 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
   try {
     //create a customer with stripe
     const user = req.user._id;
-    const email = req.user.email
     const customer = await stripe.customers.create({
       description: "test customer",
       metadata: { user: `${user}` },
-      email: email
     });
 
     console.log(customer);
     const setupIntent = await stripe.setupIntents.create({
       customer: customer.id,
       payment_method_types: ["card"],
-      metadata: { user: `${user}` }
+      metadata: { user: `${user}` },
     });
 
 
@@ -60,6 +58,7 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
       token: token,
       setupIntent: setupIntent,
       customer: setupIntent.customer,
+      //clientSecret: setupIntent.client_secret
     });
   } catch (error) {
     return res.status(400).send({
@@ -167,7 +166,6 @@ router.get(
       );
       res.send({
         paymentMethod: paymentMethod,
-        
       });
 
     } catch (error) {
@@ -249,7 +247,7 @@ router.get('/payment_intents', validateSession, async(req, res) => {
   })
 })
 
-router.post('/payment_methods/:id', validateSession, async (req, res) => {
+router.get('/payment_methods/:id', validateSession, async (req, res) => {
   try {  
     const user = req.user._id
     const paymentId = req.user.paymentMethodId
@@ -277,15 +275,6 @@ router.get('/setup_intents', validateSession, async(req, res) => {
   res.send({
     setupIntents
   })
-})
-
-router.post('/billing_portal/sessions', validateSession, async(req, res) => {
-  console.log(req.user.customerId)
-  const session = await stripe.billingPortal.sessions.create({
-    customer: req.user.customerId,
-    return_url: 'http://localhost:3000/profile'
-  })
-  res.redirect(session.url);
 })
 
 module.exports = router;

@@ -4,7 +4,7 @@ KARMABOX_IS_OPEN = false;
 inject(html, style);
 
 let baseURL = "http://127.0.0.1:4000"; // url to karmabox backend
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGZkMTU4ZDNmYTMzNGU0YjU2ODY3YyIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05JbTZoeDRGRXBTWkZCIiwiaWF0IjoxNjc1NjEzNjU2LCJleHAiOjI1Mzk2MTM2NTZ9.OhtjqdoK_xq_5e_2Idybxjtpz1YiCrCv2phRg1H5izM"
+// let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGJlNThhYWM5NzZhNTQ2YzI0MGEwYyIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05IZjFDTjhJbTB0a0I4IiwiaWF0IjoxNjc1MzU1NTY2LCJleHAiOjI1MzkzNTU1NjZ9.oVAW_AKl4Up6yVTV3lFzCPi_G3F2A2Fsrf2N6uuYdAU"
 
 
 async function testing() {
