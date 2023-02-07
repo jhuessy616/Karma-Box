@@ -10,6 +10,8 @@ import {
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import "../home/navbar.css";
+import baseURL from '../../utils/baseurl'
+import jwt_decode from "jwt-decode"
 
 const ProfileNavBar = (props) => {
   function logOut() {
@@ -113,7 +115,6 @@ const ProfileNavBar = (props) => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-
             <Nav.Link
               href="https://billing.stripe.com/p/login/test_dR66p8e4bc39gsU4gg"
               // href="http://localhost:3000/setupIntent"

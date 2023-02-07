@@ -104,7 +104,6 @@ function App() {
           />
           <Route path="/payment" element={<Payment token={sessionToken} />} />
           <Route path="docs" element={<Docs />} />
-
           <Route
             path="/paymentStatus"
             element={<PaymentStatus token={sessionToken} />}
