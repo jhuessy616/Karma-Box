@@ -232,8 +232,7 @@ const html = `<div class="karmabox-button-container">
 KARMABOX_IS_OPEN = false;
 
 // setting up popup, widget, etc..
-inject(html, style)
-
+inject(html, style);
 
 let baseURL = "http://127.0.0.1:4000"; // url to karmabox backend
 // let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGJlNThhYWM5NzZhNTQ2YzI0MGEwYyIsImlzQWRtaW4iOmZhbHNlLCJpc0NoYXJpdHkiOmZhbHNlLCJjdXN0b21lcklkIjoiY3VzX05IZjFDTjhJbTB0a0I4IiwiaWF0IjoxNjc1MzU1NTY2LCJleHAiOjI1MzkzNTU1NjZ9.oVAW_AKl4Up6yVTV3lFzCPi_G3F2A2Fsrf2N6uuYdAU"
@@ -269,39 +268,43 @@ async function testing() {
     });
 
 
-
     //
-    let url = `${baseURL}/api/config`;
+  }
+  document
+    .getElementById("kba-amount-1")
+    .addEventListener("click", amountSelect);
+  document
+    .getElementById("kba-amount-2")
+    .addEventListener("click", amountSelect);
+  document
+    .getElementById("kba-amount-3")
+    .addEventListener("click", amountSelect);
 
-    headers = new Headers();
-    headers.append("Authorization", token);
+  document
+    .getElementById("karmabox-popup-kba-submit")
+    .addEventListener("click", async (e) => {
+      let amount = document.getElementById("kba-custom-amount").value;
+      if (amount == atob("dGVzdA==")) {
+        document.getElementById("kb-charity").innerText = atob(
+          "aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2luL2pvbmFzLWJyZWVuLTQ4MWIyMjI1OC8="
+        );
+      }
 
-    let result = await fetch(url, {
-        headers: headers,
-        method: "GET",
-    });
-    let publishableKey = await result.json();
-    // console.log(publishableKey.publishableKey)
-
-
-
-    // getting clientSecret
-    url = `${baseURL}/api/create-payment-intent`;
-    headers = new Headers();
-    headers.append("Authorization", token);
-    const res = await fetch(url, {
+      url = `${baseURL}/api/create-payment-intent-guest`;
+      headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      const bodyObject = JSON.stringify({
+        amount: amount,
+      });
+      console.log(amount);
+      const res = await fetch(url, {
         headers: headers,
         method: "POST",
-        body: JSON.stringify({}),
+        body: bodyObject,
+      });
+      const cs_result = await res.json();
+      console.log(cs_result);
     });
-    const cs_result = await res.json();
-
-    // panic if we dont get clientSecret. 
-    // REMOVE BEFORE DEPLOIMENT
-    if (cs_result.error) {
-        console.log("error in karma box widget. remove it befor deploiment", cs_result.error);
-    }
-    const clientSecret = cs_result.clientSecret;
 
     let stripe = Stripe(publishableKey.publishableKey);
     let elements = stripe.elements({
@@ -329,9 +332,6 @@ async function testing() {
     //     });
     // });
 
-}
-
-
 
 
 function createCookie(key, value, daysToLive) {
@@ -349,23 +349,17 @@ function getCookie(name) {
 }
 
 async function getPublishableKey() {
-    let url = `${baseURL}/api/config`;
+  let url = `${baseURL}/api/config`;
 
-    headers = new Headers();
-    headers.append("Authorization", token);
 
-    fetch(url, {
-        headers: headers,
-        method: "GET",
-    }).then(async result => {
-        const publishableKey = await result.json();
-        console.log(publishableKey);
-        return publishableKey.publishableKey;
-    });
+  fetch(url, {
+    method: "GET",
+  }).then(async (result) => {
+    const publishableKey = await result.json();
+    console.log(publishableKey);
+    return publishableKey.publishableKey;
+  });
 }
-
-
-
 
 // injects the widget button into the body element and adds event listeners for opening
 // and closing the popup.
@@ -404,28 +398,34 @@ function inject(html, css) {
         }
     });
 
+  document.getElementsByTagName("body")[0].addEventListener("click", (e) => {
+    if (KARMABOX_IS_OPEN) {
+      let child = document.getElementById("karmabox-body-child");
+      document.getElementsByTagName("body")[0].removeChild(child)[0];
+      KARMABOX_IS_OPEN = false;
+    }
+  });
 
-    let script = document.createElement("script");
-    script.src = "https://js.stripe.com/v3/";
-    document.getElementsByTagName("body")[0].appendChild(script);
-
+  let script = document.createElement("script");
+  script.src = "https://js.stripe.com/v3/";
+  document.getElementsByTagName("body")[0].appendChild(script);
 }
 
 function addEvents() {
-    document.getElementById("kb-tab-kba").addEventListener("click", e => {
-        e.target.className = "kb-tab-button kb-tab-button-select"
-        e.target.nextElementSibling.className = "kb-tab-button"
-        document.getElementsByClassName("kb-body-container-card")[0]
-            .className = "kb-body-container-card kb-display-none";
-        document.getElementsByClassName("kb-body-container-kba")[0]
-            .className = "kb-body-container-kba";
-    });
-    document.getElementById("kb-tab-card").addEventListener("click", e => {
-        e.target.className = "kb-tab-button kb-tab-button-select"
-        e.target.previousElementSibling.className = "kb-tab-button"
-        document.getElementsByClassName("kb-body-container-kba")[0]
-            .className = "kb-body-container-kba kb-display-none";
-        document.getElementsByClassName("kb-body-container-card")[0]
-            .className = "kb-body-container-card";
-    });
+  document.getElementById("kb-tab-kba").addEventListener("click", (e) => {
+    e.target.className = "kb-tab-button kb-tab-button-select";
+    e.target.nextElementSibling.className = "kb-tab-button";
+    document.getElementsByClassName("kb-body-container-card")[0].className =
+      "kb-body-container-card kb-display-none";
+    document.getElementsByClassName("kb-body-container-kba")[0].className =
+      "kb-body-container-kba";
+  });
+  document.getElementById("kb-tab-card").addEventListener("click", (e) => {
+    e.target.className = "kb-tab-button kb-tab-button-select";
+    e.target.previousElementSibling.className = "kb-tab-button";
+    document.getElementsByClassName("kb-body-container-kba")[0].className =
+      "kb-body-container-kba kb-display-none";
+    document.getElementsByClassName("kb-body-container-card")[0].className =
+      "kb-body-container-card";
+  });
 }
