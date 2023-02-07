@@ -59,7 +59,7 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
       token: token,
       setupIntent: setupIntent,
       customer: setupIntent.customer,
-      //clientSecret: setupIntent.client_secret
+      clientSecret: setupIntent.client_secret
     });
   } catch (error) {
     return res.status(400).send({
@@ -101,7 +101,7 @@ router.post("/create-payment-intent", validateSession, async (req, res) => {
       // "Help Jonas Breen"
       req.body.organization;
     console.log(req.body);
-    const amountToCharge = parseInt(amount) * 100;
+    // const amountToCharge = parseInt(amount) * 100;
 
     console.log('amount: ', amount)
     console.log(req.body)
