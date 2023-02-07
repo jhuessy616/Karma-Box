@@ -10,13 +10,21 @@ function About() {
           {/* <Col md="5"> */}
           <div className="DonorWelcome">
             <div className="AboutText">
-              <h3 className="DonorH3">
-                Giving causes the release of oxytocin, the hormone that induces
-                feelings of warmth, euphoria, and connection.
-              </h3>
               <h4 className="DonorH4">
-                Come jump into euphoria with us, sign up as a donor today!
+                <ul>
+                  <li>
+              Simplified, 1-click giving to any approved nonprofits.</li>
+              <li>Track and aggregate your charitable contributions across the web to streamline tax deductions.*</li>
+              <li>Create your personalized peer-to-peer fundraising campaign for approved nonprofits.*</li>
+              
+              <h6>
+              * Features coming soon!
+              </h6>
+              </ul>
               </h4>
+              <h3 className="DonorH3">
+                Begin earning good karma, sign up as a donor today!
+              </h3>
             </div>
           
               <button

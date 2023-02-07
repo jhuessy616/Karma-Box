@@ -37,13 +37,16 @@ const ProfileNavBar = (props) => {
       let data = await response.json();
       console.log(data);
       setPaymentMethod(data.user.paymentMethodId);
+      console.log("payment Method", paymentMethod)
     } catch (err) {
       console.log(err);
     }
   }
-  useEffect(() => {
-    fetchUser();
-  }, [props.token]);
+  // useEffect(() => {
+    
+  //     fetchUser();
+  // }, []);
+  fetchUser();
 
   async function deleteUser(id) {
     const url = `http://localhost:4000/user/delete/${id}`;
@@ -62,8 +65,10 @@ const ProfileNavBar = (props) => {
       if (data.message === "User was deleted") {
         alert("Your account has been deleted.");
         localStorage.clear();
-        navigate("/");
         props.setSessionToken("");
+        navigate("/");
+        
+       
       } else {
         alert(data.message);
       }
@@ -138,7 +143,7 @@ const ProfileNavBar = (props) => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-            {{ paymentMethod } ? (
+            { paymentMethod  ? (
               <Nav.Link
                 href="https://billing.stripe.com/p/login/test_dR66p8e4bc39gsU4gg"
                 className="navbar-link"

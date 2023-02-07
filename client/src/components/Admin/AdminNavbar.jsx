@@ -24,16 +24,16 @@ const AdminNavBar = (props) => {
             <Nav.Link href="/admin" className="navbar-link">
               Donations
             </Nav.Link>
-            <Nav.Link href="/allDonations" className="navbar-link">
+            <Nav.Link href="/admin/users" className="navbar-link">
               Users
             </Nav.Link>
             <Nav.Link
-              href="https://dashboard.stripe.com/test/payments"
+              href="https://dashboard.stripe.com/test/payments?status[0]=successful"
               className="navbar-link"
             >
               Stripe
             </Nav.Link>
-           
+
             <Nav.Link
               href="http://localhost:3000/"
               className="navbar-link"

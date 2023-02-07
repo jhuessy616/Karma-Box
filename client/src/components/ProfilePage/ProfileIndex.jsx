@@ -24,7 +24,7 @@ const ProfileIndex = (props) => {
         try {
           const response = await fetch(url, requestOptions);
           const data = await response.json();
-          setDonations(data.donations);
+          setDonations(data.donations.reverse());
           console.log(donations);
         } catch (err) {
           console.log(err.message);

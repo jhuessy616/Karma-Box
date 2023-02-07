@@ -12,9 +12,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #3D0F3A ;
+    background-color: #e7faff;
     background-size: cover;
     color: gray;
+}
+
+.doc-container > p {
+    color: var(--primary);
 }
 
 .inline {
@@ -23,7 +27,7 @@
 
 /* class for react-code-blocks CopyBlock*/
 .sc-gswNZR {
-    width: 600px;
+    width: 700px;
 }
 .copy {
     cursor:pointer;

@@ -5,7 +5,7 @@ import charity1 from "../../assets/img/migrantjusticelogo.png"
 import charity2 from "../../assets/img/ldfwhitetext.png";
 import charity3 from "../../assets/img/asylum-accesslogo.jpeg";
 import charity4 from "../../assets/img/rotarylogo.jpeg";
-import charity5 from "../../assets/img/WWF_logo.svg.png";
+import charity5 from "../../assets/img/turtleplastic.jpeg";
 import charity6 from "../../assets/img/robsquare.png";
 import "./charities.css"
 // import arrow1 from "../../assets/img/arrow1.svg";
@@ -74,10 +74,10 @@ const navigate = useNavigate();
                   <h5>Rotary International</h5>
                 </div>
                 <div className="item">
-                  <a href="https://www.worldwildlife.org/">
+                  <a href="http://localhost:3001/">
                     <img src={charity5} alt="Charity 5" />{" "}
                   </a>
-                  <h5>World Wildlife Foundation</h5>
+                  <h5>Mermaids Against Plastic</h5>
                 </div>
 
                 {/* <div className="item">

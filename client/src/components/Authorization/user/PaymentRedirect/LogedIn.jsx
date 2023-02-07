@@ -1,6 +1,7 @@
 import {Button} from "reactstrap"
 
 export default function LogedIn(props) {
+
     return(
         <>
       <h1
@@ -20,5 +21,5 @@ export default function LogedIn(props) {
           </Button>
       </div>
         </>
-    )
+    );
 }

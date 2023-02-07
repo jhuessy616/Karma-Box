@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import FullWidthButton from "../../Buttons/FullWidthButton";
-import Navbar from "../../../ProfilePage/ProfileNavBar";
+import ProfileNavbar from "../../../ProfilePage/ProfileNavBar";
 
 //! Declaration of Vairables
 const PasswordReset = (props) => {
@@ -82,7 +82,10 @@ const PasswordReset = (props) => {
 
 	return (
     <div className="Background">
-      <Navbar></Navbar>
+      <ProfileNavbar
+        token={props.token}
+        setSessionToken={props.setSessionToken}
+      ></ProfileNavbar>
       <Container className="logInFormContainer">
         <Row>
           <h1 className="txtcenter">Update Your Password</h1>
