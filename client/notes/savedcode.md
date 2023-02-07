@@ -473,3 +473,7 @@ Profile table
               </tbody>
             </Table>
                  ```       
+
+                 ```form submit 
+                  //   action={`http://localhost:4000/user/resetpassword/${id}/${token}`}
+                  //   method="post"

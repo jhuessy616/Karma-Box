@@ -19,6 +19,7 @@ router.post("/create-setup-intent", validateSession, async (req, res) => {
     const customer = await stripe.customers.create({
       description: "test customer",
       metadata: { user: `${user}` },
+      email: req.user.email
     });
 
     console.log(customer);
