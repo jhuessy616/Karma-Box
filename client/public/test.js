@@ -25,13 +25,10 @@ const popup = `<div class="karmabox-popup-container">
     <!-- card tab -->
     <div class="kb-body-container-card kb-display-none">
         <form class="karmabox-popup-card-container">
-            <label>Enter a custom amount</label>
-            <div class="kb-amount-container">
-                <div>
-                    <input class="karmabox-popup-input">
-                </div>
-                <button class="kb-amount-button">up</button>
-                <button class="kb-amount-button">down</button>
+            <label class="kba-custom-amount">Enter a custom amount</label>
+            <div>
+                <label>$</label>
+                <input value="5" class="kba-custom-amount-input">
             </div>
             <div>
                 <div class="karmabox-popup-input payment-element"></div>
@@ -73,15 +70,20 @@ const style = `
 }
 
 .karmabox-popup-container {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     --kb-tab-height: 35px;
-    --kb-body-height: calc(500px var(--kb-tab-height));
+    --kb-body-height: calc(550px var(--kb-tab-height));
     --kb-height: 500px;
     --primary: #0081c9;
     --secondary: #5bc0f8;
     --tertiary: #86e5ff;
     --yellow: #ffc93c;
     --yellow-plus: #fdbc02;
-    height: 400px;
+    height: 460px;
     /* var(--kb-body-height); */
     width: 250px;
     position: fixed;
@@ -104,7 +106,8 @@ const style = `
 }
 #kb-slogan{
     font-size: 17px; 
-        margin-bottom: -15px;
+    margin-bottom: -15px;
+    margin-top: 30px;
 }
 .kb-body-wrapper-kba{
     margin-top:10px;
@@ -222,6 +225,12 @@ const style = `
     font-weight: 550;
 }
 
+.kba-custom-amount-input {
+    width: 78px;
+    height: 20px;
+    margin: 10px;
+}
+
 .kba-amount-select:hover {
     background-color: var(--tertiary);
 }
@@ -272,7 +281,8 @@ const style = `
   box-shadow: 0 40px 70px 20px rgb(50 50 93 / 25%),
     0 30px 60px -30px rgb(0 0 0 / 30%);
     background-color: b9f0ff
-    font color  */`;
+    font color  */
+`;
 const html = `<div class="karmabox-button-container">
 <div class="karmabox-button-button ">
     <input type="image" src="http://localhost:3000/assets/logo3.png" class="karmabox-image-image"/>
