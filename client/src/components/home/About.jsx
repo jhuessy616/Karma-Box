@@ -14,8 +14,9 @@ function About() {
                 <ul>
                   <li>
               Simplified, 1-click giving to any approved nonprofits.</li>
-              <li>Track and aggregate your charitable contributions across the web to streamline tax deductions.*</li>
-              <li>Create your personalized peer-to-peer fundraising campaign for approved nonprofits.*</li>
+              <li>Track and aggregate charitable contributions across the web to streamline tax deductions.*</li>
+              <li>Create personalized peer-to-peer fundraising campaign for approved nonprofits.*</li>
+            
               
               <h6>
               * Features coming soon!

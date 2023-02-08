@@ -3,24 +3,26 @@ import { Col, Row } from 'reactstrap'
 import fishingline from "../../assets/img/fishingline.png"
 import tirewater from "../../assets/img/tirewater.png";
 import hooks from "../../assets/img/hooks.png";
+import mermaid1 from "../../assets/img/Mattsmeredit.png"
+import mermaid2 from "../../assets/img/MorgansMeredit.png"
+import mermaid3 from "../../assets/img/BensMeredit2.png";
 function Images() {
   return (
-    <div className="plasticimages">
-      {/* <Row className="plasticimages"> */}
-        {/* <Col md="4" className="imagecolumn"> */}
-          <img src={fishingline} />
-         
-        {/* </Col> */}
-        {/* <Col md="4" className="imagecolumn"> */}
-          <img src={tirewater} />
-        
-        {/* </Col>
+    // <div className="mermaidimages">
+       <div className="plasticimages"> 
+      {/* USE Below */}
+      <img src={fishingline} />
+      {/* <img style={{ width: 600 }} src={mermaid1} /> */}
 
-        <Col md="4" className="imagecolumn"> */}
-          <img src={hooks} />
-         
-        {/* </Col> */}
+      <img src={tirewater} />
+      {/* <img style={{ width: 700 }} src={mermaid2} /> */}
+
+      <img src={hooks} />
+      {/* <img style={{width:600}} src={mermaid3} /> */}
+
+      {/* </Col> */}
       {/* </Row> */}
+   
     </div>
   );
 }

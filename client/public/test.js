@@ -6,7 +6,7 @@ const popup = `<div class="karmabox-popup-container">
     <!-- karma box acount tab -->
     <div class="kb-body-container-kba">
         <div class="kb-body-wrapper-kba">
-            <h2 id="kb-slogan">Start Earning Good Karma Today</h2>
+            <h2 id="kb-slogan">Start Earning Good Karma</h2>
             <h3 id="kb-charity"> Donate to Mermaids Against Plastic</h3>
             <div class="kba-amount-select-container">
                 <button id="kba-amount-1" class="kba-amount-select kba-amount-selected">$5</button>
@@ -75,6 +75,7 @@ const style = `
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
     --kb-tab-height: 35px;
     --kb-body-height: calc(550px var(--kb-tab-height));
     --kb-height: 500px;
@@ -102,12 +103,12 @@ const style = `
    
 }
 #kb-charity{
-    font-size: 16.2px;
+    font-size: 14.3px;
 }
 #kb-slogan{
-    font-size: 17px; 
-    margin-bottom: -15px;
-    margin-top: 30px;
+    font-size: 20px; 
+    margin-bottom: -7px;
+    margin-top: 37px;
 }
 .kb-body-wrapper-kba{
     margin-top:10px;

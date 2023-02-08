@@ -13,8 +13,11 @@ h3 {
 .sitebanner {
       text-align: center;
       background: url("../../assets/img/turtleplastic.jpeg");
+        /* background: url("../../assets/img/mermaids.jpg"); */
       background-size: cover;
+      
       min-height: 70vh;
+      
       /* min-width: 90vw; */
       /* min-width: 100vw; */
       /* margin: 0 auto; */
@@ -28,9 +31,11 @@ h3 {
    .sitebanner h1 {
       /* margin: 40px; */
       font-size: calc(2rem + 5vw) ;
-      color: white;
-      padding-top: 30px;
-      margin-top: 0px;
+      /* color: white; */
+      color:magenta;
+      padding-top: 550px;
+      margin-bottom: 0px;
+      margin-top: 0;
     }
 /* span{
   background:rgba(0,0,0,0.8);
@@ -46,9 +51,14 @@ h3 {
   width: 300px;
   height: 300px;
 }
-.plasticimages{
+.plasticimages {
     display: flex;
     justify-content: space-around;
+}
+.mermaidimages{ display: flex;
+    justify-content: space-around;
+    margin-top:20px
+
 }
 .aboutParagraph {
 	font-size: 20px;

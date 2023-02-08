@@ -86,10 +86,10 @@ let email=sanitize(data.email)
               className="form-control emailinputgroup "
               {...register("email", {
                 required: "You must enter an email",
+                // validate: (value) =>
+                //   value.includes("@") || "Please provide a valid email",
                 validate: (value) =>
-                  value.includes("@") || "Please provide a valid email",
-                validate: (value) =>
-                  value.length >= 5 || "Please provide a valid email.",
+                  value.length >= 5 &  value.includes("@") || "Please provide a valid email" 
               })}
             />
             <Label for="email">Email</Label>
@@ -101,7 +101,7 @@ let email=sanitize(data.email)
           <FormGroup floating>
             <input
               class="form-control"
-              id="examplePassword"
+              id="password"
               name="password"
               placeholder="Password"
               type={state ? "text" : "password"}

@@ -12,7 +12,7 @@
   /* margin-top: -60px; */
 }
 .charityContainer{
-    margin-top: 10vh;
+    margin-top: 6vh;
 }
 
   .charity h2 {
@@ -71,7 +71,7 @@ button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left{
 }
 .charity .connectButton{
   color: #fff;
-background: linear-gradient(90.21deg, rgba(0, 59, 255, 0.5) -5.91%, rgba(255, 69, 0, 0.75) 111.58%);
+background: linear-gradient(90.21deg, rgba(0, 59, 255, 0.5) -5.91%, rgba(104,200,255, 0.75) 111.58%);
   font-weight: 700;
  font-size:calc(.6rem + .6vw);
   position: relative;
