@@ -23,7 +23,7 @@ const AdminProfile = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      setDonations(data.donations);
+      setDonations(data.donations.reverse());
       console.log(donations);
     } catch (err) {
       console.log(err.message);
@@ -44,7 +44,7 @@ const AdminProfile = (props) => {
     <div className="Background">
       <AdminNavbar token={props.token}></AdminNavbar>
       <Container className="profilepage">
-        <h1 className="txtcenter ">Karma Box administrator</h1>
+        <h1 className="txtcenter ">Karma Box Administrator</h1>
         <h2 className="txtcenter">All Donations</h2>
 
         <Row>

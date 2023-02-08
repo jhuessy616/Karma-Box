@@ -118,7 +118,7 @@ router.post("/create-payment-intent", validateSession, async (req, res) => {
 
     let donation = new Donation({
       user: req.user._id,
-   
+   date: new Date().toLocaleDateString(),
       organization: organization,
       amount: amount,
     });

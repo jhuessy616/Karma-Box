@@ -41,7 +41,7 @@ const AdminUsersIndex = (props) => {
     <div className="Background">
       <AdminNavbar token={props.token}></AdminNavbar>
       <Container className="profilepage">
-        <h1 className="txtcenter ">Karma Box administrator</h1>
+        <h1 className="txtcenter ">Karma Box Administrator</h1>
         <h2 className="txtcenter">All Users</h2>
 
         <Row>
