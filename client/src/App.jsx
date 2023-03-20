@@ -8,7 +8,7 @@ import SignUpPage from "./components/Authorization/user/SignUpPage";
 import NonProfitSignUpPage from "./components/Authorization/user/signup/NonProfitSignUp";
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
-import About from "./components/home/About";
+import KarmaBoxDescription from "./components/home/KarmaBoxDescription";
 
 import ForgotPassword from "./components/Authorization/user/login/ForgotPassword"
 import ResetPassword from "./components/Authorization/user/login/ForgotResetPassword";

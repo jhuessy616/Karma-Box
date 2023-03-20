@@ -5,7 +5,7 @@ import charity1 from "../../assets/img/migrantjusticelogo.png"
 import charity2 from "../../assets/img/ldfwhitetext.png";
 import charity3 from "../../assets/img/asylum-accesslogo.jpeg";
 import charity4 from "../../assets/img/rotarylogo.jpeg";
-import charity5 from "../../assets/img/turtleplastic.jpeg";
+import charity5 from "../../assets/img/mermaidlogo.png";
 import charity6 from "../../assets/img/robsquare.png";
 import "./charities.css"
 // import arrow1 from "../../assets/img/arrow1.svg";

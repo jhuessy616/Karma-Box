@@ -31,8 +31,8 @@ h3 {
    .sitebanner h1 {
       /* margin: 40px; */
       font-size: calc(2rem + 5vw) ;
-      /* color: white; */
-      color:magenta;
+      color: white;
+      /* color:magenta; */
       padding-top: 550px;
       margin-bottom: 0px;
       margin-top: 0;

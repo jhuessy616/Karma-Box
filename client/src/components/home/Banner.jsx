@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import logo from "../../assets/img/logo3.png";
-import About from "./About";
+import About from "./KarmaBoxDescription";
 // import headerImg from "../../assets/img/header-img.svg"
 import "./banner.css";
 
@@ -69,7 +69,7 @@ function Banner() {
         
           </h1>
           <h2>
-            Our goal is to connect non-profits and donors and to make giving
+            Our goal is to connect non-profits with donors to make giving
             easier.
                   </h2>
                   

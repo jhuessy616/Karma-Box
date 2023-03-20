@@ -129,12 +129,12 @@
 /* card tab container */
 .kb-body-container-card{
     height: var(--kb-body-height);
-    overflow-y: scroll;
+  
 }
 /* karma box acount tab container */
 .kb-body-container-kba{
     height: var(--kb-body-height);
-    overflow-y: scroll;
+   
 }
 .kb-display-none {
     display: none;

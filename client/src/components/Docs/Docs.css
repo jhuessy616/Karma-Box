@@ -4,10 +4,10 @@
 }
 
 .doc-container {
-    min-height: 100vh;
+    min-height: 80vh;
     max-width: 1000px;
     margin: 30px;
-    margin-top: 100px;
+    margin-top: 120px;
 }
 .doc-wrapper {
     display: flex;

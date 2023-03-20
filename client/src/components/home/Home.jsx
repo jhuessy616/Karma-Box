@@ -1,6 +1,6 @@
 
 import NavBar from './NavBar'
-import About from './About'
+import KarmaBoxDescription from './KarmaBoxDescription'
 import Charities from './Charities'
 import Banner from './Banner'
 import "./home.css"

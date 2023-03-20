@@ -68,20 +68,17 @@ function SetupIntent({ token }) {
 
   return (
     <div className="Background">
-      {token ? (
-        <Container className="signup">
-        <h1 className="txtcenter" style={{paddingTop:50}}>Begin Earning Good Karma Today!</h1>
+    
+      <Container className="signup">
+        <h1 className="txtcenter" style={{ paddingTop: 50 }}>
+          Begin Earning Good Karma Today!
+        </h1>
         {clientSecret && stripePromise && (
           <Elements stripe={stripePromise} options={{ clientSecret }}>
             <SetupForm />
           </Elements>
-        )} 
-        </Container>
-      ) : (
-        <h1>Sorry you must be logged in to view this page</h1>
-      )}
-      {/* <ProfileNavbar></ProfileNavbar> */}
-      
+        )}
+      </Container>
     </div>
   );
 }
