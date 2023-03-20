@@ -131,6 +131,7 @@ const Login = (props) => {
                       type={state ? "text" : "password"}
                       innerRef={passwordRef}
                     />
+                    <Label for="examplePassword">Password</Label>
                   </FormGroup>
                   <Button
                     className="eyebtn input-group-text "
@@ -149,8 +150,6 @@ const Login = (props) => {
                 </FullWidthButton>
               </Form>
             </div>
-
-            
 
             <div className="loginlinks">
               <p className="txtcenter">

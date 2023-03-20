@@ -1,5 +1,5 @@
 import { Col, Container, Row } from "reactstrap";
-import "./about.css";
+import "./karmaboxdescription.css";
 import { useNavigate } from "react-router-dom";
 function About() {
       const navigate = useNavigate();

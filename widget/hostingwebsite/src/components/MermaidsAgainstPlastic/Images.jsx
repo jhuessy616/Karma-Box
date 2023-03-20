@@ -9,7 +9,7 @@ import mermaid3 from "../../assets/img/BensMeredit2.png";
 function Images() {
   return (
     // <div className="mermaidimages">
-       <div className="plasticimages"> 
+        <div className="plasticimages"> 
       {/* USE Below */}
       <img src={fishingline} />
       {/* <img style={{ width: 600 }} src={mermaid1} /> */}

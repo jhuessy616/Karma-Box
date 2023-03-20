@@ -8,7 +8,7 @@ import ProfileNavbar from "../ProfilePage/ProfileNavBar"
 import "./ProfileIndex.css"
 
 
-//! Declaration of Vairables
+//! Declaration of Variables
 const ProfileIndex = (props) => {
 	    const [donations, setDonations] = useState([]);
       const fetchDonations = async () => {
@@ -40,54 +40,51 @@ const ProfileIndex = (props) => {
 	for (let donation of donations) {
 		totalDonated += donation.amount
 }
-	//! Container that hosted the create chatroom and display chatroom.
+	
 	return (
     <div className="Background">
-      {props.token ? (
-        <div>
-          <ProfileNavbar token={props.token} setSessionToken={props.setSessionToken}></ProfileNavbar>
-      <Container className="profilepage">
-        <h1 className="txtcenter ">
-          Welcome to Your Karma Box Dashboard!
-        </h1>
-        <h2 className="txtcenter">Below are your Karma Box donations</h2>
+    
+      <div>
+        <ProfileNavbar
+          token={props.token}
+          setSessionToken={props.setSessionToken}
+        ></ProfileNavbar>
+        <Container className="profilepage">
+          <h1 className="txtcenter ">Welcome to Your Karma Box Dashboard!</h1>
+          <h2 className="txtcenter">Below are your Karma Box donations</h2>
 
-        <Row>
-          <Col lg="3" md="3" xs="1"></Col>
-          <Col lg="6" md="6" xs="10">
-            <div className="total-donations">
-              <h1 className="txtcenter">Total Donated: ${totalDonated}</h1>{" "}
-            </div>
-            <Table striped className='donations-table'>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Organization</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {donations.map((donation) => (
-                  <tr key={donation._id}>
-                    <td scope="row">{donation.date}</td>
-                    <td>{donation.organization}</td>
-                    <td>${donation.amount}</td>
+          <Row>
+            <Col lg="3" md="3" xs="1"></Col>
+            <Col lg="6" md="6" xs="10">
+              <div className="total-donations">
+                <h1 className="txtcenter">Total Donated: ${totalDonated}</h1>{" "}
+              </div>
+              <Table striped className="donations-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Organization</th>
+                    <th>Amount</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </Col>
+                </thead>
+                <tbody>
+                  {donations.map((donation) => (
+                    <tr key={donation._id}>
+                      <td scope="row">{donation.date}</td>
+                      <td>{donation.organization}</td>
+                      <td>${donation.amount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Col>
 
-          <Col lg="3" md="3" xs="1">
-            {" "}
-          </Col>
-        </Row>
-      </Container>
-        </div>
-      ) : (
-        <h1>Sorry you must be logged in to view this page.</h1>
-      )}
-      
+            <Col lg="3" md="3" xs="1">
+              {" "}
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 	};
