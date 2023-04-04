@@ -1,49 +1,47 @@
 // ! Dependencies imported
 import React, { useState, useEffect } from "react";
 
-import {  Col, Container, Row, Table,   } from "reactstrap";
+import { Col, Container, Row, Table } from "reactstrap";
 
-import ProfileNavbar from "../ProfilePage/ProfileNavBar"
+import ProfileNavbar from "../ProfilePage/ProfileNavBar";
 
-import "./ProfileIndex.css"
-
+import "./ProfileIndex.css";
 
 //! Declaration of Variables
 const ProfileIndex = (props) => {
-	    const [donations, setDonations] = useState([]);
-      const fetchDonations = async () => {
-        const url = "http://localhost:4000/donations/userDonations";
-        let myHeaders = new Headers();
-        myHeaders.append("Authorization", props.token);
+  const [donations, setDonations] = useState([]);
+  const fetchDonations = async () => {
+    const url = "http://localhost:4000/donations/userDonations";
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", props.token);
 
-        const requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-        };
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+    };
 
-        try {
-          const response = await fetch(url, requestOptions);
-          const data = await response.json();
-          setDonations(data.donations.reverse());
-          console.log(donations);
-        } catch (err) {
-          console.log(err.message);
-        }
-      };
-      useEffect(() => {
-        if (props.token) {
-          fetchDonations();
-        }
-      }, [props.token]);
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      setDonations(data.donations.reverse());
+      console.log(donations);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  useEffect(() => {
+    if (props.token) {
+      fetchDonations();
+    }
+  }, [props.token]);
 
-	let totalDonated = 0
-	for (let donation of donations) {
-		totalDonated += donation.amount
-}
-	
-	return (
+  let totalDonated = 0;
+  for (let donation of donations) {
+    totalDonated += donation.amount;
+  }
+
+  return (
     <div className="Background">
-    
       <div>
         <ProfileNavbar
           token={props.token}
@@ -87,6 +85,6 @@ const ProfileIndex = (props) => {
       </div>
     </div>
   );
-	};
+};
 
 export default ProfileIndex;

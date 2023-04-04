@@ -1,5 +1,5 @@
 import {Button} from "reactstrap";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function AfterPayment() {
 
@@ -8,7 +8,7 @@ export default function AfterPayment() {
     console.log(returnUrl)
 
 
-    const navigate = useNavigate();
+  
     return (
         <>
             <Button onClick={() => window.location.href = returnUrl}>return to the organization</Button>

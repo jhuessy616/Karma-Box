@@ -1,30 +1,17 @@
-import { Col, Container, Row } from 'reactstrap'
+import { Container } from 'reactstrap'
 import "./aboutPage.css"
-import Burlington from "../../../../assets/img/burlington.jpeg"
-import Stripe from "../../../../assets/img/Stripe.png"
-import Navbar from "../../../home/NavBar"
+import Burlington from "../../assets/img/burlington.jpeg"
+import Stripe from "../../assets/img/Stripe.png"
+import Navbar from "../home/NavBar"
 function AboutPage() {
 
-    let url = `http://localhost:3000/about`;
+
 
   return (
     <section className="About">
       <Navbar></Navbar>
       <Container>
-        {/* <Row>
-        <Col lg="2.5" md="4" xs="2">
-        </Col>
-		<Col lg="2.5" md="4" xs="8">
-             */}
-       
-        {/* </Col>
-          <Col lg="2.5" md="4" xs="2"></Col>
-          </Row>
-          <Row> */}
-
-        {/* <Col lg="2.5" md="4" xs="2">
-        </Col>
-		<Col lg="2.5" md="8" xs="8"> */}
+    
         <div className="about">
           <img className="aboutimage" src={Burlington} alt="Burlington"></img>
           <p className="aboutParagraph">

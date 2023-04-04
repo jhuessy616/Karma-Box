@@ -1,10 +1,10 @@
 // this page is the login/ sign up page currently 
 
 // ! Dependencies imported
-import DonorSignUp from "./signup/donorSignUp"
+import DonorSignUp from "./donorSignUp"
 import { Col, Container, Row } from "reactstrap";
 import "./SignUpPage.css"
-import Navbar from "../../home/NavBar"
+import Navbar from "../../../home/NavBar"
 
 
 const SignUpPage = (props) => {

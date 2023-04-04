@@ -36,7 +36,6 @@ const AdminUsersIndex = (props) => {
   }, [props.token]);
 
   
-  //! Container that hosted the create chatroom and display chatroom.
   return (
     <div className="Background">
       <AdminNavbar token={props.token}></AdminNavbar>

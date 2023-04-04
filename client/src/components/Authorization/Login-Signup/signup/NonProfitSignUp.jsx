@@ -1,8 +1,7 @@
 import React, { useRef, useState} from "react";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import emailjs from "@emailjs/browser";
-import FullWidthButton from "../../Buttons/FullWidthButton";
-import { useNavigate } from "react-router-dom";
+import FullWidthButton from "../../../Buttons/FullWidthButton";
 import "./nonprofitsignup.css"
 import NavBar from "../../../home/NavBar";
 
@@ -118,7 +117,9 @@ const CharitySignUp = () => {
             </Form>
           </Col>
           <Col xs="1" s="2" md="2" lg="3"></Col>
-          {displayMessage ? <p className="txtcenter">{message}</p> : <h1></h1>}
+          {displayMessage ? <p className="txtcenter">{message}</p> : <></>
+            // <h1></h1>
+          }
         </Row>
       </div>
     </div>

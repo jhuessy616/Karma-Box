@@ -1,56 +1,45 @@
 :root {
-	--primary: #0081c9;
-	--secondary: #5bc0f8;
-	--tertiary: #86e5ff;
-	--yellow: #ffc93c;
+  --primary: #0081c9;
+  --secondary: #5bc0f8;
+  --tertiary: #86e5ff;
+  --yellow: #ffc93c;
 }
 
-/* isnt talkin to my h1 tag */
 h1 {
-	color: var(--primary);
+  color: var(--primary);
 }
 
 h2 {
-	color: var(--secondary);
+  color: var(--secondary);
 }
 
 h3 {
-	color: var(--secondary);
+  color: var(--secondary);
 }
 
 FullWidthButton {
-	background-color: var(--yellow)
+  background-color: var(--yellow);
 }
 
 .Background {
-	display: 'flex';
-    align-items: 'center';
-    justify-content: 'center';
-	background-color: var(--tertiary);
-	min-height: 100vh;
-	/* margin-top: 0px !important; */
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+  background-color: var(--tertiary);
+  min-height: 100vh;
 }
 
-/* trying to center the form
-.logInForm {
-    display: 'flex';
-    align-items: 'center';
-    justify-content: 'center';
-	width: 400px;
-} */
-
-.profilepage{
-margin-top: 100px;
+.profilepage {
+  margin-top: 100px;
 }
-.total-donations h1{
-	font-size: calc(1.2rem + 1vw);
-	margin-top: 30px;
-	background-color: var(--secondary);
-	color:black
+.total-donations h1 {
+  font-size: calc(1.2rem + 1vw);
+  margin-top: 30px;
+  background-color: var(--secondary);
+  color: black;
 }
 
-
-.donations-table{
-	background-color: #cff4fc;
---bs-table-striped-bg: rgba(0, 129, 201, .05)!important
+.donations-table {
+  background-color: #cff4fc;
+  --bs-table-striped-bg: rgba(0, 129, 201, 0.05) !important;
 }

@@ -1,86 +1,79 @@
 // ! Dependencies imported
 import React, { useRef } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import {
-	InputGroup,
-	Button,
-	Form,
-	FormGroup,
-	Input,
-	Label,
-	Col,
-	Container,
-	Row,
+  InputGroup,
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Col,
+  Container,
+  Row,
 } from "reactstrap";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import FullWidthButton from "../../Buttons/FullWidthButton";
-import ProfileNavbar from "../../../ProfilePage/ProfileNavBar";
+import ProfileNavbar from "../../ProfilePage/ProfileNavBar";
 
 //! Declaration of Vairables
 const PasswordReset = (props) => {
-	const currentPasswordRef = useRef();
-	const newPasswordRef = useRef();
-	const confirmNewPasswordRef = useRef();
-	const formRef = useRef();
-	const navigate = useNavigate();
-	const decoded = props.token ? jwt_decode(props.token) : "";
-	const [errorMessage, setErrorMessage] = useState();
+  const currentPasswordRef = useRef();
+  const newPasswordRef = useRef();
+  const confirmNewPasswordRef = useRef();
+  const formRef = useRef();
+  const decoded = props.token ? jwt_decode(props.token) : "";
+  const [errorMessage, setErrorMessage] = useState();
 
-	const [state, setState] = useState(false);
-	const toggleBtn = (e) => {
-		e.preventDefault();
-		setState((prevState) => !prevState);
-	};
+  const [state, setState] = useState(false);
+  const toggleBtn = (e) => {
+    e.preventDefault();
+    setState((prevState) => !prevState);
+  };
 
-	async function handleSubmit(e) {
-		e.preventDefault();
-		const currentPassword = currentPasswordRef.current.value;
-		const newPassword = newPasswordRef.current.value;
-		const confirmNewPassword = confirmNewPasswordRef.current.value;
-		
-		if (newPassword !== confirmNewPassword) {
-			setErrorMessage("Passwords do not match");
-		} else if (newPassword.length < 6) {
-			setErrorMessage("Passwords must have at least six characters");
-		}
-		else {
-		
-			//!Url our page is hosed on
-			let url = `http://localhost:4000/user/update/${decoded.id}`;
-			let bodyObject = JSON.stringify({ currentPassword, newPassword });
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const currentPassword = currentPasswordRef.current.value;
+    const newPassword = newPasswordRef.current.value;
+    const confirmNewPassword = confirmNewPasswordRef.current.value;
 
-			let myHeaders = new Headers();
-			myHeaders.append("Content-Type", "application/json");
-			myHeaders.append("Authorization", props.token);
+    if (newPassword !== confirmNewPassword) {
+      setErrorMessage("Passwords do not match");
+    } else if (newPassword.length < 6) {
+      setErrorMessage("Passwords must have at least six characters");
+    } else {
+      //!Url our page is hosed on
+      let url = `http://localhost:4000/user/update/${decoded.id}`;
+      let bodyObject = JSON.stringify({ currentPassword, newPassword });
 
-			const requestOptions = {
-				headers: myHeaders,
-				body: bodyObject,
-				method: "PATCH",
-			};
-			//! function that runs when the user hits the signup button, that then allows them to log in
-			try {
-				const response = await fetch(url, requestOptions);
-				const data = await response.json();
-				console.log(data);
-				if (data.message === "User updated") {
-          //We are free to navigate to another page
-        //   props.updateToken(data.token);
-					setErrorMessage("Password successfully updated");
- formRef.current.reset();
-        //   navigate("/profile");
+      let myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", props.token);
+
+      const requestOptions = {
+        headers: myHeaders,
+        body: bodyObject,
+        method: "PATCH",
+      };
+
+      try {
+        const response = await fetch(url, requestOptions);
+        const data = await response.json();
+        console.log(data);
+        if (data.message === "User updated") {
+          setErrorMessage("Password successfully updated");
+          formRef.current.reset();
         } else {
           setErrorMessage(data.message);
         }
-			} catch (error) {
-				console.log(error.message);
-			}
-		}
-	}
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
 
-	return (
+  return (
     <div className="Background">
       <ProfileNavbar
         token={props.token}

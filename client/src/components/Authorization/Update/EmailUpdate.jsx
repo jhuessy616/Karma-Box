@@ -1,32 +1,37 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom"
-import { Button, InputGroup, Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
+import {
+  Button,
+  InputGroup,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Col,
+  Container,
+  Row,
+} from "reactstrap";
 import jwt_decode from "jwt-decode";
 import FullWidthButton from "../../Buttons/FullWidthButton";
-import ProfileNavbar from "../../../ProfilePage/ProfileNavBar"
+import ProfileNavbar from "../../ProfilePage/ProfileNavBar";
 import { useState } from "react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import sanitize from "../../../../utils/sanitizeinput";
-
+import sanitize from "../../../utils/sanitizeinput";
 
 //! Declaration of Vairables
 const EmailUpdate = (props) => {
-	const currentPasswordRef = useRef();
-	const newEmailRef = useRef();
-	const confirmNewEmailRef = useRef();
-	const formRef = useRef();
-	const navigate = useNavigate();
-    const decoded = props.token ? jwt_decode(props.token) : "";
-	
-	const [errorMessage, setErrorMessage] = useState();
-  
-    const [state, setState] = useState(false);
-	const toggleBtn = (e) => {
-		e.preventDefault();
-		setState((prevState) => !prevState);
-	};
+  const currentPasswordRef = useRef();
+  const newEmailRef = useRef();
+  const confirmNewEmailRef = useRef();
+  const formRef = useRef();
+  const decoded = props.token ? jwt_decode(props.token) : "";
+  const [errorMessage, setErrorMessage] = useState();
+  const [state, setState] = useState(false);
+  const toggleBtn = (e) => {
+    e.preventDefault();
+    setState((prevState) => !prevState);
+  };
 
-	async function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const currentPassword = currentPasswordRef.current.value;
     const email = sanitize(newEmailRef.current.value);
@@ -54,17 +59,19 @@ const EmailUpdate = (props) => {
         const response = await fetch(url, requestOptions);
         const data = await response.json();
         console.log(data);
-		  if (data.message === "User updated") {
-			  //We are free to navigate to another page
-			  //   props.updateToken(data.token);
-			  setErrorMessage("Email successfully updated");
-			  formRef.current.reset();
-		  }
-		  else if (data.message.includes("email_1 dup key")) {
-			  setErrorMessage(["Email already exists.", <br/>, "Please use a different email."])
-		}
-		else {
-         setErrorMessage(data.message);
+        if (data.message === "User updated") {
+          //We are free to navigate to another page
+          //   props.updateToken(data.token);
+          setErrorMessage("Email successfully updated");
+          formRef.current.reset();
+        } else if (data.message.includes("email_1 dup key")) {
+          setErrorMessage([
+            "Email already exists.",
+            <br />,
+            "Please use a different email.",
+          ]);
+        } else {
+          setErrorMessage(data.message);
         }
       } catch (error) {
         console.log(error.message);
@@ -72,8 +79,8 @@ const EmailUpdate = (props) => {
     }
   }
 
-	//! Container that hosted the create chatroom and display chatroom.
-	return (
+  //! Container that hosted the create chatroom and display chatroom.
+  return (
     <div className="Background">
       <ProfileNavbar
         token={props.token}
@@ -82,9 +89,9 @@ const EmailUpdate = (props) => {
       <Container className="logInFormContainer">
         <Row>
           <h1 className="txtcenter">Update Your Email</h1>
-          <div class="col-2 col-md-3 col-lg-4"></div>
+          <div className="col-2 col-md-3 col-lg-4"></div>
 
-          <div class="col-8 col-md-6 col-lg-4">
+          <div className="col-8 col-md-6 col-lg-4">
             <Form onSubmit={handleSubmit} innerRef={formRef}>
               <InputGroup>
                 <FormGroup floating>

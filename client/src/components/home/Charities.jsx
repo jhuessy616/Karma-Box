@@ -1,25 +1,21 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "./charities.css"
-import charity1 from "../../assets/img/migrantjusticelogo.png"
+import "./charities.css";
+import charity1 from "../../assets/img/migrantjusticelogo.png";
 import charity2 from "../../assets/img/ldfwhitetext.png";
 import charity3 from "../../assets/img/asylum-accesslogo.jpeg";
 import charity4 from "../../assets/img/rotarylogo.jpeg";
 import charity5 from "../../assets/img/mermaidlogo.png";
-import charity6 from "../../assets/img/robsquare.png";
-import "./charities.css"
-// import arrow1 from "../../assets/img/arrow1.svg";
-// import arrow2 from "../../assets/img/arrow2.svg";
-// import colorSharp from "../../assets/img/color-sharp.png";
+
+import "./charities.css";
+
 import { Col, Container, Row } from "reactstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 function Charities() {
-    const responsive = {
+  const responsive = {
     largeDesktop: {
-    
       breakpoint: { max: 4000, min: 3000 },
       items: 6,
     },
@@ -36,7 +32,7 @@ function Charities() {
       items: 2,
     },
   };
-const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <section className="charity" id="charities">
       <Container className="charityContainer">
@@ -79,11 +75,6 @@ const navigate = useNavigate();
                   </a>
                   <h5>Mermaids Against Plastic</h5>
                 </div>
-
-                {/* <div className="item">
-                  <img src={charity6} alt="Charity 6" />
-                  <h5>Dad Joke Intervention</h5>
-                </div> */}
               </Carousel>
             </div>
           </Col>
@@ -105,4 +96,4 @@ const navigate = useNavigate();
   );
 }
 
-export default Charities
+export default Charities;

@@ -65,7 +65,9 @@ const AdminProfile = (props) => {
               <tbody>
                 {donations.map((donation) => (
                   <tr key={donation._id}>
-                    <td scope="row">{donation.date}</td>
+                    <td
+                      // scope="row"
+                    >{donation.date}</td>
                     <td>{donation.user.email}</td>
                     <td>{donation.organization}</td>
                     <td>${donation.amount}</td>
