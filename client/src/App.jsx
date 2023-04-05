@@ -92,7 +92,8 @@ function App() {
           <Route
             path="/paymentRedirect"
             element={
-              <UpdatePassword
+              <PaymentRedirect
+                setReturnUrl={setReturnUrl}
                 token={sessionToken}
               />
             }
@@ -148,7 +149,7 @@ function App() {
             <Route
               path="/updatePassword"
               element={
-                <PasswordReset
+                <UpdatePassword
                   token={sessionToken}
                   setSessionToken={setSessionToken}
                 />
