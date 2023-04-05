@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { ArrowRightCircle } from "react-bootstrap-icons";
-import logo from "../../assets/img/logo3.png";
-import About from "./KarmaBoxDescription";
+import { Container } from "react-bootstrap";
+import KarmaBoxDescription from "./KarmaBoxDescription";
 // import headerImg from "../../assets/img/header-img.svg"
 import "./banner.css";
 
@@ -10,13 +8,7 @@ function Banner() {
   // Set up to have changing text
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const toRotate = [
-    "Giving",
-    "Helping",
-    "Easy",
-    "Helpful",
-    "Caring",
-  ];
+  const toRotate = ["Giving", "Helping", "Easy", "Helpful", "Caring"];
   const [text, setText] = useState("");
   // How fast the letters come one after another
   const [delta, setDelta] = useState(200 - Math.random() * 100);
@@ -61,24 +53,16 @@ function Banner() {
         <div className="align-items-center">
           <h1 className="KbDescription">
             {" "}
-            
-              Karma Box is {""}
-             
-              {text == "" ? <br></br> : null}
-              <span className="wrap">{text}</span>
-        
+            Karma Box is {""}
+            {text === "" ? <br></br> : null}
+            <span className="wrap">{text}</span>
           </h1>
           <h2>
             Our goal is to connect non-profits with donors to make giving
             easier.
-                  </h2>
-                  
-        
+          </h2>
 
-         
-       
-        
-          <About></About>
+          <KarmaBoxDescription></KarmaBoxDescription>
         </div>
       </Container>
     </section>
@@ -86,7 +70,3 @@ function Banner() {
 }
 
 export default Banner;
-
-//   <button className="connectButton" onClick={() => console.log("connect")}>
-//     Let's Connect <ArrowRightCircle size={25} />
-//   </button>;

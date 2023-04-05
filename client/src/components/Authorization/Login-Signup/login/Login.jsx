@@ -2,107 +2,84 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import IconButton from "@mui/material";
 
-// import Visibility from "@mui/material";
-// import { InputAdornment, IconButton, Visibility, VisibiltyOff} from "@mui/material";
-// import VisibilityOff from "@mui/material";
-
-import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 // ! Styling imported from reactstrap
 import {
-	InputGroupAddon,
-	InputGroup,
-	Button,
-	Form,
-	FormGroup,
-	Input,
-	Label,
-	Col,
-	Container,
+  InputGroup,
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Col,
+  Container,
   Row,
- 
 } from "reactstrap";
-import FullWidthButton from "../../Buttons/FullWidthButton";
+import FullWidthButton from "../../../Buttons/FullWidthButton";
 
 import Navbar from "../../../home/NavBar";
 import "./login.css";
 import sanitize from "../../../../utils/sanitizeinput";
-import jwt_decode from "jwt-decode";
+
 
 //! Declaration of Variables
 const Login = (props) => {
-	const emailRef = useRef();
-	const passwordRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
   const navigate = useNavigate();
   const [message, setMessage] = useState();
- 
-	// const [loginError, setLoginError] = useState("");
-	// const [loginErrorClass, setLoginErrorClass] = useState("none");
 
-	const [state, setState] = useState(false);
-	const toggleBtn = (e) => {
-		e.preventDefault()
-		setState(prevState => !prevState);
-	}
+  const [state, setState] = useState(false);
+  const toggleBtn = (e) => {
+    e.preventDefault();
+    setState((prevState) => !prevState);
+  };
 
-  // Google passport
-
-
-  // end of google passport
-
-	async function handleSubmit(e) {
-		e.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
 
     const email = sanitize(emailRef.current.value);
-    console.log(email)
-		const password = passwordRef.current.value;
+    console.log(email);
+    const password = passwordRef.current.value;
 
-		// if (email === "" || password === "") {
-		// 	setLoginError("missing input");
-		// 	setLoginErrorClass("some");
-		// 	return;
-		// }
-		//!Url our page is hosed on
-		let url = `http://localhost:4000/user/login`;
+    //!Url our page is hosed on
+    let url = `http://localhost:4000/user/login`;
 
-		let bodyObject = JSON.stringify({ email, password });
+    let bodyObject = JSON.stringify({ email, password });
 
-		let myHeaders = new Headers();
-		myHeaders.append("Content-Type", "application/json");
-		const requestOptions = {
-			headers: myHeaders,
-			body: bodyObject,
-			method: "POST",
-		};
-		//! function that runs when the user hits the login button to bring to new page
-		try {
-			const response = await fetch(url, requestOptions);
-			const data = await response.json();
-			console.log("data", data);
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const requestOptions = {
+      headers: myHeaders,
+      body: bodyObject,
+      method: "POST",
+    };
+    //! function that runs when the user hits the login button to bring to new page
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      console.log("data", data);
       if (data.message === "Success") {
         if (data.user.isAdmin === false) {
           props.updateToken(data.token);
           navigate("/profile");
-        }
-        else if (data.message === "Success" & data.user.isAdmin === true) {
+        } else if (
+          (data.message === "Success") &
+          (data.user.isAdmin === true)
+        ) {
           props.updateToken(data.token);
           navigate("/admin");
         }
+      } else {
+        setMessage(data.message);
       }
-			 else {
-				setMessage(data.message);
-			}
-		} catch (error) {
-			console.log(error.message);
-		}
-	}
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
-	
-
-
-
-	return (
+  return (
     <div className="Background">
       <Navbar></Navbar>
       <Container className="logInFormContainer">
@@ -169,14 +146,3 @@ const Login = (props) => {
 };
 
 export default Login;
-// playing with ui end adornments dont seem to work with react 
-// InputProps={{
-//                       endAdornment:
-                    
-//                         <InputAdornment position="end">
-//                           <IconButton onClick={toggleBtn}>
-//                             {state ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-//                           </IconButton>
-//                         </InputAdornment>
-//                     }}
-//                   />

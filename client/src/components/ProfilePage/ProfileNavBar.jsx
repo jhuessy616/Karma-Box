@@ -1,6 +1,6 @@
 import { Nav, Navbar, Container } from "react-bootstrap";
 import logo from "../../assets/img/logo3.png";
-import { useHistory } from "react-router-dom";
+
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -10,9 +10,9 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import "../home/navbar.css";
-import baseURL from "../../utils/baseurl";
+
 import jwt_decode from "jwt-decode";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const ProfileNavBar = (props) => {
   const [paymentMethod, setPaymentMethod] = useState();
@@ -37,15 +37,12 @@ const ProfileNavBar = (props) => {
       let data = await response.json();
       console.log(data);
       setPaymentMethod(data.user.paymentMethodId);
-      console.log("payment Method", paymentMethod)
+      console.log("payment Method", paymentMethod);
     } catch (err) {
       console.log(err);
     }
   }
-  // useEffect(() => {
-    
-  //     fetchUser();
-  // }, []);
+
   fetchUser();
 
   async function deleteUser(id) {
@@ -67,8 +64,6 @@ const ProfileNavBar = (props) => {
         localStorage.clear();
         props.setSessionToken("");
         navigate("/");
-        
-       
       } else {
         alert(data.message);
       }
@@ -94,10 +89,7 @@ const ProfileNavBar = (props) => {
               Profile
             </Nav.Link>
 
-            <UncontrolledDropdown
-              // className="me-2"
-              direction="down"
-            >
+            <UncontrolledDropdown direction="down">
               <DropdownToggle
                 tag="span"
                 caret
@@ -143,7 +135,7 @@ const ProfileNavBar = (props) => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-            { paymentMethod  ? (
+            {paymentMethod ? (
               <Nav.Link
                 href="https://billing.stripe.com/p/login/test_dR66p8e4bc39gsU4gg"
                 className="navbar-link"

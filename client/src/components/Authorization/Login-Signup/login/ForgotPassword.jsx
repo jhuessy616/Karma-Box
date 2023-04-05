@@ -1,28 +1,17 @@
 // ! Dependencies imported
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 // ! Styling imported from reactstrap
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Col,
-  Container,
-  Row,
-} from "reactstrap";
-import FullWidthButton from "../../Buttons/FullWidthButton";
+import { Form, FormGroup, Input, Label, Col, Container, Row } from "reactstrap";
+import FullWidthButton from "../../../Buttons/FullWidthButton";
 import Navbar from "../../../home/NavBar";
 import "./login.css";
 
-
-
-function ForgotPassword(props) {
+function ForgotPassword() {
   const formRef = useRef();
-    const emailRef = useRef();
-     const [message, setMessage] = useState();
+  const emailRef = useRef();
+  const [message, setMessage] = useState();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -46,17 +35,13 @@ function ForgotPassword(props) {
     // try where we will await a response from the server and create a room
     try {
       const response = await fetch(url, requestOptions);
-        const data = await response.json();
-
-      
+      const data = await response.json();
 
       // reset the form
-        formRef.current.reset();
+      formRef.current.reset();
 
-        
-         
-          setMessage(data.message);
-        
+      setMessage(data.message);
+
       // Catch for server errors
     } catch (error) {
       console.log(error.message);
@@ -85,7 +70,11 @@ function ForgotPassword(props) {
                   <Label for="email">Email</Label>
                 </FormGroup>{" "}
                 <FullWidthButton>
-                  <Input type="submit" value="Reset Password" className="warningcolor"></Input>
+                  <Input
+                    type="submit"
+                    value="Reset Password"
+                    className="warningcolor"
+                  ></Input>
                 </FullWidthButton>
               </Form>
             </div>

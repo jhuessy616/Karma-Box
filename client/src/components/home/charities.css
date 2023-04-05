@@ -1,42 +1,31 @@
-/* .skill {
-  padding: 0 0 0 0;
-  position: relative;
-} */
 .charity-bx {
   background: #68c8ff;
   border-radius: 10px;
   text-align: center;
   padding: 20px 0px;
-
-
-  /* margin-top: -60px; */
 }
-.charityContainer{
-    margin-top: 6vh;
+.charityContainer {
+  margin-top: 6vh;
 }
 
-  .charity h2 {
-	font-size: calc(1rem + 2vw);
-	font-weight: 700;
-    text-align: center;
-    color:#0081c9
+.charity h2 {
+  font-size: calc(1rem + 2vw);
+  font-weight: 700;
+  text-align: center;
+  color: #0081c9;
 }
-.charity h3{
-    
+.charity h3 {
   color: #68c8ff !important;
   letter-spacing: 0.8px !important;
-  /* line-height: 1.5em; */
-  font-size: calc(1rem + .9vw) !important;
+  font-size: calc(1rem + 0.9vw) !important;
   margin-top: 10px;
-
 }
 .charity h5 {
-    color: black;
-    font-size: 18px;
-    letter-spacing: 0.8px;
-    line-height: 1.5em;
-    margin-bottom: 0px;
-    /* margin: 0 0 15px 0; */
+  color: black;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  margin-bottom: 0px;
 }
 .charity-slider {
   width: 90%;
@@ -46,49 +35,36 @@
 .charity-slider .item img {
   width: 100px;
   height: 100px;
-  /* margin: auto 15px auto auto; */
 }
 button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--right {
-    margin-right: -20px;
+  margin-right: -20px;
 }
-button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left{
-    margin-left: -20px;
+button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
+  margin-left: -20px;
 }
-/* react-multiple-carousel-track{
-    padding: auto, 20px;
-} */
-/* .background-image-left {
-  top: 28%;
-  position: absolute;
-  bottom: 0;
-  width: 40%;
-  z-index: -4;
-} */
-
-.buttoncontainer{
-    display:flex;
-    justify-content: center;
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
 }
-.charity .connectButton{
+.charity .connectButton {
   color: #fff;
-background: linear-gradient(90.21deg, rgba(0, 59, 255, 0.5) -5.91%, rgba(104,200,255, 0.75) 111.58%);
+  background: linear-gradient(
+    90.21deg,
+    rgba(0, 59, 255, 0.5) -5.91%,
+    rgba(104, 200, 255, 0.75) 111.58%
+  );
   font-weight: 700;
- font-size:calc(.6rem + .6vw);
+  font-size: calc(0.6rem + 0.6vw);
   position: relative;
   margin-top: 5px;
-  
   letter-spacing: 0.8px;
-  /* display: ; */
-  /* align-items: center; */
   padding-top: 10px;
   padding-bottom: 10px;
-  /* text-align: center !important; */
 }
 .charity button svg {
   font-size: 25px;
   margin-left: 10px;
   transition: 0.3s ease-in-out;
-  /* line-height: 1; */
 }
 .charity button:hover svg {
   margin-left: 25px;

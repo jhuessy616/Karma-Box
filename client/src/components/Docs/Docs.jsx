@@ -1,4 +1,4 @@
-import { CopyBlock, dracula, monoBlue, tomorrowNightBlue } from "react-code-blocks";
+import { CopyBlock, tomorrowNightBlue } from "react-code-blocks";
 import "./Docs.css"
 
 export default function Docs() {

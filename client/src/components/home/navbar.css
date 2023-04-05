@@ -1,74 +1,51 @@
 /* navbar styling */
 /* always fixed at top of page, want it to cover width of page, right at top, index so always visible.*/
-.navbar{
-    padding: 0;
-    position: sticky;
-    width: 100%;
-    top:0;
-    z-index: 9999;
-    transition: 0.32 ease-in-out;
-   
+.navbar {
+  padding: 0;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 9999;
+  transition: 0.32 ease-in-out;
 }
-.navbarcontainer{
-    margin: auto 
+.navbarcontainer {
+  margin: auto;
 }
 
 /* logo size */
 /* .logodiv */
-nav.navbar .logodiv .navbarlogolink  img{
-    max-width:20%;
-   
+nav.navbar .logodiv .navbarlogolink img {
+  max-width: 20%;
 
-    align-items: left;
-    
-     filter: invert(38%) sepia(58%) saturate(7088%) hue-rotate(184deg) brightness(98%) contrast(102%);
+  align-items: left;
+
+  filter: invert(38%) sepia(58%) saturate(7088%) hue-rotate(184deg)
+    brightness(98%) contrast(102%);
 }
-/* img{max-width: 20%;} */
 
-.logodiv{
-    margin-right:-200px;
-   
+.logodiv {
+  margin-right: -200px;
 }
-/* .navbarlogolink >img{
-  width:100%;
-   background-color: red 
-} */
- /* a .navbarlink{
-    display: inline-block;
-    z-index: 2; 
-     margin-right:-50px
-} */
-
 
 /* styling for links */
 nav.navbar .navbar-nav .nav-link.navbar-link {
-    font-weight: 400;
-    color: #0081c9 !important;
-    letter-spacing: 0.8px;
-    padding: 0 25px;
-    font-size: 18px;
-    opacity: 0.75;
+  font-weight: 400;
+  color: #0081c9 !important;
+  letter-spacing: 0.8px;
+  padding: 0 25px;
+  font-size: 18px;
+  opacity: 0.75;
 }
-
 
 /* styling for links if hovered */
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover {
-   opacity: 1;
+  opacity: 1;
 }
-
-
-
-
-
-
-
-
-
 
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
-	outline: none ;
-    box-shadow: none ;
+  outline: none;
+  box-shadow: none;
 }
 /* togler icon */
 nav.navbar .navbar-toggler-icon {
@@ -77,26 +54,23 @@ nav.navbar .navbar-toggler-icon {
   background-image: none;
   position: relative;
   border-bottom: 2px solid #0081c9;
-  /* transition: all 300ms linear; */
+
   top: 0px;
-  /* was-2px */
 }
 nav.navbar .navbar-toggler-icon:focus {
-	border-bottom: 2px solid#0081c9;
+  border-bottom: 2px solid#0081c9;
 }
 nav.navbar .navbar-toggler-icon:after,
 nav.navbar .navbar-toggler-icon:before {
-	width: 24px;
-	position: absolute;
-	height: 2px;
-	background-color: #0081c9;
-	top: 0;
-	left: 0;
-	content: '';
-	z-index: 1;
-	/* transition: all 300ms linear; */
+  width: 24px;
+  position: absolute;
+  height: 2px;
+  background-color: #0081c9;
+  top: 0;
+  left: 0;
+  content: "";
+  z-index: 1;
 }
 nav.navbar .navbar-toggler-icon:after {
-	top: 8px;
+  top: 8px;
 }
-

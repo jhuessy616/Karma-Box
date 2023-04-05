@@ -477,3 +477,11 @@ Profile table
                  ```form submit 
                   //   action={`http://localhost:4000/user/resetpassword/${id}/${token}`}
                   //   method="post"
+
+
+                  <!-- Update form for update password -->
+               ```   .logInForm{
+    margin-top: 50px;
+}```
+
+                  

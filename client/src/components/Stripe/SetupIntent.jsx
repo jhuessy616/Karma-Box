@@ -3,7 +3,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import SetupForm from "./SetupForm";
 import jwt_decode from "jwt-decode";
-import ProfileNavbar from "../ProfilePage/ProfileNavBar";
 import { Container } from "reactstrap";
 import baseURL from "../../utils/baseurl";
 

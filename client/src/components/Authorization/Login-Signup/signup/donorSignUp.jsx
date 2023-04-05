@@ -1,8 +1,8 @@
 // ! Dependencies imported
 // ! Styling imported from reactstrap
-import { Button, Form, FormGroup, Input, Label, InputGroup } from "reactstrap";
+import { Button, Form, FormGroup, Label, InputGroup } from "reactstrap";
 import { useRef, useState } from "react";
-import FullWidthButton from "../../Buttons/FullWidthButton";
+import FullWidthButton from "../../../Buttons/FullWidthButton";
 import { useNavigate } from "react-router-dom";
 import "./donorSignUp.css"
 import { useForm } from "react-hook-form";

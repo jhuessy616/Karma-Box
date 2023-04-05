@@ -3,20 +3,20 @@ import { Route, Routes } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentInfo from "./components/Stripe/PaymentInfo";
-import Login from "./components/Authorization/user/login/Login";
-import SignUpPage from "./components/Authorization/user/SignUpPage";
-import NonProfitSignUpPage from "./components/Authorization/user/signup/NonProfitSignUp";
+import Login from "./components/Authorization/Login-Signup/login/Login";
+import SignUpPage from "./components/Authorization/Login-Signup/signup/SignUpPage";
+import NonProfitSignUpPage from "./components/Authorization/Login-Signup/signup/NonProfitSignUp";
+
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
-import KarmaBoxDescription from "./components/home/KarmaBoxDescription";
 
-import ForgotPassword from "./components/Authorization/user/login/ForgotPassword";
-import ResetPassword from "./components/Authorization/user/login/ForgotResetPassword";
+import ForgotPassword from "./components/Authorization/Login-Signup/login/ForgotPassword";
+import ResetPassword from "./components/Authorization/Login-Signup/login/ForgotResetPassword";
 
 import PaymentStatus from "./components/Stripe/PaymentStatus";
-import PasswordReset from "./components/Authorization/user/PasswordReset/PasswordReset";
-import EmailUpdate from "./components/Authorization/user/EmailUpdate/EmailUpdate";
-import PaymentRedirect from "./components/Authorization/user/PaymentRedirect/paymentRedirect";
+import UpdatePassword from "./components/Authorization/Update/UpdatePassword";
+import EmailUpdate from "./components/Authorization/Update/EmailUpdate";
+import PaymentRedirect from "./components/PaymentRedirect/paymentRedirect";
 import AdminProfile from "./components/Admin/AdminProfile";
 
 import "./app.css";
@@ -25,11 +25,11 @@ import SetupIntent from "./components/Stripe/SetupIntent";
 
 import Payment from "./components/Stripe/Payment";
 
-import AfterPayment from "./components/Authorization/user/PaymentRedirect/AfterPayment.jsx";
+import AfterPayment from "./components/PaymentRedirect/AfterPayment.jsx";
 
 import Docs from "./components/Docs/Docs";
 
-import AboutPage from "./components/Authorization/user/aboutPage/aboutPage";
+import AboutPage from "./components/aboutPage/aboutPage";
 
 import UpdatePaymentInfo from "./components/Stripe/UpdatePaymentInfo";
 import AdminUsersIndex from "./components/Admin/AdminUsersIndex";
@@ -92,8 +92,7 @@ function App() {
           <Route
             path="/paymentRedirect"
             element={
-              <PaymentRedirect
-                setReturnUrl={setReturnUrl}
+              <UpdatePassword
                 token={sessionToken}
               />
             }

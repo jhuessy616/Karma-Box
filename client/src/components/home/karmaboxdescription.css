@@ -1,40 +1,28 @@
-
-
-
-.DonorWelcome{
-    margin-bottom: 20px;
-    padding: 0px !important;
+.DonorWelcome {
+  margin-bottom: 20px;
+  padding: 0px !important;
 }
-.DonorH h3{
-    font-size: calc(1rem + .6vw);
-    color:#0081c9;
-    margin-top: -10px
-    
-    
-
+.DonorH h3 {
+  font-size: calc(1rem + 0.6vw);
+  color: #0081c9;
+  margin-top: -10px;
 }
-.AboutContainer h4{
-    font-size: calc(.8rem + .6vw);
-    color:#0081c9;
-    /* line-height: 1em; */
-    font-weight: 700 !important;
-    
+.AboutContainer h4 {
+  font-size: calc(0.8rem + 0.6vw);
+  color: #0081c9;
+  font-weight: 700 !important;
 }
 .DonorH3 {
-    font-size: calc(1rem + .6vw) !important; 
-    color:#0081c9;
-     font-weight: 700; 
-    margin-top: -10px
-    
-    
-
-}
-.KBSignUpButton{
-    color: #fff;
- background: #68c8ff;
-
+  font-size: calc(1rem + 0.6vw) !important;
+  color: #0081c9;
   font-weight: 700;
-  font-size: calc(.6rem + .6vw);
+  margin-top: -10px;
+}
+.KBSignUpButton {
+  color: #fff;
+  background: #68c8ff;
+  font-weight: 700;
+  font-size: calc(0.6rem + 0.6vw);
   padding: 10px;
   margin-top: 20px;
   margin-bottom: 5px;
@@ -43,13 +31,6 @@
   align-items: center;
 }
 
-/* .AboutText{
-   
-
-} */
-.buttonlink{
-    text-decoration:none;
+.buttonlink {
+  text-decoration: none;
 }
- 
-/* ! Isaac's styling */
-
