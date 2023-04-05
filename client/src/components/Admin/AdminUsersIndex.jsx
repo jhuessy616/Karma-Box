@@ -6,6 +6,8 @@ import { Col, Container, Row, Table } from "reactstrap";
 import AdminNavbar from "../Admin/AdminNavbar";
 
 import "../ProfilePage/ProfileIndex.css";
+import AdminDelete from "./AdminDelete";
+import AdminUpdate from "./AdminUpdate";
 
 //! Declaration of Vairables
 const AdminUsersIndex = (props) => {
@@ -24,7 +26,6 @@ const AdminUsersIndex = (props) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       setUsers(data.allUsers);
-     
     } catch (err) {
       console.log(err.message);
     }
@@ -35,7 +36,6 @@ const AdminUsersIndex = (props) => {
     }
   }, [props.token]);
 
-  
   return (
     <div className="Background">
       <AdminNavbar token={props.token}></AdminNavbar>
@@ -49,7 +49,11 @@ const AdminUsersIndex = (props) => {
             <div className="total-donations">
               {/* <h1 className="txtcenter">Total Donated: ${totalDonated}</h1>{" "} */}
             </div>
-                      <Table striped className="donations-table" style={{ marginTop: 20}}>
+            <Table
+              striped
+              className="donations-table"
+              style={{ marginTop: 20 }}
+            >
               {/* <thead>
                 <tr>
                   <th>User</th>
@@ -58,10 +62,21 @@ const AdminUsersIndex = (props) => {
               <tbody>
                 {users.map((user) => (
                   <tr key={user._id}>
-                        <td scope="row">{user.email}</td>
-                        <td>Update</td>
-                        <td>Delete</td>
-                    
+                    <td scope="row">{user.email}</td>
+                    <td>
+                      <AdminUpdate
+                        token={props.token}
+                        fetchUsers={fetchUsers}
+                        user={user}
+                      />
+                    </td>
+                    <td>
+                      <AdminDelete
+                        token={props.token}
+                        fetchUsers={fetchUsers}
+                        user={user}
+                      />
+                    </td>
                   </tr>
                 ))}
               </tbody>

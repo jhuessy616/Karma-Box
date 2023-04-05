@@ -6,6 +6,7 @@ import PaymentInfo from "./components/Stripe/PaymentInfo";
 import Login from "./components/Authorization/Login-Signup/login/Login";
 import SignUpPage from "./components/Authorization/Login-Signup/signup/SignUpPage";
 import NonProfitSignUpPage from "./components/Authorization/Login-Signup/signup/NonProfitSignUp";
+
 import ProfileIndex from "./components/ProfilePage/ProfileIndex";
 import Home from "./components/home/Home";
 
@@ -32,6 +33,8 @@ import AboutPage from "./components/aboutPage/aboutPage";
 
 import UpdatePaymentInfo from "./components/Stripe/UpdatePaymentInfo";
 import AdminUsersIndex from "./components/Admin/AdminUsersIndex";
+import PrivateRoutes from "./utils/PrivateRoutes";
+import AdminRoutes from "./utils/AdminRoutes";
 
 const stripePromise = loadStripe(
   "pk_test_51MQga9HZaHQFHCjUSOT26iFGIFfVSnMYsYtde7PlTXpmNuhjUOruqYNJ0uIqBnNqQ7QrjvXgmAZcmqiV0uBqP1UD00OafLCg5T"
@@ -58,45 +61,115 @@ function App() {
       <Elements stripe={stripePromise}>
         <Routes>
           <Route path="/" element={<Home token={sessionToken} />} />
+
           <Route path="/login" element={<Login updateToken={updateToken} />} />
+
+          <Route path="/about" element={<AboutPage />} />
+
           <Route
             path="/signup"
             element={<SignUpPage updateToken={updateToken} />}
           />
+
           <Route path="/nonprofitsignup" element={<NonProfitSignUpPage />} />
-          <Route
-            path="/profile"
-            element={
-              <ProfileIndex
-                token={sessionToken}
-                setSessionToken={setSessionToken}
-              />
-            }
-          />
-          <Route path="/about" element={<AboutPage />} />
-          <Route
-            path="/admin"
-            element={<AdminProfile token={sessionToken} />}
-          />
-          <Route
-            path="/admin/users"
-            element={<AdminUsersIndex token={sessionToken} />}
-          />
+
+          <Route path="/payment" element={<Payment token={sessionToken} />} />
+
+          <Route path="/payment" element={<Payment returnUrl={returnUrl} />} />
+
+          <Route path="docs" element={<Docs />} />
+
           <Route
             path="/forgotpassword"
             element={<ForgotPassword token={sessionToken} />}
           />
+
           <Route
             path="/resetpassword/:id/:token"
             element={<ResetPassword token={sessionToken} />}
           />
+
           <Route
-            path="/setupIntent"
+            path="/paymentRedirect"
             element={
-              <SetupIntent updateToken={updateToken} token={sessionToken} />
+              <UpdatePassword
+                token={sessionToken}
+              />
             }
           />
-          <Route path="/payment" element={<Payment returnUrl={returnUrl} />} />
+
+          <Route
+            path="/afterpayment"
+            element={<AfterPayment token={sessionToken} />}
+          />
+
+          {/* Private Routes */}
+
+          <Route element={<PrivateRoutes toke={sessionToken} />}>
+            <Route
+              path="/profile"
+              element={
+                <ProfileIndex
+                  token={sessionToken}
+                  setSessionToken={setSessionToken}
+                />
+              }
+            />
+
+            <Route
+              path="/setupIntent"
+              element={
+                <SetupIntent updateToken={updateToken} token={sessionToken} />
+              }
+            />
+
+            <Route
+              path="/paymentStatus"
+              element={
+                <PaymentStatus
+                  token={sessionToken}
+                  setSessionToken={setSessionToken}
+                />
+              }
+            />
+
+            <Route
+              path="email"
+              element={
+                <EmailUpdate
+                  token={sessionToken}
+                  setSessionToken={setSessionToken}
+                />
+              }
+            />
+
+            <Route path="/paymentinfo" element={<PaymentInfo />} />
+
+            <Route
+              path="/updatePassword"
+              element={
+                <PasswordReset
+                  token={sessionToken}
+                  setSessionToken={setSessionToken}
+                />
+              }
+            />
+          </Route>
+
+          {/* Admin Routes */}
+          <Route element={<AdminRoutes token={sessionToken} />}>
+            <Route
+              path="/admin"
+              element={<AdminProfile token={sessionToken} />}
+            />
+            <Route
+              path="/admin/users"
+              element={<AdminUsersIndex token={sessionToken} />}
+            />
+          </Route>
+
+          {/* Do we need this route?? */}
+          
           <Route
             path="/updatePayment"
             element={
@@ -105,50 +178,6 @@ function App() {
                 token={sessionToken}
               />
             }
-          />
-          <Route path="/payment" element={<Payment token={sessionToken} />} />
-          <Route path="docs" element={<Docs />} />
-
-          <Route
-            path="/paymentStatus"
-            element={
-              <PaymentStatus
-                token={sessionToken}
-                setSessionToken={setSessionToken}
-              />
-            }
-          />
-          <Route path="/paymentinfo" element={<PaymentInfo />} />
-          <Route
-            path="/updatePassword"
-            element={
-              <UpdatePassword
-                token={sessionToken}
-                setSessionToken={setSessionToken}
-              />
-            }
-          />
-          <Route
-            path="email"
-            element={
-              <EmailUpdate
-                token={sessionToken}
-                setSessionToken={setSessionToken}
-              />
-            }
-          />
-          <Route
-            path="/paymentRedirect"
-            element={
-              <PaymentRedirect
-                setReturnUrl={setReturnUrl}
-                token={sessionToken}
-              />
-            }
-          />
-          <Route
-            path="/afterpayment"
-            element={<AfterPayment token={sessionToken} />}
           />
         </Routes>
       </Elements>
